@@ -8,10 +8,12 @@ const { validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
 const Jwt = require("jsonwebtoken");
 const User = require("../models/User.js");
-const { JWT_TOKEN_SECRET, StatusCode } = require("../utils/constants.js");
+const { StatusCode } = require("../utils/constants.js");
 const { jsonGenerate } = require("../utils/helpers.js");
 
 const Login = async (req, res) => {
+  const JWT_TOKEN_SECRET = process.env.JWT_TOKEN_SECRET;
+
   const errors = validationResult(req);
 
   if (errors.isEmpty()) {
@@ -42,8 +44,12 @@ const Login = async (req, res) => {
 
     return res.json(
       jsonGenerate(StatusCode.SUCCESS, "Login Successful", {
-        username: username,
         userId: user._id,
+        uid: user.uid,
+        username: username,
+        email: user.email,
+        photoURL: user.photoURL,
+        access: user.access,
         token: token,
       })
     );

@@ -12,8 +12,8 @@ const express = require("express");
 
 const Login = require("../controllers/Login.controller.js");
 const Register = require("../controllers/Register.controller.js");
-const LoginSchema = require("../validatonSchema/LoginSchema.js");
-const RegisterSchema = require("../validatonSchema/RegisterSchema.js");
+const { LoginSchema } = require("../validatonSchema/LoginSchema.js");
+const { RegisterSchema } = require("../validatonSchema/RegisterSchema.js");
 
 const apiRoute = express.Router();
 // export const apiProtected = express.Router();

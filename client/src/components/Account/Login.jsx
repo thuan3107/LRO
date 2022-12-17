@@ -1,26 +1,179 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { register } from "../../service/Account/Register.js";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Link, useNavigate } from "react-router-dom";
+
+import {
+  getAuth,
+  signInWithPopup,
+  FacebookAuthProvider,
+  GoogleAuthProvider,
+  GithubAuthProvider,
+} from "firebase/auth";
+import { app } from "../../firebase.js";
+import { authentication } from "../../firebase.js";
+import { login } from "../../service/Account/Login.js";
 import "flowbite";
+import { async } from "@firebase/util";
 function Login() {
+  const navigation = useNavigate();
+  const firebaseAuth = getAuth(app);
+  const [errors, setErorrs] = useState(null);
+  const [form, setForm] = useState({
+    username: "",
+
+    password: "",
+  });
+  // console.log(form);
+  const [form2, setForm2] = useState({
+    form: "",
+    uid: "",
+    username: "",
+    email: "",
+    password: "",
+    photoURL: "",
+  });
+
+  //* func
+
+  const loginWithGoogle = async (e) => {
+    const provider = new GoogleAuthProvider();
+    const { user } = await signInWithPopup(firebaseAuth, provider);
+    // const { refreshToken, providerData } = user;
+    // setForm2
+    form2.form = "google";
+    form2.uid = user?.uid;
+    form2.username = user?.displayName;
+    form2.email = user?.email;
+    form2.password = user?.email;
+    form2.photoURL = user?.photoURL;
+    Func_Register();
+    // Func_Login();
+  };
+
+  const loginWithFacebook = async (e) => {
+    const provider = new FacebookAuthProvider();
+    const { user } = await signInWithPopup(firebaseAuth, provider);
+    // const { refreshToken, providerData } = user;
+    // setForm2
+    console.log(user);
+    form2.form = "facebook";
+    form2.uid = user?.uid;
+    form2.username = user?.displayName;
+    form2.email = user?.email;
+    form2.password = user?.email;
+    form2.photoURL = user?.photoURL;
+
+    // console.table(form2);
+    Func_Register();
+    // Func_Login();
+  };
+
+  const Func_Login = async () => {
+    // console.log("Login run");
+    const resultLogin = await login(form2);
+    // console.log(resultLogin);
+    if (resultLogin.status == 200) {
+      if (resultLogin.data.status === 200) {
+        toast(resultLogin.data.message);
+        // toast("Vui Lòng Chờ");
+        // console.log(result);
+        localStorage.setItem("user", JSON.stringify(resultLogin.data.data));
+        setTimeout(() => {
+          // navigation("/");
+          window.location = "/";
+        }, 2000);
+        return;
+      }
+      if (resultLogin.data.status === 201) {
+        // setErorrs(resultLogin.data.data);
+        toast(resultLogin.data.data);
+        return;
+      }
+
+      if (resultLogin.data.status === 202) {
+        toast(resultLogin.data.message);
+        return;
+      }
+    }
+    // console.warn(errors);
+  };
+  const Func_Register = async () => {
+    const result = await register(form2);
+    if (result.status == 200) {
+      if (result.data.status === 200) {
+        Func_Login();
+        return;
+      }
+      if (result.data.status === 201) {
+        return;
+      }
+      if (result.data.status === 202) {
+        Func_Login();
+        return;
+      }
+    }
+  };
+  // setForm data
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    const result = await login(form);
+    if (result.status == 200) {
+      if (result.data.status === 200) {
+        toast(result.data.message);
+        toast("Vui Lòng Chờ");
+        // console.log(result);
+        localStorage.setItem("user", JSON.stringify(result.data.data));
+
+        setTimeout(() => {
+          navigation("/");
+          window.location.reload();
+        }, 2000);
+        return;
+      }
+      if (result.data.status === 201) {
+        setErorrs(result.data.data);
+        toast(result.data.data);
+        return;
+      }
+
+      if (result.data.status === 202) {
+        toast(result.data.message);
+        return;
+      }
+    }
+  };
+
   return (
     <>
+      <ToastContainer />
+
       <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
         <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl lg:max-w-xl">
           <h1 className="text-3xl font-semibold text-center text-purple-700 uppercase">
             Sign in
           </h1>
-          <form className="mt-6">
+          <div className="mt-6">
             <div className="mb-2">
               <label
                 for="email"
                 className="block text-sm font-semibold text-gray-800"
               >
-                Email
+                User Name
               </label>
               <input
-                type="email"
+                type="text"
+                id="username"
+                onChange={handleChange}
+                name="username"
                 className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
+
             <div className="mb-2">
               <label
                 for="password"
@@ -30,23 +183,38 @@ function Login() {
               </label>
               <input
                 type="password"
+                id="password"
+                onChange={handleChange}
+                name="password"
                 className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
+              {errors?.email && (
+                <>
+                  <small id="emailHelp" class="form-text text-danger">
+                    {errors.email.msg}
+                  </small>
+                </>
+              )}
             </div>
-            <a href="#" className="text-xs text-purple-600 hover:underline">
-              Forget Password?
-            </a>
+            {/* <a href="#" className="text-xs text-purple-600 hover:underline">
+                Forget Password?
+              </a> */}
             <div className="mt-6">
-              <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
-                Login
+              <button
+                onClick={handleSubmit}
+                id="register_Submit"
+                className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600"
+              >
+                Submit
               </button>
             </div>
-          </form>
+          </div>
           <div className="relative flex items-center justify-center w-full mt-6 border border-t">
             <div className="absolute px-5 bg-white">Or</div>
           </div>
           <div className="flex mt-4 gap-x-2">
             <button
+              onClick={loginWithGoogle}
               type="button"
               className="flex items-center justify-center w-full p-2 border border-gray-600 rounded-md focus:ring-2 focus:ring-offset-1 focus:ring-violet-600"
             >
@@ -67,13 +235,16 @@ function Login() {
                 <path d="M16 0.396c-8.839 0-16 7.167-16 16 0 7.073 4.584 13.068 10.937 15.183 0.803 0.151 1.093-0.344 1.093-0.772 0-0.38-0.009-1.385-0.015-2.719-4.453 0.964-5.391-2.151-5.391-2.151-0.729-1.844-1.781-2.339-1.781-2.339-1.448-0.989 0.115-0.968 0.115-0.968 1.604 0.109 2.448 1.645 2.448 1.645 1.427 2.448 3.744 1.74 4.661 1.328 0.14-1.031 0.557-1.74 1.011-2.135-3.552-0.401-7.287-1.776-7.287-7.907 0-1.751 0.62-3.177 1.645-4.297-0.177-0.401-0.719-2.031 0.141-4.235 0 0 1.339-0.427 4.4 1.641 1.281-0.355 2.641-0.532 4-0.541 1.36 0.009 2.719 0.187 4 0.541 3.043-2.068 4.381-1.641 4.381-1.641 0.859 2.204 0.317 3.833 0.161 4.235 1.015 1.12 1.635 2.547 1.635 4.297 0 6.145-3.74 7.5-7.296 7.891 0.556 0.479 1.077 1.464 1.077 2.959 0 2.14-0.020 3.864-0.020 4.385 0 0.416 0.28 0.916 1.104 0.755 6.4-2.093 10.979-8.093 10.979-15.156 0-8.833-7.161-16-16-16z"></path>
               </svg>
             </button>
-            <button className="flex items-center justify-center w-full p-2 border border-gray-600 rounded-md focus:ring-2 focus:ring-offset-1 focus:ring-violet-600">
+            <button
+              onClick={loginWithFacebook}
+              className="flex items-center justify-center w-full p-2 border border-gray-600 rounded-md focus:ring-2 focus:ring-offset-1 focus:ring-violet-600"
+            >
               <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 32 32"
+                viewBox="0 0 512 512"
                 className="w-5 h-5 fill-current"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <path d="M31.937 6.093c-1.177 0.516-2.437 0.871-3.765 1.032 1.355-0.813 2.391-2.099 2.885-3.631-1.271 0.74-2.677 1.276-4.172 1.579-1.192-1.276-2.896-2.079-4.787-2.079-3.625 0-6.563 2.937-6.563 6.557 0 0.521 0.063 1.021 0.172 1.495-5.453-0.255-10.287-2.875-13.52-6.833-0.568 0.964-0.891 2.084-0.891 3.303 0 2.281 1.161 4.281 2.916 5.457-1.073-0.031-2.083-0.328-2.968-0.817v0.079c0 3.181 2.26 5.833 5.26 6.437-0.547 0.145-1.131 0.229-1.724 0.229-0.421 0-0.823-0.041-1.224-0.115 0.844 2.604 3.26 4.5 6.14 4.557-2.239 1.755-5.077 2.801-8.135 2.801-0.521 0-1.041-0.025-1.563-0.088 2.917 1.86 6.36 2.948 10.079 2.948 12.067 0 18.661-9.995 18.661-18.651 0-0.276 0-0.557-0.021-0.839 1.287-0.917 2.401-2.079 3.281-3.396z"></path>
+                <path d="M512,257.555c0,-141.385 -114.615,-256 -256,-256c-141.385,0 -256,114.615 -256,256c0,127.777 93.616,233.685 216,252.89l0,-178.89l-65,0l0,-74l65,0l0,-56.4c0,-64.16 38.219,-99.6 96.695,-99.6c28.009,0 57.305,5 57.305,5l0,63l-32.281,0c-31.801,0 -41.719,19.733 -41.719,39.978l0,48.022l71,0l-11.35,74l-59.65,0l0,178.89c122.385,-19.205 216,-125.113 216,-252.89Z" />
               </svg>
             </button>
           </div>
@@ -81,9 +252,12 @@ function Login() {
           <p className="mt-8 text-xs font-light text-center text-gray-700">
             {" "}
             Don't have an account?{" "}
-            <a href="#" className="font-medium text-purple-600 hover:underline">
+            <Link
+              to="/register"
+              className="font-medium text-purple-600 hover:underline"
+            >
               Sign up
-            </a>
+            </Link>
           </p>
         </div>
       </div>

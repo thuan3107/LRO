@@ -2,32 +2,43 @@
 const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
-  name: {
-    type: String,
-  },
+  form: { type: String },
+  uid: { type: String },
   username: {
     type: String,
     min: 6,
-    max: 32,
+    // max: 32,
     required: true,
   },
   password: {
     type: String,
     min: 6,
-    max: 32,
+    // max: 32,
     required: true,
   },
-
   email: {
     type: String,
     min: 6,
-    max: 32,
+    // max: 32,
     required: true,
   },
-  todos: [
+  photoURL: {
+    type: String,
+  },
+  access: {
+    type: String,
+    default: "user",
+  },
+  docs: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Todo",
+      ref: "DOCS",
+    },
+  ],
+  blog: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BLOGS",
     },
   ],
   date: {
@@ -36,4 +47,4 @@ const userSchema = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("USER", userSchema);

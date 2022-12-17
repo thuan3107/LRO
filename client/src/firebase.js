@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCSaq729Fcax2sCKaieiL1o5wE9qYy6mIs",
@@ -12,6 +13,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+export const authentication = getAuth(app);
 const firestore = getFirestore(app);
 const storage = getStorage(app, "gs://fooddeliveryapp154.appspot.com");
 export default storage;
+export { app, firestore };

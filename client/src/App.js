@@ -1,16 +1,26 @@
 import "./App.css";
-import { useEffect, useState, StrictMode } from "react";
+import { useEffect, useState, StrictMode, useContext } from "react";
 import React, { Component } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-// import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import axios from "axios";
+import { ProductContext } from "./contexts/ProductContextProvider.jsx";
 import DocsForm from "../src/components/Test/DocForm/index.jsx";
 import Docs from "../src/components/Test/Docs/index.jsx";
-import Login from "./components/Account/Login.jsx";
-import Register from "./components/Account/Register.jsx";
-function App() {
-  const [songs, setSongs] = useState([]);
 
+import {
+  Home,
+  BaiVietPage,
+  BlogsPage,
+  TaiLieuPage,
+  ThaoLuanPage,
+  LoginPage,
+  RegisterPage,
+} from "./page/";
+
+function App() {
+  const { user } = useContext(ProductContext);
+
+  const [songs, setSongs] = useState([]);
   const getAllSongs = async () => {
     try {
       const { data } = await axios.get(
@@ -38,13 +48,20 @@ function App() {
       {/* <Login /> */}
       <StrictMode>
         <BrowserRouter>
-          {/* <header>
-            <Link to="/">Adopt Me!</Link>
-          </header> */}
-
           <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/" element={<Register />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            {user && user?.userId ? (
+              <>
+                <Route path="/baiviet" element={<BaiVietPage />} />
+                <Route path="/blogs" element={<BlogsPage />} />
+                <Route path="/tailieu" element={<TaiLieuPage />} />
+                <Route path="/thaoluan" element={<ThaoLuanPage />} />
+              </>
+            ) : (
+              <>{/* <Route path="/register" element={<Register />} /> */}</>
+            )}
           </Routes>
         </BrowserRouter>
       </StrictMode>

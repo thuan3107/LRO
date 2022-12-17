@@ -2,17 +2,9 @@
 const { check } = require("express-validator");
 
 const LoginSchema = [
-  check("username", "username is required")
-    .exists()
-    .isAlphanumeric()
-    .withMessage("username should be alphanumeric character only")
-    .trim()
-    .isLength({ min: 6, max: 32 }),
-
-  check("password", "Password is required")
-    .exists()
-    .isLength({ min: 6, max: 100 })
-    .trim(),
+  check("username", "username does not Empty").not().isEmpty(),
+  check("username", "username more than 6 degits").isLength({ min: 6 }),
+  check("password", "password more than 6 degits").isLength({ min: 6 }),
 ];
 
-module.exports = LoginSchema;
+module.exports = { LoginSchema };

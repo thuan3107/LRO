@@ -9,17 +9,18 @@ const { validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
 const Jwt = require("jsonwebtoken");
 const User = require("../models/User.js");
-const { JWT_TOKEN_SECRET, StatusCode } = require("../utils/constants.js");
+// const { JWT_TOKEN_SECRET } = require("../utils/constants.js");
+const { StatusCode } = require("../utils/constants.js");
 const { jsonGenerate } = require("../utils/helpers.js");
 
+
 const Register = async (req, res) => {
+  const JWT_TOKEN_SECRET = process.env.JWT_TOKEN_SECRET;
   const errors = validationResult(req);
   if (errors.isEmpty()) {
-    const { name, username, password, email } = req.body;
-
+    const { uid, form, username, email, password, photoURL } = req.body;
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(password, salt);
-
     const userExist = await User.findOne({
       $or: [
         {
@@ -31,6 +32,7 @@ const Register = async (req, res) => {
       ],
     });
 
+    //!User or Email already exists
     if (userExist) {
       return res.json(
         jsonGenerate(
@@ -39,19 +41,21 @@ const Register = async (req, res) => {
         )
       );
     }
-    // save to db
+    //! save to db
     try {
       const result = await User.create({
-        name: name,
+        uid: uid,
+        form: form,
+        username: username,
         email: email,
         password: hashPassword,
-        username: username,
+        photoURL: photoURL,
       });
 
       const token = Jwt.sign({ userId: result._id }, JWT_TOKEN_SECRET);
-
+      //! Registration successful
       res.json(
-        jsonGenerate(StatusCode.SUCCESS, "Registration successfull", {
+        jsonGenerate(StatusCode.SUCCESS, "Registration successful", {
           userId: result._id,
           token: token,
         })
@@ -59,15 +63,15 @@ const Register = async (req, res) => {
     } catch (error) {
       console.log(error);
     }
+  } else {
+    res.json(
+      jsonGenerate(
+        StatusCode.VALIDATION_ERROR,
+        "Validation error",
+        errors.mapped()
+      )
+    );
   }
-
-  res.json(
-    jsonGenerate(
-      StatusCode.VALIDATION_ERROR,
-      "Validation error",
-      errors.mapped()
-    )
-  );
 };
 
 module.exports = Register;
