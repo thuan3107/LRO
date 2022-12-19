@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -22,10 +22,12 @@ function classNames(...classes) {
 }
 
 function Header() {
+  const LinkTo = useNavigate();
+
   // const [{ user }, dispatch] = useStateValue();
   const { user } = useContext(ProductContext);
 
-  console.table(user);
+  // console.table(user);
 
   const handlerLogout = () => {
     localStorage.clear();
@@ -84,13 +86,49 @@ function Header() {
                   </div>
                 </div>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                  <button
-                    type="button"
-                    className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                  >
-                    <span className="sr-only">View notifications</span>
-                    <BellIcon className="h-6 w-6" aria-hidden="true" />
-                  </button>
+                  {user && user?.userId ? (
+                    <>
+                      {" "}
+                      <button
+                        type="button"
+                        className="rounded-full bg-blue-600 p-1 text-gray-100 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      >
+                        <span className="sr-only flex">View notifications</span>
+                        {/* <a className="h-6 w-6" aria-hidden="true" /> */}
+                        <span className="h-6 w-auto flex">
+                          <span className="mx-1">Upload</span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="w-6 h-6"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
+                            />
+                          </svg>
+                        </span>
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <Link
+                        to="/login"
+                        type="button"
+                        className="rounded-md bg-blue-600 p-1 text-gray-100 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      >
+                        <span className="sr-only flex">View notifications</span>
+                        {/* <a className="h-6 w-6" aria-hidden="true" /> */}
+                        <span className="h-6 w-auto flex">
+                          <span className="mx-1">Login Now</span>
+                        </span>
+                      </Link>
+                    </>
+                  )}
 
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3">
@@ -104,6 +142,7 @@ function Header() {
                         />
                       </Menu.Button>
                     </div>
+
                     <Transition
                       as={Fragment}
                       enter="transition ease-out duration-100"
@@ -125,7 +164,33 @@ function Header() {
                                     "block px-4 py-2 text-sm text-gray-700"
                                   )}
                                 >
-                                  Your Profile
+                                  Trang Cá Nhân
+                                </a>
+                              )}
+                            </Menu.Item>
+                            <Menu.Item>
+                              {({ active }) => (
+                                <Link
+                                  to="/tailieu/create"
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "block px-4 py-2 text-sm text-gray-700"
+                                  )}
+                                >
+                                  Đăng Tài Liệu
+                                </Link>
+                              )}
+                            </Menu.Item>
+                            <Menu.Item>
+                              {({ active }) => (
+                                <a
+                                  href="#"
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "block px-4 py-2 text-sm text-gray-700"
+                                  )}
+                                >
+                                  Đăng Bài Viết
                                 </a>
                               )}
                             </Menu.Item>
@@ -138,7 +203,20 @@ function Header() {
                                     "block px-4 py-2 text-sm text-gray-700"
                                   )}
                                 >
-                                  Settings
+                                  Quản Lý Nội Dung
+                                </a>
+                              )}
+                            </Menu.Item>
+                            <Menu.Item>
+                              {({ active }) => (
+                                <a
+                                  href="#"
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "block px-4 py-2 text-sm text-gray-700"
+                                  )}
+                                >
+                                  Cài Đặt
                                 </a>
                               )}
                             </Menu.Item>
@@ -152,7 +230,7 @@ function Header() {
                                     "block px-4 py-2 text-sm text-gray-700"
                                   )}
                                 >
-                                  Sign out
+                                  Đăng Xuất
                                 </span>
                               )}
                             </Menu.Item>

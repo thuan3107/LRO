@@ -1,7 +1,4 @@
-// import { JWT_TOKEN_SECRET, StatusCode } from "../utils/constants.js";
-// import { jsonGenerate } from "../utils/helpers.js";?
-// import Jwt from "jsonwebtoken";
-const { JWT_TOKEN_SECRET, StatusCode } = require("../utils/constants.js");
+const { StatusCode } = require("../utils/constants.js");
 const { jsonGenerate } = require("../utils/helpers.js");
 const Jwt = require("jsonwebtoken");
 /**
@@ -12,6 +9,8 @@ const Jwt = require("jsonwebtoken");
  * @returns
  */
 const AuthMiddleware = (req, res, next) => {
+  const JWT_TOKEN_SECRET = process.env.JWT_TOKEN_SECRET;
+
   if (req.headers["auth"] === undefined) {
     return res.json(jsonGenerate(StatusCode.AUTH_ERROR, "Access Denied"));
   }

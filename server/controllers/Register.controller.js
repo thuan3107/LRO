@@ -1,18 +1,9 @@
-// import { validationResult } from "express-validator";
-// import { StatusCode, JWT_TOKEN_SECRET } from "../utils/constants.js";
-// import { jsonGenerate } from "../utils/helpers.js";
-// import bcrypt from "bcrypt";
-// import User from "../models/User.js";
-// import Jwt from "jsonwebtoken";
-
 const { validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
 const Jwt = require("jsonwebtoken");
 const User = require("../models/User.js");
-// const { JWT_TOKEN_SECRET } = require("../utils/constants.js");
 const { StatusCode } = require("../utils/constants.js");
 const { jsonGenerate } = require("../utils/helpers.js");
-
 
 const Register = async (req, res) => {
   const JWT_TOKEN_SECRET = process.env.JWT_TOKEN_SECRET;

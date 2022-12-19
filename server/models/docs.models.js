@@ -1,11 +1,40 @@
 const mongoose = require("mongoose");
-
+var d = new Date(),
+  dformat =
+    [d.getMonth() + 1, d.getDate(), d.getFullYear()].join("/") +
+    " " +
+    [d.getHours(), d.getMinutes(), d.getSeconds()].join(":");
 const DOCSchema = new mongoose.Schema({
-  title: { type: String, required: true },
-  dataURL: { type: String, required: true },
-  creater: { type: String, required: true },
-  // createrID: { type: String, required: true },
-  date: { type: Date, default: Date.now() },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  dataURL: {
+    type: String,
+    required: true,
+  },
+  nameTag: {
+    type: String,
+    required: true,
+  },
+  tag: {
+    type: String,
+    required: true,
+  },
+  creater: {
+    type: String,
+  },
+
+  date: {
+    type: String,
+    default: d,
+  },
 });
 
-module.exports = mongoose.model("DOCS", DOCSchema);
+const Docs = mongoose.model("docs", DOCSchema);
+module.exports = Docs;

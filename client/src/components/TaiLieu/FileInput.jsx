@@ -2,10 +2,10 @@ import { useRef, useState } from "react";
 import { useContext } from "react";
 
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import storage from "../../../firebase.js";
-import check from "../../../images/check.png";
+import storage from "../../firebase.js";
+import check from "../../images/check.png";
 // import styles from "./fileinput.css";
-import { ProductContext } from "../../../contexts/ProductContextProvider.jsx";
+import { ProductContext } from "../../contexts/ProductContextProvider.jsx";
 
 const FileInput = ({ name, label, value, type, handleInputState, ...rest }) => {
   const { user } = useContext(ProductContext);

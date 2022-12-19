@@ -6,7 +6,7 @@ import axios from "axios";
 import { ProductContext } from "./contexts/ProductContextProvider.jsx";
 import DocsForm from "../src/components/Test/DocForm/index.jsx";
 import Docs from "../src/components/Test/Docs/index.jsx";
-
+import { GET_ALL_DOC } from "./service/apiConstant.js";
 import {
   Home,
   BaiVietPage,
@@ -15,25 +15,26 @@ import {
   ThaoLuanPage,
   LoginPage,
   RegisterPage,
+  ViewTaiLieuPage,
+  CreateTaiLieuPage,
 } from "./page/";
 
 function App() {
   const { user } = useContext(ProductContext);
 
-  const [songs, setSongs] = useState([]);
-  const getAllSongs = async () => {
+  const [docs, setdocs] = useState([]);
+  const getAllDocs = async () => {
     try {
-      const { data } = await axios.get(
-        "http://localhost:8080/api/docs" + "/getdocs"
-      );
-      setSongs(data.data);
+      const { data } = await axios.get(GET_ALL_DOC);
+      setdocs(data.data);
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
   };
-  console.warn(songs);
+  // console.warn(songs);
   useEffect(() => {
-    getAllSongs();
+    getAllDocs();
   }, []);
   return (
     <>
@@ -54,9 +55,15 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             {user && user?.userId ? (
               <>
+                //* BaiVietPage
                 <Route path="/baiviet" element={<BaiVietPage />} />
-                <Route path="/blogs" element={<BlogsPage />} />
+                //* TaiLieu
                 <Route path="/tailieu" element={<TaiLieuPage />} />
+                <Route path="/tailieu/create" element={<CreateTaiLieuPage />} />
+                <Route path="/tailieu/view/:id" element={<ViewTaiLieuPage />} />
+                //*BlogsPage
+                <Route path="/blogs" element={<BlogsPage />} />
+                //* ThaoLuanPage
                 <Route path="/thaoluan" element={<ThaoLuanPage />} />
               </>
             ) : (
