@@ -1,9 +1,19 @@
 const mongoose = require("mongoose");
-var d = new Date(),
-  dformat =
-    [d.getMonth() + 1, d.getDate(), d.getFullYear()].join("/") +
-    " " +
-    [d.getHours(), d.getMinutes(), d.getSeconds()].join(":");
+
+
+var today = new Date();
+var day =
+  today.getDate() +
+  "/" +
+  (today.getMonth() + 1) +
+  "/" +
+  today.getFullYear() +
+  " " +
+  today.getHours() +
+  ":" +
+  today.getMinutes() +
+  ":" +
+  today.getSeconds();
 const DOCSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -26,13 +36,22 @@ const DOCSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
+  isPrivate: { type: Boolean, required: true },
+  like: [],
+  view: [],
   creater: {
     type: String,
   },
-
+  createrId: {
+    type: String,
+  },
+  createrPhoto: {
+    type: String,
+  },
   date: {
     type: String,
-    default: d,
+    default: day,
   },
 });
 

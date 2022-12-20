@@ -10,3 +10,5 @@ export const GET_DOC = `${API_URL}/api/getdoc`;
 // export const GET_DOC = `${API_URL}/api/getdoc`;
 //! get all docs
 export const GET_ALL_DOC = `${API_URL}/get/alldocs`;
+//! get find one doc
+export const GET_FIND_DOC = `${API_URL}/get/findonedocs`;

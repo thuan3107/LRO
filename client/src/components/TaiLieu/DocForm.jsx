@@ -10,7 +10,8 @@ import dataCourse from "../../data/course.js";
 function DocForm() {
   const { user } = useContext(ProductContext);
   const token = user?.token;
-  // const [key, setkey] = useState(null);
+  const [isP, setisP] = useState(false);
+  console.log(isP);
   const [data, setData] = useState({
     title: "",
     tag: "",
@@ -19,6 +20,9 @@ function DocForm() {
     desc: "",
     userId: user?.userId,
     creater: user?.username,
+    createrId: user?.userId,
+    createrPhoto: user?.photoURL,
+    isPrivate: "",
   });
   console.table(data);
 
@@ -45,6 +49,7 @@ function DocForm() {
     setData((prev) => ({ ...prev, [name]: value }));
   };
   const handleSubmit = async (e) => {
+    data.isPrivate = isP;
     e.preventDefault();
     const resultLogin = await add_doc(token, data);
     console.log(resultLogin);
@@ -76,9 +81,43 @@ function DocForm() {
       <ToastContainer />
 
       <div className="my-6 py-6  h-auto ">
+        <div role="alert" className="justify-center flex items-center mb-6">
+          <div class="border-t border-b border-red-500 text-red-700 px-4 py-3">
+            <p class="font-bold">Thông Báo</p>
+            <p class="text-sm">
+              MỌI NGƯỜI VUI LÒNG ĐĂNG TẢI CÁC TÀI LIỆU Ở ĐỊNH DẠNG PDF NHÉ
+            </p>{" "}
+            <p class="text-sm">
+              Các định dạng khác vẫn được những sẽ xem trước không được
+            </p>
+          </div>
+        </div>
+
         <div>
           <div class="max-w-2xl mx-auto">
             <div>
+              <label class="inline-flex relative items-center mr-5 cursor-pointer">
+                <input
+                  type="checkbox"
+                  // value={isP}
+                  onChange={(e) => setisP(!isP)}
+                  class="sr-only peer"
+                />
+                <div class="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-purple-300 dark:peer-focus:ring-purple-800 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-600"></div>
+                {!isP ? (
+                  <>
+                    <span class="ml-3 text-sm font-medium text-gray-100 dark:text-gray-300">
+                      Chế độ đăng công khai
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <span class="ml-3 text-sm font-medium text-gray-100 dark:text-gray-300">
+                      Chế độ đăng riêng tư
+                    </span>
+                  </>
+                )}
+              </label>
               <div class="relative z-0 mb-6 w-full group">
                 <input
                   type="text"
@@ -135,6 +174,44 @@ function DocForm() {
                 </div>
               </div>
               {/* <div class="grid xl:grid-cols-2 xl:gap-6">
+                <div class="relative z-0 mb-1 mt-2 w-full group">
+                  <div class="flex items-center pl-4 rounded border border-gray-200 dark:border-gray-700">
+                    <input
+                      id="bordered-checkbox-1"
+                      type="checkbox"
+                      onChange={(e) => setisP(false)}
+                      name="bordered-checkbox"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label
+                      for="bordered-checkbox-1"
+                      class="py-4 ml-2 w-full text-sm font-medium text-gray-100 dark:text-gray-300"
+                    >
+                      Đăng Công Khai
+                    </label>
+                  </div>
+                </div>
+                <div class="relative z-0 mb-1 mt-2 w-full group">
+                  <div class="flex items-center pl-4 rounded border border-gray-200 dark:border-gray-700">
+                    <input
+                      checked
+                      id="bordered-checkbox-2"
+                      type="checkbox"
+                      // value={isP}
+                      onChange={(e) => setisP(true)}
+                      name="bordered-checkbox"
+                      class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label
+                      for="bordered-checkbox-2"
+                      class="py-4 ml-2 w-full text-sm font-medium text-gray-100 dark:text-gray-300"
+                    >
+                      Đăng Riêng Tư
+                    </label>
+                  </div>
+                </div>
+              </div> */}
+              {/* <div class="grid xl:grid-cols-2 xl:gap-6">
             <div class="relative z-0 mb-6 w-full group">
               <div className="justify-center items-center">
                 <div class="max-w-2xl mx-auto">
@@ -176,6 +253,7 @@ function DocForm() {
                   />
                 </div>
               </div>
+
               <div
                 className={`${
                   data &&

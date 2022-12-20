@@ -17,6 +17,9 @@ const CreateDoc = async (req, res) => {
       nameTag: req.body.nameTag,
       dataURL: req.body.dataURL,
       creater: req.body.creater,
+      createrId: req.body.createrId,
+      createrPhoto: req.body.createrPhoto,
+      isPrivate: req.body.isPrivate,
     });
 
     if (result) {

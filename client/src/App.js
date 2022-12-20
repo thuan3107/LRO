@@ -22,20 +22,6 @@ import {
 function App() {
   const { user } = useContext(ProductContext);
 
-  const [docs, setdocs] = useState([]);
-  const getAllDocs = async () => {
-    try {
-      const { data } = await axios.get(GET_ALL_DOC);
-      setdocs(data.data);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  // console.warn(songs);
-  useEffect(() => {
-    getAllDocs();
-  }, []);
   return (
     <>
       {/* <div className="container">
