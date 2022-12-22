@@ -11,7 +11,9 @@ function DocForm() {
   const { user } = useContext(ProductContext);
   const token = user?.token;
   const [isP, setisP] = useState(false);
-  console.log(isP);
+  const [isHP, setisHP] = useState(false);
+  const [tagName, setTagName] = useState("");
+  // console.log(isHP);
   const [data, setData] = useState({
     title: "",
     tag: "",
@@ -24,25 +26,29 @@ function DocForm() {
     createrPhoto: user?.photoURL,
     isPrivate: "",
   });
-  console.table(data);
+  // console.table(data);
 
   const courses = dataCourse.filter(function (item) {
     return item?.key?.toUpperCase() === data?.tag?.toUpperCase();
   });
-  // console.log(courses[0]);
 
-  if (courses[0]?.name != "") {
-    // console.log(data.nameTag);
-    data.nameTag = courses[0]?.name;
-  } else {
-  }
+  // console.log(data.nameTag);
+
+  const set = () => {
+    if (courses.length >= 0) {
+      data.nameTag = courses[0]?.name;
+    } else {
+      data.nameTag = tagName;
+    }
+  };
   useEffect(() => {
+    set();
+    // console.log("use");
     data.nameTag = courses[0]?.name;
-  }, [data.tag]);
+  }, [data.tag, data.nameTag]);
 
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
-    // data.nameTag = courses[0]?.name;
   };
 
   const handleInputState = (name, value) => {
@@ -50,32 +56,32 @@ function DocForm() {
   };
   const handleSubmit = async (e) => {
     data.isPrivate = isP;
+    if (isHP) {
+      data.tag = "Khác";
+      data.nameTag = "Danh Mục Khác";
+    }
+
     e.preventDefault();
     const resultLogin = await add_doc(token, data);
-    console.log(resultLogin);
     if (resultLogin.status == 200) {
       if (resultLogin.data.status === 200) {
         toast(resultLogin.data.message);
-        // localStorage.setItem("user", JSON.stringify(resultLogin.data.data));
         setTimeout(() => {
           window.location.reload();
         }, 1000);
         return;
       }
       if (resultLogin.data.status === 201) {
-        // setErorrs(resultLogin.data.data);
-
         toast(resultLogin.data.data);
         return;
       }
-
       if (resultLogin.data.status === 202) {
         toast(resultLogin.data.message);
         return;
       }
     }
-    // console.warn(errors);
   };
+
   return (
     <div>
       <ToastContainer />
@@ -95,29 +101,54 @@ function DocForm() {
 
         <div>
           <div class="max-w-2xl mx-auto">
-            <div>
-              <label class="inline-flex relative items-center mr-5 cursor-pointer">
-                <input
-                  type="checkbox"
-                  // value={isP}
-                  onChange={(e) => setisP(!isP)}
-                  class="sr-only peer"
-                />
-                <div class="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-purple-300 dark:peer-focus:ring-purple-800 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-600"></div>
-                {!isP ? (
-                  <>
-                    <span class="ml-3 text-sm font-medium text-gray-100 dark:text-gray-300">
-                      Chế độ đăng công khai
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    <span class="ml-3 text-sm font-medium text-gray-100 dark:text-gray-300">
-                      Chế độ đăng riêng tư
-                    </span>
-                  </>
-                )}
-              </label>
+            <div className="">
+              <div className="mb-4 justify-center">
+                <label class="inline-flex relative items-center mr-5 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    // value={isP}
+                    onChange={(e) => setisP(!isP)}
+                    class="sr-only peer"
+                  />
+                  <div class="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-purple-300 dark:peer-focus:ring-purple-800 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-600"></div>
+                  {!isP ? (
+                    <>
+                      <span class="ml-3 text-sm font-medium text-gray-100 dark:text-gray-300">
+                        Chế độ đăng công khai
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <span class="ml-3 text-sm font-medium text-gray-100 dark:text-gray-300">
+                        Chế độ đăng riêng tư
+                      </span>
+                    </>
+                  )}
+                </label>
+                <label class="inline-flex relative items-center mr-5 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    // value={isP}
+                    onChange={(e) => setisHP(!isHP)}
+                    class="sr-only peer"
+                  />
+                  <div class="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-purple-300 dark:peer-focus:ring-purple-800 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-600"></div>
+                  {!isHP ? (
+                    <>
+                      <span class="ml-3 text-sm font-medium text-gray-100 dark:text-gray-300">
+                        Chế độ đăng Theo Môn Học
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <span class="ml-3 text-sm font-medium text-gray-100 dark:text-gray-300">
+                        Chế độ đăng Không Theo Môn Học
+                      </span>
+                    </>
+                  )}
+                </label>
+              </div>
+
               <div class="relative z-0 mb-6 w-full group">
                 <input
                   type="text"
@@ -136,43 +167,51 @@ function DocForm() {
                 </label>
               </div>
 
-              <div class="grid xl:grid-cols-2 xl:gap-6">
-                <div class="relative z-0 mb-1 mt-2 w-full group">
-                  <input
-                    type="text"
-                    class="block uppercase py-3 px-0 w-full text-sm text-gray-100 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" "
-                    required
-                    name="tag"
-                    onChange={handleChange}
-                    value={data.tag}
-                  />
-                  <label
-                    for="floating_first_name"
-                    class="absolute text-sm text-gray-400 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                  >
-                    Mã Môn Học
-                  </label>
-                </div>
-                <div class="relative z-0 mb-1 mt-2 w-full group">
-                  <input
-                    type="text"
-                    name="nameTag"
-                    onChange={handleChange}
-                    value={data.nameTag}
-                    class="block py-3 px-0 w-full text-sm text-gray-100 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    // class="block py-2.5 px-0 w-full text-sm text-gray-100 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" "
-                    required
-                  />
-                  <label
-                    for="floating_last_name"
-                    class="absolute text-sm text-gray-400 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                  >
-                    Tên Môn Học
-                  </label>
-                </div>
-              </div>
+              {!isHP ? (
+                <>
+                  <div class="grid xl:grid-cols-2 xl:gap-6">
+                    <div class="relative z-0 mb-1 mt-2 w-full group">
+                      <input
+                        type="text"
+                        class="block uppercase py-3 px-0 w-full text-sm text-gray-100 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=" "
+                        required
+                        name="tag"
+                        onChange={handleChange}
+                        value={data.tag}
+                      />
+                      <label
+                        for="floating_first_name"
+                        class="absolute text-sm text-gray-400 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                      >
+                        Mã Môn Học
+                      </label>
+                    </div>
+                    <div class="relative z-0 mb-1 mt-2 w-full group">
+                      <input
+                        type="text"
+                        name="nameTag"
+                        onChange={handleChange}
+                        onChange={(e) => setTagName(e.target.value)}
+                        value={data.nameTag}
+                        // value={tagName}
+                        class="block py-3 px-0 w-full text-sm text-gray-100 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        // class="block py-2.5 px-0 w-full text-sm text-gray-100 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=" "
+                        required
+                      />
+                      <label
+                        for="floating_last_name"
+                        class="absolute text-sm text-gray-400 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                      >
+                        Tên Môn Học
+                      </label>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <></>
+              )}
               {/* <div class="grid xl:grid-cols-2 xl:gap-6">
                 <div class="relative z-0 mb-1 mt-2 w-full group">
                   <div class="flex items-center pl-4 rounded border border-gray-200 dark:border-gray-700">
@@ -256,12 +295,13 @@ function DocForm() {
 
               <div
                 className={`${
-                  data &&
-                  data.title != "" &&
-                  data.tag != "" &&
-                  data.nameTag != "" &&
-                  data?.dataURL?.size == undefined &&
-                  data.dataURL != ""
+                  (data &&
+                    data.title != "" &&
+                    data.tag != "" &&
+                    data.nameTag != "" &&
+                    data?.dataURL?.size == undefined &&
+                    data.dataURL != "") ||
+                  isHP
                     ? ""
                     : "hidden"
                 } container border-none relative w-full justify-center items-center`}
@@ -271,7 +311,7 @@ function DocForm() {
                   onClick={handleSubmit}
                   class=" justify-center items-center w-[90%] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm   px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
-                  Submit
+                  Đăng Tải Tài Liệu
                 </button>
               </div>
             </div>

@@ -1,13 +1,21 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Header } from "../../components/index.js";
 import { GET_ALL_DOC } from "../../service/apiConstant.js";
-
+import { like_doc } from "../../service/TaiLieu/LikeDoc.js";
+import { ProductContext } from "../../contexts/ProductContextProvider.jsx";
+import { async } from "@firebase/util";
+import { view_doc } from "../../service/TaiLieu/ViewDoc.js";
 function TaiLieuPage() {
-  // const { user } = useContext(ProductContext);
-
+  const { user } = useContext(ProductContext);
+  const token = user?.token;
+  const photoURL = user?.photoURL;
   const [docs, setdocs] = useState([]);
+  const [like, setLike] = useState({
+    docs_id: "",
+    photoURL: "",
+  });
   const getAllDocs = async () => {
     try {
       const { data } = await axios.get(GET_ALL_DOC);
@@ -16,10 +24,49 @@ function TaiLieuPage() {
       console.log(error);
     }
   };
-  // console.warn(songs);
+
+  const handleLike = async (id) => {
+    like.docs_id = id;
+    like.photoURL = photoURL;
+    try {
+      const result = await like_doc(token, like);
+      console.log(result);
+      if (result.data.status === 200) {
+        getAllDocs();
+        return;
+      }
+
+      if (result.data.status === 202) {
+        return;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleView = async (id) => {
+    try {
+      const result = await view_doc(token, id);
+      // console.log(result);
+      if (result.data.status === 200) {
+        getAllDocs();
+        return;
+      }
+
+      if (result.data.status === 202) {
+        return;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getAllDocs();
   }, []);
+
+  const [searchKey, setSearchKey] = useState();
+
   return (
     <>
       <div>
@@ -39,7 +86,7 @@ function TaiLieuPage() {
                           <div class="flex mb-4  ">
                             <img
                               class="w-12 h-12 rounded-full "
-                              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                              src={item?.createrPhoto}
                             />
 
                             <div class="ml-2 mt-0.5 items-start justify-start inline-block">
@@ -69,15 +116,38 @@ function TaiLieuPage() {
                         </p>
                         <div class="flex justify-between items-center mt-1">
                           <div class="flex ">
+                            <button
+                              onClick={(e) => handleLike(item?._id)}
+                              class={`${
+                                item?.like.length > 1 ? "mr-4" : "mr-1"
+                              } mx-1 bg-blue-400 px-2 rounded-full text-gray-500 dark:text-gray-400  font-light `}
+                            >
+                              {item?.like.length} Like
+                            </button>
+
+                            <div className="flex">
+                              {item?.like &&
+                                item?.like.map((i, index) => {
+                                  return (
+                                    <img
+                                      src={i}
+                                      className={`${
+                                        item?.like.length > 1 ? "-ml-2" : ""
+                                      } h-6 w-6 rounded-full left-2 z-[${index}]`}
+                                    />
+                                  );
+                                })}
+                            </div>
                             <span class="mx-1 bg-blue-400 px-2 rounded-full text-gray-500 dark:text-gray-400  font-light">
-                              8 like
-                            </span>
-                            <span class="mx-1 bg-blue-400 px-2 rounded-full text-gray-500 dark:text-gray-400  font-light">
-                              Lượt xem
+                              {item?.view} Lượt xem
                             </span>
                           </div>
+
                           <div className="item-end justify-end flex">
-                            <div class=" bg-blue-400 px-2 rounded-full mx-1 text-gray-500 dark:text-gray-400 font-light">
+                            <div
+                              onClick={(e) => handleView(item._id)}
+                              class=" bg-blue-400 px-2 rounded-full mx-1 text-gray-500 dark:text-gray-400 font-light"
+                            >
                               <Link to={`/tailieu/view/${item?._id}`}>
                                 {" "}
                                 Xem

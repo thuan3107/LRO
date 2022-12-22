@@ -38,8 +38,13 @@ const DOCSchema = new mongoose.Schema({
   },
 
   isPrivate: { type: Boolean, required: true },
-  like: [],
-  view: [],
+  like: {
+    type: Array,
+  },
+  view: {
+    type: Number,
+    default: 0,
+  },
   creater: {
     type: String,
   },

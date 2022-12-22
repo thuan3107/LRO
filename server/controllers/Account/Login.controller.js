@@ -1,15 +1,9 @@
-// import { validationResult } from "express-validator";
-// import User from "../models/User.js";
-// import { JWT_TOKEN_SECRET, StatusCode } from "../utils/constants.js";
-// import { jsonGenerate } from "../utils/helpers.js";
-// import bcrypt from "bcrypt";
-// import Jwt from "jsonwebtoken";
 const { validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
 const Jwt = require("jsonwebtoken");
-const User = require("../models/User.js");
-const { StatusCode } = require("../utils/constants.js");
-const { jsonGenerate } = require("../utils/helpers.js");
+const User = require("../../models/User.js");
+const { StatusCode } = require("../../utils/constants.js");
+const { jsonGenerate } = require("../../utils/helpers.js");
 
 const Login = async (req, res) => {
   const JWT_TOKEN_SECRET = process.env.JWT_TOKEN_SECRET;

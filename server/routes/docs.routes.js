@@ -1,5 +1,6 @@
 const docRoutes = require("express").Router();
-const FindOneDoc = require("../controllers/FindOneDoc.controller.js");
+const FindOneDoc = require("../controllers/Docs/FindOneDoc.controller.js");
+const LikeOneDoc = require("../controllers/Docs/LikeOneDoc.controller.js");
 const Doc = require("../models/docs.models.js");
 const User = require("../models/User.js");
 
@@ -13,9 +14,10 @@ docRoutes.get("/alldocs", async (req, res) => {
   }
 });
 docRoutes.post("/findonedocs", FindOneDoc);
+
 docRoutes.get("/alluser", async (req, res) => {
   try {
-    const dataDocs = await User.find();
+    const dataDocs = await User.find().select("-password").exec();
     res.status(200).send({ data: dataDocs });
     // res.send({ data: dataDocs });
   } catch (error) {

@@ -1,9 +1,6 @@
 const express = require("express");
-const CreateDoc = require("../controllers/CreateDoc.controller.js");
-const DocsList = require("../controllers/DocsList.controller.js");
-const Login = require("../controllers/Login.controller.js");
-const Register = require("../controllers/Register.controller.js");
-const RemoveDoc = require("../controllers/RemoveDoc.controller.js");
+const Login = require("../controllers/Account/Login.controller.js");
+const Register = require("../controllers/Account/Register.controller.js");
 const { LoginSchema } = require("../validatonSchema/LoginSchema.js");
 const { RegisterSchema } = require("../validatonSchema/RegisterSchema.js");
 

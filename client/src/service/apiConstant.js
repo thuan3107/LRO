@@ -12,3 +12,7 @@ export const GET_DOC = `${API_URL}/api/getdoc`;
 export const GET_ALL_DOC = `${API_URL}/get/alldocs`;
 //! get find one doc
 export const GET_FIND_DOC = `${API_URL}/get/findonedocs`;
+//! like doc
+export const LIKE_DOC = `${API_URL}/api/likedoc`;
+//! view doc
+export const VIEW_DOC = `${API_URL}/api/viewdoc`;

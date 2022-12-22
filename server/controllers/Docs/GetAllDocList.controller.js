@@ -1,4 +1,4 @@
-const Docs = require("../models/docs.models.js");
+const Docs = require("../../models/docs.models.js");
 
 const GetAllDocList = async (req, res) => {
   try {

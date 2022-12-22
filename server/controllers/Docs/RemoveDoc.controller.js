@@ -1,10 +1,10 @@
 const { validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
 const Jwt = require("jsonwebtoken");
-const User = require("../models/User.js");
-const Docs = require("../models/docs.models.js");
-const { StatusCode } = require("../utils/constants.js");
-const { jsonGenerate } = require("../utils/helpers.js");
+const User = require("../../models/User.js");
+const Docs = require("../../models/docs.models.js");
+const { StatusCode } = require("../../utils/constants.js");
+const { jsonGenerate } = require("../../utils/helpers.js");
 
 const RemoveDoc = async (req, res) => {
   try {
