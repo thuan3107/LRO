@@ -1,4 +1,8 @@
 const courses = [
+  // { name: "", key: "", weight: 999 },
+  { name: "CTU", key: "CTU", weight: 999 },
+  { name: "CIT", key: "CIT", weight: 999 },
+  { name: "LRO", key: "LRO", weight: 999 },
   { name: "Thử Nghiệm OCIT", key: "CT999", weight: 999 },
   { name: "Toán cao cấp", key: "AQ059", weight: 3 },
   { name: "Tiếng Anh Nuôi trồng thủy sản 1", key: "AQ101", weight: 2 },

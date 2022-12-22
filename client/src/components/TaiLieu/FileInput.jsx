@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { useContext } from "react";
 
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import storage from "../../firebase.js";
+import { storage } from "../../firebase.js";
 import check from "../../images/check.png";
 // import styles from "./fileinput.css";
 import { ProductContext } from "../../contexts/ProductContextProvider.jsx";

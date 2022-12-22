@@ -1,6 +1,6 @@
 import styles from "./styles.module.css";
 import { deleteObject, ref } from "firebase/storage";
-import storage from "../../../firebase.js";
+import { storage } from "../../../firebase.js";
 
 const Docs = ({ song }) => {
   const btnXoa = () => {

@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
 import { useParams } from "react-router-dom";
+import AddArticle from "../../components/Comments/AddArticle.jsx";
+import Articles from "../../components/Comments/Articles.jsx";
 import { Header } from "../../components/index.js";
 import { find_one_doc } from "../../service/TaiLieu/FindOneDoc.js";
 
 function ViewTaiLieuPage() {
   let { id } = useParams();
   const [data, setData] = useState();
+  const [isShow, setisShow] = useState(Boolean(false));
   const findOneDoc = async () => {
     try {
       const result = await find_one_doc(id);
@@ -20,8 +23,6 @@ function ViewTaiLieuPage() {
   useEffect(() => {
     findOneDoc();
   }, []);
-  console.log(id);
-  console.log(data);
 
   return (
     <>
@@ -103,6 +104,47 @@ function ViewTaiLieuPage() {
             <p class="text-sm">{data?.date}</p>
           </div>
         </div>
+      </div>
+      {/* Button hiện thị bình luận */}
+      <div className="md:m-2  m-1">
+        <label class="inline-flex relative items-center mr-5 cursor-pointer">
+          <input
+            type="checkbox"
+            // value={isP}
+            onChange={(e) => setisShow(!isShow)}
+            class="sr-only peer"
+          />
+          <div class="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-purple-300 dark:peer-focus:ring-purple-800 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-600"></div>
+          {!isShow ? (
+            <>
+              <span class="ml-3 text-sm font-medium text-gray-100 dark:text-gray-300">
+                Không Hiện Thị Bình Luận
+              </span>
+            </>
+          ) : (
+            <>
+              <span class="ml-3 text-sm font-medium text-gray-100 dark:text-gray-300">
+                Hiện Thị Bình Luận
+              </span>
+            </>
+          )}
+        </label>
+      </div>
+      <div className="flex items-center justify-center">
+        {isShow ? (
+          <div className=" mt-2 rounded-lg shadow-md w-[98%] items-center justify-center">
+            <span className="text-gray-400">
+              Bạn Đang Ở Mục Bình Luận Cho Tài Liệu{" "}
+              <span className="text-blue-300">{data?.title}</span>
+            </span>
+            <AddArticle colDB={id} />
+            <div className="h-full">
+              <Articles colDB={id} />
+            </div>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
       <div className="w-full h-screen flex justify-center items-center ">
         <iframe

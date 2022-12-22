@@ -57,12 +57,14 @@ function DocForm() {
   const handleSubmit = async (e) => {
     data.isPrivate = isP;
     if (isHP) {
-      data.tag = "Khác";
-      data.nameTag = "Danh Mục Khác";
+      data.tag = "CTU";
+      data.nameTag = "Tài Liệu Khác";
     }
 
+    console.table(data);
     e.preventDefault();
     const resultLogin = await add_doc(token, data);
+    console.log(resultLogin);
     if (resultLogin.status == 200) {
       if (resultLogin.data.status === 200) {
         toast(resultLogin.data.message);
