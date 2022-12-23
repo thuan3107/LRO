@@ -1,7 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 const withMT = require("@material-tailwind/react/utils/withMT");
 module.exports = withMT({
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  // content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: [
+    "./src/**/*.{html,js}",
+    "./node_modules/tw-elements/dist/js/**/*.js",
+  ],
   theme: {
     extend: {
       margin: {
@@ -73,5 +77,5 @@ module.exports = withMT({
     },
   },
 
-  plugins: [require("flowbite/plugin")],
+  plugins: [require("flowbite/plugin"), require("tw-elements/dist/plugin")],
 });

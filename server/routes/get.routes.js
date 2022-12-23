@@ -1,8 +1,10 @@
 const docRoutes = require("express").Router();
 const FindOneDoc = require("../controllers/Docs/FindOneDoc.controller.js");
+const FindOnePost = require("../controllers/Posts/FindOnePost.controller.js");
 const LikeOneDoc = require("../controllers/Docs/LikeOneDoc.controller.js");
 const Doc = require("../models/docs.models.js");
 const User = require("../models/User.js");
+const GetAllPostList = require("../controllers/Posts/GetAllPost.ctroller.js");
 
 // Get all songs
 docRoutes.get("/alldocs", async (req, res) => {
@@ -14,6 +16,8 @@ docRoutes.get("/alldocs", async (req, res) => {
   }
 });
 docRoutes.post("/findonedocs", FindOneDoc);
+docRoutes.get("/allpost", GetAllPostList);
+docRoutes.post("/findonepost", FindOnePost);
 
 docRoutes.get("/alluser", async (req, res) => {
   try {

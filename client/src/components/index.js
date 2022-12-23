@@ -6,3 +6,8 @@ export { default as Header } from "./Display/Header.jsx";
 //Tailieu
 export {default as DocForm} from './TaiLieu/DocForm.jsx'
 export {default as FileInput} from './TaiLieu/FileInput.jsx'
+
+//BaiViet
+
+export { default as FormBV} from './BaiViet/FormBV.jsx'
+export { default as CardBV} from './BaiViet/CardBV.jsx'

@@ -35,6 +35,12 @@ const userSchema = mongoose.Schema({
       ref: "docs",
     },
   ],
+  posts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "posts",
+    },
+  ],
   blog: [
     {
       type: mongoose.Schema.Types.ObjectId,

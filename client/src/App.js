@@ -17,6 +17,10 @@ import {
   RegisterPage,
   ViewTaiLieuPage,
   CreateTaiLieuPage,
+  CreateBaiVietPage,
+  UpdateBaiVietPage,
+  ViewBaiVietPage,
+  ContentManagement,
 } from "./page/";
 
 function App() {
@@ -41,8 +45,15 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             {user && user?.userId ? (
               <>
+                <Route path="/me/drafts/" element={<ContentManagement />} />
                 //* BaiVietPage
                 <Route path="/baiviet" element={<BaiVietPage />} />
+                <Route path="/baiviet/create" element={<CreateBaiVietPage />} />
+                <Route
+                  path="/baiviet/update/:id"
+                  element={<UpdateBaiVietPage />}
+                />
+                <Route path="/baiviet/view/:id" element={<ViewBaiVietPage />} />
                 //* TaiLieu
                 <Route path="/tailieu" element={<TaiLieuPage />} />
                 <Route path="/tailieu/create" element={<CreateTaiLieuPage />} />

@@ -1,9 +1,13 @@
 export { default as Home } from "./Home.jsx";
 export { default as LoginPage } from "./LoginPage.jsx";
 export { default as RegisterPage } from "./RegisterPage.jsx";
+export { default as ContentManagement } from "./ContentManagement.jsx";
 
 //!Bài Viết
 export { default as BaiVietPage } from "./BaiViet/BaiVietPage.jsx";
+export { default as CreateBaiVietPage } from "./BaiViet/CreateBaiVietPage.jsx";
+export { default as UpdateBaiVietPage } from "./BaiViet/UpdateBaiVietPage.jsx";
+export { default as ViewBaiVietPage } from "./BaiViet/ViewBaiVietPage.jsx";
 
 //!Blogs
 export { default as BlogsPage } from "./Blogs/BlogsPage.jsx";
