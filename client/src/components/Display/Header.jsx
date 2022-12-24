@@ -22,6 +22,8 @@ function classNames(...classes) {
 }
 
 function Header() {
+  const [isOpen, setIsOpen] = useState(1);
+  // console.log(isOpen);
   const LinkTo = useNavigate();
 
   // const [{ user }, dispatch] = useStateValue();
@@ -67,7 +69,62 @@ function Header() {
                   </div>
                   <div className="hidden sm:ml-6 sm:block">
                     <div className="flex space-x-4">
-                      {navigation.map((item) => (
+                      <Link
+                        onClick={() => setIsOpen(1)}
+                        to="/"
+                        className={`${
+                          isOpen === 1
+                            ? "bg-gray-900 text-white"
+                            : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                        }  px-3 py-2 rounded-md text-sm font-medium`}
+                      >
+                        Trang Chủ
+                      </Link>
+                      <Link
+                        onClick={() => setIsOpen(2)}
+                        to="/tailieu"
+                        className={`${
+                          isOpen === 2
+                            ? "bg-gray-900 text-white"
+                            : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                        }  px-3 py-2 rounded-md text-sm font-medium`}
+                      >
+                        Tài Liệu
+                      </Link>
+                      <Link
+                        onClick={() => setIsOpen(3)}
+                        to="/baiviet"
+                        className={`${
+                          isOpen === 3
+                            ? "bg-gray-900 text-white"
+                            : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                        }  px-3 py-2 rounded-md text-sm font-medium`}
+                      >
+                        Bài Viết
+                      </Link>
+                      <Link
+                        onClick={() => setIsOpen(4)}
+                        to="/blogs"
+                        className={`${
+                          isOpen === 4
+                            ? "bg-gray-900 text-white"
+                            : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                        }  px-3 py-2 rounded-md text-sm font-medium`}
+                      >
+                        Blogs
+                      </Link>
+                      <Link
+                        onClick={() => setIsOpen(5)}
+                        to="/thaoluan"
+                        className={`${
+                          isOpen === 5
+                            ? "bg-gray-900 text-white"
+                            : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                        }  px-3 py-2 rounded-md text-sm font-medium`}
+                      >
+                        Thảo Luận
+                      </Link>
+                      {/* {navigation.map((item) => (
                         <Link
                           key={item.name}
                           to={item.href}
@@ -81,7 +138,7 @@ function Header() {
                         >
                           {item.name}
                         </Link>
-                      ))}
+                      ))} */}
                     </div>
                   </div>
                 </div>

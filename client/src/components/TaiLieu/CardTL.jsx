@@ -2,7 +2,7 @@ import React from "react";
 import { AiFillHeart, AiOutlineHeart, AiFillWechat } from "react-icons/ai";
 import { FaLockOpen, FaLock, FaRegEye } from "react-icons/fa";
 import { AiFillLike } from "react-icons/ai";
-function CardBV({ data }) {
+function CardTL({ data }) {
   return (
     <div className="w-full  justify-center items-center ">
       <>
@@ -64,7 +64,7 @@ function CardBV({ data }) {
                         </div>
                         <p class="mt-3 text-gray-700 text-sm">{item.title}</p>
                         <div class="mt-4 flex items-center">
-                          <div class="flex mr-2 text-gray-700 text-sm mr-3">
+                          <div class="flex mr-2 text-gray-700 text-sm mr-3 cursor-pointer">
                             <svg
                               fill="none"
                               viewBox="0 0 24 24"
@@ -80,7 +80,7 @@ function CardBV({ data }) {
                             </svg>
                             <span>{item.like.length}</span>
                           </div>
-                          <div class="flex mr-2 text-gray-700 text-sm mr-8">
+                          <div class="flex mr-2 text-gray-700 text-sm mr-8 cursor-pointer">
                             <svg
                               fill="#000000"
                               width="16px"
@@ -90,9 +90,9 @@ function CardBV({ data }) {
                             >
                               <path d="M 28.0103 46.4556 C 44.5664 46.4556 56 33.0754 56 28.8954 C 56 24.6949 44.5459 11.3351 28.0103 11.3351 C 11.6795 11.3351 0 24.6949 0 28.8954 C 0 33.0754 11.6590 46.4556 28.0103 46.4556 Z M 28.0103 43.2181 C 14.5277 43.2181 3.5858 31.7845 3.5858 28.8954 C 3.5858 26.4570 14.5277 14.5726 28.0103 14.5726 C 41.4518 14.5726 52.4142 26.4570 52.4142 28.8954 C 52.4142 31.7845 41.4518 43.2181 28.0103 43.2181 Z M 28.0103 40.3700 C 34.3828 40.3700 39.5055 35.1449 39.5055 28.8954 C 39.5055 22.4819 34.3828 17.4208 28.0103 17.4208 C 21.5968 17.4208 16.4537 22.4819 16.4947 28.8954 C 16.5152 35.1449 21.5968 40.3700 28.0103 40.3700 Z M 28.0103 32.7066 C 25.8793 32.7066 24.1581 30.9854 24.1581 28.8954 C 24.1581 26.7849 25.8793 25.0842 28.0103 25.0842 C 30.1208 25.0842 31.8420 26.7849 31.8420 28.8954 C 31.8420 30.9854 30.1208 32.7066 28.0103 32.7066 Z" />
                             </svg>
-                            <span>8</span>
+                            <span className="ml-1">{item.view}</span>
                           </div>
-                          <div class="flex mr-2 text-gray-700 text-sm mr-4">
+                          <div class="flex mr-2 text-gray-700 text-sm  hover:shadow-xl hover:font-extralight cursor-pointer hover:shadow-pink-200/30">
                             <svg
                               width="16px"
                               height="16px"
@@ -122,4 +122,4 @@ function CardBV({ data }) {
   );
 }
 
-export default CardBV;
+export default CardTL;

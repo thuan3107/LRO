@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { Header } from "../../components/index.js";
+import { CardTL, Header } from "../../components/index.js";
 import { GET_ALL_DOC } from "../../service/apiConstant.js";
 import { like_doc } from "../../service/TaiLieu/LikeDoc.js";
 import { ProductContext } from "../../contexts/ProductContextProvider.jsx";
@@ -139,118 +139,7 @@ function TaiLieuPage() {
       <div class="md:grid md:grid-cols-3 md:gap-4 md:mx-2 md:my-4">
         <div class="col-span-2 ">
           <>
-            {ArrayDocs &&
-              ArrayDocs.map((item, index) => {
-                return (
-                  <>
-                    <div key={index} class="w-full my-1 mx-2">
-                      <div class="px-5 py-2 bg-white bg-opacity-30 object-contain shadow-lg dark:bg-gray-800 shadow rounded-lg ">
-                        <div className="justify-between flex">
-                          <div class="flex mb-4  -ml-3">
-                            <img
-                              class=" md:w-12 md:h-12 w-10 h-10 rounded-full "
-                              src={item?.createrPhoto}
-                            />
-
-                            <div class="ml-2 mt-0.5 items-start justify-start inline-block">
-                              <span class="block font-medium text-base leading-snug text-black dark:text-gray-100">
-                                {item?.creater}
-                              </span>
-                              <span class="block text-sm text-gray-500 dark:text-gray-400 font-light leading-snug">
-                                {item?.date}
-                              </span>
-                            </div>
-                          </div>
-
-                          <div class="md:block hidden">
-                            <div className=" flex">
-                              <div className="text-sm p-1 mx-1 border-y-2 border-gray-500  justify-center items-center ">
-                                {item?.nameTag}
-                              </div>
-                              <div className="text-sm uppercase p-1 rounded-lg justify-center items-center bg-green-400">
-                                {item?.tag}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <p className="flex -mt-3 -ml-2 md:hidden ">
-                          <span className="uppercase flex text-xs text-white bg-green-700 rounded-lg justify-center items-center px-[5px]">
-                            <AiFillTag />
-                            {item?.tag}
-                          </span>
-                          <span className="ml-2 text-xs bg-primary rounded-lg text-white px-2">
-                            {" "}
-                            {item?.nameTag}
-                          </span>
-                        </p>
-                        <p class="text-gray-800 dark:text-gray-100 leading-snug md:leading-normal">
-                          {item?.title}
-                        </p>
-
-                        <div class="flex justify-between items-center mt-1">
-                          <div class="flex justify-center items-center ">
-                            <div className="flex justify-start items-center">
-                              <button
-                                onClick={(e) => handleLike(item?._id)}
-                                class={`${
-                                  item?.like.length > 1 ? "mr-4" : "mr-1"
-                                } flex -ml-2  text-md justify-center items-center  bg-blue-400 px-2 rounded-full text-gray-500 dark:text-gray-400  font-light `}
-                              >
-                                {item?.like.length}
-                                {!item?.like?.includes(photoURL) ? (
-                                  <>
-                                    <AiOutlineLike className="text-xl " />
-                                  </>
-                                ) : (
-                                  <>
-                                    <AiFillLike className="text-red-500 text-xl " />
-                                  </>
-                                )}
-                                <span
-                                  className={`${
-                                    item?.like.length > 1 ? "ml-2" : ""
-                                  } flex px-1 ml-1 `}
-                                >
-                                  {item?.like &&
-                                    item?.like.slice(0, 5).map((i, index) => {
-                                      return (
-                                        <img
-                                          key={index}
-                                          // onerror={console.log("lôi xanh")}
-                                          src={i ? i : logo}
-                                          className={`${
-                                            item?.like.length > 1
-                                              ? "-ml-[10px]"
-                                              : ""
-                                          } h-[20px] w-[20px]  rounded-full  z-[${index}]`}
-                                        />
-                                      );
-                                    })}
-                                </span>
-                              </button>
-                            </div>
-                            <span class="mx-1 bg-blue-400 px-2 rounded-full text-gray-500 dark:text-gray-400  font-light">
-                              {item?.view} Lượt xem
-                            </span>
-                          </div>
-
-                          <div className="item-end justify-end flex">
-                            <div
-                              onClick={(e) => handleView(item._id)}
-                              class=" bg-blue-400 px-2 rounded-full mx-1 text-gray-500 dark:text-gray-400 font-light"
-                            >
-                              <Link to={`/tailieu/view/${item?._id}`}>
-                                {" "}
-                                Xem
-                              </Link>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                );
-              })}
+            <CardTL data={ArrayDocs} />
           </>
         </div>
         <div class="bg-gray-300">05</div>

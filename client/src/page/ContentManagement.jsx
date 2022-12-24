@@ -1,16 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { Header } from "../components/index.js";
-import "tw-elements";
+import { FaLockOpen, FaLock, FaBars } from "react-icons/fa";
+import { AiOutlineBars } from "react-icons/ai";
+
+import {
+  Tabs,
+  TabsHeader,
+  TabsBody,
+  Tab,
+  TabPanel,
+} from "@material-tailwind/react";
+import { ManagementBV, ManagementTL, ManagementBlogs } from "../components";
 function ContentManagement() {
+  const [isBar, setIsBar] = useState(Boolean(true));
+  const [isBV, setIsBV] = useState(Boolean(true));
+  const [isTL, setIsTL] = useState(Boolean(true));
+  const [isBlogs, setIsBlogs] = useState(Boolean(true));
+
+  const [openTab, setOpenTab] = useState(1);
+
   return (
     <div>
       <div>
         <Header />
       </div>
-      <div>
-        <>
+      <>
+        {/* <div className="flex  ">
+        <div className="  bg-white">
           <nav class="md:hidden  flex px-2 py-2.5 dark:bg-gray-900 fixed w-full z-100 top-12  left-0 border-b ">
-            <div class="flex flex-wrap items-center justify-center mx-auto">
+            <div class="w-[95%] flex flex-wrap items-center justify-center mx-auto">
               <div
                 class="items-center justify-between   flex w-auto order-1"
                 id="navbar-sticky"
@@ -41,17 +59,12 @@ function ContentManagement() {
                       Blogs
                     </a>
                   </li>
-                  {/* <li>
-                    <a
-                      href="#"
-                      class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                    ></a>
-                  </li> */}
+                
                 </ul>
               </div>
             </div>
           </nav>
-          <div className="flex">
+          <div className="flex items-center justify-center ">
             <div className=" md:flex hidden flex-col h-screen p-3 bg-gray-800 shadow w-60">
               <div className="space-y-3">
                 <div className="flex items-center">
@@ -209,10 +222,11 @@ function ContentManagement() {
                 </div>
               </div>
             </div>
-            <div className="md:flex hidden mx-4 mt-3 top-0 left-0 h-screen w-full bg-white z-101"></div>
+            <div className="md:flex hidden mx-4 mt-3 top-0 left-0 h-screen w-full  z-101"></div>
           </div>
-        </>
-      </div>
+        </div>
+      </div>  */}
+      </>
       {/* <div class="grid grid-rows-3 grid-flow-col gap-4">
         <div class="row-span-3 bg-blue-500 h-full w-full ">
         
@@ -220,6 +234,173 @@ function ContentManagement() {
         <div class="col-span-2 bg-blue-500 h-full w-full ">02</div>
         <div class="row-span-2 col-span-2 bg-blue-500 h-full w-full ">03</div>
       </div> */}
+      <div className="flex justify-center items-center w-full ">
+        <div className="flex my-2  border-md shadow-2xl shadow-cyan-500/10 md:w-[93%] w-full h-screen ">
+          <div
+            className={`md:w-[20%] ${
+              isBar ? "hidden" : "w-full block"
+            }  md:block h-screen border-xl shadow-lg shadow-pink-200/10 m-2 justify-center items-center transition-transform`}
+          >
+            <div className="flex p-2 my-2 mx-2 justify-start items-center">
+              <FaBars
+                onClick={(e) => setIsBar(!isBar)}
+                className="md:hidden text-green-500"
+              />
+              <h2 className="mx-2 text-md text-blue-500 font-extrabold">
+                QUẢN LÝ NỘI DUNG
+              </h2>
+            </div>
+
+            <div className="w-full  flex justify-center items-center my-2">
+              <div
+                onClick={() => setOpenTab(1)}
+                className={`${
+                  openTab === 1 ? "bg-purple-600 text-white" : ""
+                } w-[95%]  flex justify-center items-center p-2 bg-white border-md shadow-2xl shadow-pink-200/30 hover:bg-green-300 hover:shadow-pink-200/50  `}
+              >
+                <p className="text-lg font-medium">Tài Liệu</p>
+              </div>
+            </div>
+            <div
+              onClick={() => setOpenTab(2)}
+              className="w-full  flex justify-center items-center my-2"
+            >
+              <div
+                className={`${
+                  openTab === 2 ? "bg-purple-600 text-white" : ""
+                } w-[95%]  flex justify-center items-center p-2 bg-white border-md shadow-2xl shadow-pink-200/30 hover:bg-green-300 hover:shadow-pink-200/50 `}
+              >
+                <p className="text-lg font-medium">Bài Viết</p>
+              </div>
+            </div>
+            <div
+              onClick={() => setOpenTab(3)}
+              className="w-full  flex justify-center items-center my-2"
+            >
+              <div
+                className={`${
+                  openTab === 3 ? "bg-purple-600 text-white" : ""
+                } w-[95%]  flex justify-center items-center p-2 bg-white border-md shadow-2xl shadow-pink-200/30 hover:bg-green-300 hover:shadow-pink-200/50`}
+              >
+                <p className="text-lg font-medium">Blogs</p>
+              </div>
+            </div>
+          </div>
+          <div
+            className={`${
+              !isBar ? "hidden" : ""
+            } md:w-[80%] w-full h-screen border-xl shadow-lg shadow-cyan-500/10 m-2 flex justify-start items-start `}
+          >
+            <div className="p-2 w-full">
+              <div className="md:hidden flex md:text-xl text-cyan-200 items-center">
+                <FaBars
+                  onClick={(e) => setIsBar(!isBar)}
+                  className="mx-2 md:hidden"
+                />
+                <h2 className="md:text-xl text-cyan-200">
+                  Quản Lý Nội Dung Tải Lên
+                </h2>
+              </div>
+              <>
+                {/* <div className="w-full  inline-block relative py-1  justify-center items-center">
+              
+                <div class="hidden md:flex absolute inset-0 text-white justify-start items-center">
+                  <svg height="91%" viewBox="0 0 50 100">
+                    <path
+                      d="M49.9,0a17.1,17.1,0,0,0-12,5L5,37.9A17,17,0,0,0,5,62L37.9,94.9a17.1,17.1,0,0,0,12,5ZM25.4,59.4a9.5,9.5,0,1,1,9.5-9.5A9.5,9.5,0,0,1,25.4,59.4Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                
+                </div>
+                <div className="bg-[#f8f9fa] justify-end  w-full md:w-[92%] p-2 md:ml-10  z-[100] ">
+                  <div className="flex justify-between  ">
+                    <div className="flex justify-start items-center">
+                      <p className="text-2xl mx-2">
+                        {!false ? (
+                          <>
+                            <FaLock className="text-red-400" />
+                          </>
+                        ) : (
+                          <>
+                            <FaLockOpen className="text-green-400" />
+                          </>
+                        )}
+                      </p>
+                      <p className="text-md md:text-lg text-blue-400  font-extrabold">
+                        Tiêu đề bài viết
+                      </p>
+                    </div>
+                    <div className="flex justify-end items-center ">
+                      <button class="group shadow-lg shadow-cyan-300/50 relative overflow-hidden rounded bg-sky-400 bg-blue-300 hover:bg-green-400 hover:shadow-green-300/80 px-2 py-1 mx-1 font-sans uppercase  ring-sky-500 transition-all after:bg-sky-500 active:shadow-md active:ring-2">
+                        <p class="text-primary  shadow-lg shadow-blue-400/10 transition-all group-active:scale-90">
+                          EDIT
+                        </p>
+                      </button>
+                      <button class="group shadow-lg shadow-cyan-300/50 relative overflow-hidden rounded bg-sky-400 bg-red-300 hover:bg-pink-400 hover:shadow-green-300/80 px-2 py-1 mx-1 font-sans uppercase  ring-sky-500 transition-all after:bg-sky-500 active:shadow-md active:ring-2">
+                        <p class="text-primary  shadow-lg shadow-blue-400/10 transition-all group-active:scale-90">
+                          DELETE
+                        </p>
+                      </button>
+                    </div>
+                  </div>
+                  <div className="p-1">
+                    <div className="flex justify-start items-center mx-1">
+                      <div className="mx-1">
+                        <div class="inline-block relative py-1 text-xs">
+                          <div class="absolute inset-0 text-blue-200 flex">
+                            <svg height="100%" viewBox="0 0 50 100">
+                              <path
+                                d="M49.9,0a17.1,17.1,0,0,0-12,5L5,37.9A17,17,0,0,0,5,62L37.9,94.9a17.1,17.1,0,0,0,12,5ZM25.4,59.4a9.5,9.5,0,1,1,9.5-9.5A9.5,9.5,0,0,1,25.4,59.4Z"
+                                fill="currentColor"
+                              />
+                            </svg>
+                            <div class="flex-grow h-full -ml-px bg-blue-200 rounded-md rounded-l-none"></div>
+                          </div>
+                          <span class="relative text-blue-500 uppercase font-semibold pr-px">
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>ct999
+                            <span>&nbsp;</span>
+                          </span>
+                        </div>
+                      </div>
+                      <div className="mx-1">
+                        <div class="inline-block relative py-1 text-xs">
+                          <div class="absolute inset-0 text-green-200 flex">
+                            <svg height="100%" viewBox="0 0 50 100">
+                              <path
+                                d="M49.9,0a17.1,17.1,0,0,0-12,5L5,37.9A17,17,0,0,0,5,62L37.9,94.9a17.1,17.1,0,0,0,12,5ZM25.4,59.4a9.5,9.5,0,1,1,9.5-9.5A9.5,9.5,0,0,1,25.4,59.4Z"
+                                fill="currentColor"
+                              />
+                            </svg>
+                            <div class="flex-grow h-full -ml-px bg-green-200 rounded-md rounded-l-none"></div>
+                          </div>
+                          <span class="relative text-green-500 uppercase font-semibold pr-px">
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span> Phân Tích Hoạt
+                            Động
+                            <span>&nbsp;</span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> */}
+              </>
+              <div className={openTab === 1 ? "block" : "hidden"}>
+                <ManagementTL />
+              </div>
+
+              <div className={openTab === 2 ? "block" : "hidden"}>
+                <ManagementBV />
+              </div>
+
+              <div className={openTab === 3 ? "block" : "hidden"}>
+                <ManagementBlogs />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

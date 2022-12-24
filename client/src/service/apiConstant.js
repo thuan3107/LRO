@@ -16,6 +16,7 @@ export const GET_FIND_POST = `${API_URL}/get/findonepost`
 //? docs => /docs/path
 //* Create doc
 export const ADD_DOC = `${API_URL}/docs/adddoc`;
+export const DELETE_DOC = `${API_URL}/docs/deletedoc`;
 //* get docs for user
 export const GET_DOC = `${API_URL}/docs/getdoc`;
 //* like doc
