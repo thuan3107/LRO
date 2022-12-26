@@ -18,80 +18,10 @@ function TaiLieuPage() {
   const [docs, setdocs] = useState([]);
   const [data, setData] = useState([]);
   const [ArrayDocs, setArrayDocs] = useState([]);
-  const [like, setLike] = useState({
-    docs_id: "",
-    photoURL: "",
-  });
-  const getAllDocs = async () => {
-    try {
-      const { data } = await axios.get(GET_ALL_DOC);
-      setdocs(data.data);
-      setData(data.data);
-      setArrayDocs(data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleLike = async (id) => {
-    like.docs_id = id;
-    like.photoURL = photoURL;
-    try {
-      const result = await like_doc(token, like);
-      console.log(result);
-      if (result.data.status === 200) {
-        getAllDocs();
-        return;
-      }
-
-      if (result.data.status === 202) {
-        return;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleView = async (id) => {
-    try {
-      const result = await view_doc(token, id);
-      // console.log(result);
-      if (result.data.status === 200) {
-        getAllDocs();
-        return;
-      }
-
-      if (result.data.status === 202) {
-        return;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getAllDocs();
-  }, []);
-
   const [searchKey, setSearchKey] = useState();
   const arr = dataCourse.filter((item) => {
     return item?.key?.toLocaleLowerCase() === searchKey?.toLocaleLowerCase();
   });
-  const arrData = data.filter((item) => {
-    return item?.tag?.toLocaleLowerCase() === searchKey?.toLocaleLowerCase();
-  });
-
-  // console.log(ArrayDocs);
-  // console.log(arrData);
-  // console.log(searchKey);
-  // console.log(data);
-  useEffect(() => {
-    if (arrData == "") {
-      setArrayDocs(data);
-    } else {
-      setArrayDocs(arrData);
-    }
-  }, [searchKey]);
   return (
     <>
       <div>
@@ -139,7 +69,7 @@ function TaiLieuPage() {
       <div class="md:grid md:grid-cols-3 md:gap-4 md:mx-2 md:my-4">
         <div class="col-span-2 ">
           <>
-            <CardTL data={ArrayDocs} />
+            <CardTL searchKey={searchKey} />
           </>
         </div>
         <div class="bg-gray-300">05</div>

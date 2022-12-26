@@ -3,11 +3,15 @@ const express = require("express");
 const app = express();
 const connection = require("./db");
 const cors = require("cors");
+
+
+
 const AuthMiddleware = require("./middlewares/AuthMidleware.js");
 const apiRoute = require("./routes/api.js");
 const docsRoutes = require("./routes/apidocs.routes.js");
 const getRoutes = require("./routes/get.routes.js");
 const postsRoutes = require("./routes/apiposts.routes.js");
+
 // Database Connection
 connection();
 // dotenv.config();
@@ -25,5 +29,9 @@ app.use("/docs/", AuthMiddleware, docsRoutes);
 app.get("/", (req, res) => {
   res.send("Server Todo List Run");
 });
-const port = process.env.PORT || 8080;
-app.listen(port, () => console.log(`Listening on port ${port}...`));
+const PORT = process.env.PORT;
+const server = app.listen(
+  PORT,
+  console.log(`Server running on PORT ${PORT}...`)
+);
+

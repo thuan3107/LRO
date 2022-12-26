@@ -3,10 +3,14 @@ import { AiFillLike } from "react-icons/ai";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Swal from "sweetalert2";
 import { GET_ALL_POST } from "../../service/apiConstant.js";
 import { get_posts } from "../../service/BaiViet/GetPost.js";
 import { useContext } from "react";
 import { ProductContext } from "../../contexts/ProductContextProvider";
+import { delete_post } from "../../service/BaiViet/DeletePost.js";
 function ManaBV() {
   const { user } = useContext(ProductContext);
   const auth = user.token;
@@ -24,9 +28,41 @@ function ManaBV() {
     getAllPost();
   }, []);
 
+  function handleDelete(id) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        DeletePosts(id);
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+      }
+    });
+  }
+
+  const DeletePosts = async (id) => {
+    try {
+      const result = await delete_post(auth, id);
+      console.log(result);
+      if (result.data.status == 200) {
+        getAllPost();
+        toast("Delete Successfully");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   console.log(dataPost);
   return (
     <div>
+      <ToastContainer />
+
       <h2 className="md:text-3xl text-xl text-red-500 my-2 mb-10">
         Các Bài Viết Bạn Đã Thêm
       </h2>
@@ -103,7 +139,10 @@ function ManaBV() {
                           EDIT
                         </p>
                       </button>
-                      <button class="group shadow-lg shadow-cyan-300/50 relative overflow-hidden rounded bg-sky-400 bg-red-300 hover:bg-pink-400 hover:shadow-green-300/80 px-2 py-1 mx-1 font-sans uppercase  ring-sky-500 transition-all after:bg-sky-500 active:shadow-md active:ring-2">
+                      <button
+                        onClick={(e) => handleDelete(item._id)}
+                        class="group shadow-lg shadow-cyan-300/50 relative overflow-hidden rounded bg-sky-400 bg-red-300 hover:bg-pink-400 hover:shadow-green-300/80 px-2 py-1 mx-1 font-sans uppercase  ring-sky-500 transition-all after:bg-sky-500 active:shadow-md active:ring-2"
+                      >
                         <p class="text-primary  shadow-lg shadow-blue-400/10 transition-all group-active:scale-90">
                           DELETE
                         </p>
