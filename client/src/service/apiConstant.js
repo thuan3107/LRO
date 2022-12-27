@@ -13,6 +13,17 @@ export const GET_ALL_POST = `${API_URL}/get/allpost`
 //! get find one doc
 export const GET_FIND_POST = `${API_URL}/get/findonepost`
 
+//! get pagination with docs
+export const PAGINATION_DOC = `${API_URL}/get/pagedoc`
+
+//! get pagination with posts
+
+export const PAGINATION_POST = `${API_URL}/get/pagepost`
+
+
+
+
+
 //? docs => /docs/path
 //* Create doc
 export const ADD_DOC = `${API_URL}/docs/adddoc`;

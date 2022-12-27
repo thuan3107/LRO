@@ -5,6 +5,8 @@ const LikeOneDoc = require("../controllers/Docs/LikeOneDoc.controller.js");
 const Doc = require("../models/docs.models.js");
 const User = require("../models/User.js");
 const GetAllPostList = require("../controllers/Posts/GetAllPost.ctroller.js");
+const PaginationDoc = require("../controllers/Docs/PaginationDoc.controller.js");
+const PaginationPost = require("../controllers/Posts/PaginationPost.controller.js");
 
 // Get all songs
 docRoutes.get("/alldocs", async (req, res) => {
@@ -28,5 +30,9 @@ docRoutes.get("/alluser", async (req, res) => {
     res.status(503).send({ message: "Internal Server Error" });
   }
 });
+
+//get pagination doc
+docRoutes.get("/pagedoc", PaginationDoc);
+docRoutes.get("/pagepost", PaginationPost);
 
 module.exports = docRoutes;

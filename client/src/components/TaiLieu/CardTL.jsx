@@ -8,10 +8,12 @@ import { ProductContext } from "../../contexts/ProductContextProvider.jsx";
 import { AiFillTag, AiOutlineLike, AiFillLike } from "react-icons/ai";
 import dataCourse from "../../data/course.js";
 import { view_doc } from "../../service/TaiLieu/ViewDoc.js";
+import { pagination_doc } from "../../service/TaiLieu/PaginationDoc.js";
 function CardTL({ searchKey }) {
   const { user } = useContext(ProductContext);
   const token = user?.token;
   const photoURL = user?.photoURL;
+  const [page, setPage] = useState(1);
   const [docs, setdocs] = useState([]);
   const [data, setData] = useState([]);
   const [ArrayDocs, setArrayDocs] = useState([]);
@@ -19,15 +21,33 @@ function CardTL({ searchKey }) {
     docs_id: "",
     photoURL: "",
   });
+  const getPagination = async () => {
+    try {
+      const { data } = await pagination_doc(page);
+      console.log(data);
+      setArrayDocs(data);
+      setData(data);
+    } catch (error) {}
+  };
   const getAllDocs = async () => {
     try {
       const { data } = await axios.get(GET_ALL_DOC);
       setdocs(data.data);
-      setData(data.data);
-      setArrayDocs(data.data);
     } catch (error) {
       console.log(error);
     }
+  };
+  // console.log(docs.length);
+  //* pagination page
+  const nextPage = () => {
+    const pg = page < Math.ceil(docs.length / 2) ? page + 1 : 1;
+    setPage(pg);
+    // getPagination();
+  };
+  const prevPage = () => {
+    const pg = page === 1 ? 1 : page - 1;
+    setPage(pg);
+    // getPagination();
   };
 
   const handlerLike = async (id) => {
@@ -37,7 +57,8 @@ function CardTL({ searchKey }) {
       const result = await like_doc(token, like);
       console.log(result);
       if (result.data.status === 200) {
-        getAllDocs();
+        // getAllDocs();
+        getPagination();
         return;
       }
 
@@ -66,10 +87,14 @@ function CardTL({ searchKey }) {
   };
 
   useEffect(() => {
+    getPagination();
+  }, [page]);
+
+  useEffect(() => {
     getAllDocs();
   }, []);
 
-  const arrData = data.filter((item) => {
+  const arrData = docs.filter((item) => {
     return item?.tag?.toLocaleLowerCase() === searchKey?.toLocaleLowerCase();
   });
   useEffect(() => {
@@ -380,6 +405,53 @@ function CardTL({ searchKey }) {
               </>
             );
           })}
+        <div className="my-3 w-full   flex justify-center items-center ">
+          {/* <!-- Previous Button --> */}
+          <div className="w-[95%] flex justify-between items-center">
+            <a
+              onClick={(e) => prevPage()}
+              class="inline-flex justify-start items-center 
+              px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-green-300 hover:text-green-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            >
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5 mr-2"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              Previous
+            </a>
+            <a
+              onClick={(e) => {
+                nextPage();
+              }}
+              class="inline-flex justify-end items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg
+               hover:bg-green-300 hover:text-green-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            >
+              Next
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5 ml-2"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </a>
+          </div>
+        </div>
       </>
     </div>
   );

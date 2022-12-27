@@ -3,6 +3,7 @@ import { useEffect, useState, StrictMode, useContext } from "react";
 import React, { Component } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import axios from "axios";
+import LazyLoad from "react-lazyload";
 import { ProductContext } from "./contexts/ProductContextProvider.jsx";
 import DocsForm from "../src/components/Test/DocForm/index.jsx";
 import Docs from "../src/components/Test/Docs/index.jsx";
@@ -47,7 +48,14 @@ function App() {
               <>
                 <Route path="/me/drafts/" element={<ContentManagement />} />
                 //* BaiVietPage
-                <Route path="/baiviet" element={<BaiVietPage />} />
+                <Route
+                  path="/baiviet"
+                  element={
+                    <LazyLoad placeholder={"Loading..."}>
+                      <BaiVietPage />
+                    </LazyLoad>
+                  }
+                />
                 <Route path="/baiviet/create" element={<CreateBaiVietPage />} />
                 <Route
                   path="/baiviet/update/:id"

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-import io from "socket.io-client";
+import LazyLoad from "react-lazyload";
 
 import {
   AiFillHeart,
@@ -18,17 +18,7 @@ import { like_post } from "../../service/BaiViet/LikePost.js";
 
 import { GET_ALL_DOC, GET_ALL_POST } from "../../service/apiConstant.js";
 import { view_post } from "../../service/BaiViet/ViewPost.js";
-const ENDPOINT = "http://localhost:8080"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
-var socket, selectedChatCompare;
 function CardBV() {
-  //socket
-
-  const [socketConnected, setSocketConnected] = useState(false);
-  const [typing, setTyping] = useState(false);
-  const [istyping, setIsTyping] = useState(false);
-  const [call, setCall] = useState("");
-  //socket
-
   const { user } = useContext(ProductContext);
   const [dataPost, setDataPost] = useState([]);
 
@@ -93,7 +83,7 @@ function CardBV() {
         {dataPost &&
           dataPost?.map((item, index) => {
             return (
-              <>
+              <LazyLoad key={item._id} placeholder={"Loading..."}>
                 <div className="flex justify-center items-center w-full">
                   <div class="flex justify-start items-start bg-white shadow-lg rounded-lg  my-1 shadow-green-200/30 w-[95%] ">
                     <div class="flex items-start px-4 py-4">
@@ -385,7 +375,7 @@ function CardBV() {
                     </div>
                   </div>
                 </div>
-              </>
+              </LazyLoad>
             );
           })}
       </>
