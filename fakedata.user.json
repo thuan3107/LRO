@@ -1,0 +1,30 @@
+[
+    {
+        "form":"admin",
+        "uid":"Simpsons",
+        "username":"Simpsons",
+        "email":"simpsons@gmail.com",
+        "password":"123456789",
+        "photoURL":"https://whatsondisneyplus.com/wp-content/uploads/2021/09/bart-.png",
+        "access":"admin"
+    },
+    {
+        "form":"admin",
+        "uid":"123456789",
+        "username":"Nobi Nobita",
+        "email":"nobita@gmail.com",
+        "password":"123456789",
+        "photoURL":"https://lh3.googleusercontent.com/-2guXvdAbyDk/Yq1FJle21lI/AAAAAAAA91c/ouu5uwFxcaosgiwXJd5jTPj-1oHXvokogCNcBGAsYHQ/h240/nobita-4.png",
+        "access":"admin"
+    },
+    {
+        "form":"admin",
+        "uid":"123456789",
+        "username":"Edogawa Conan",
+        "email":"conan@gmail.com",
+        "password":"123456789",
+        "photoURL":"https://thuthuatnhanh.com/wp-content/uploads/2019/05/hinh-anh-conan.jpg",
+        "access":"admin"
+    }
+   
+]

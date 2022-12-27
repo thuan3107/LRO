@@ -27,48 +27,51 @@ function TaiLieuPage() {
       <div>
         <Header />
       </div>
-      <div className=" flex mx-2 w-[90%] md:w-[60%]">
-        <div class=" md:w-[30%] mx-1">
-          <div class="mb-5">
-            <label
-              for="lName"
-              class="mb-3 block text-base font-medium text-[#07074D]"
-            >
-              Mã Học Phần
-            </label>
-            <input
-              type="text"
-              name="key"
-              id="lName"
-              onChange={(e) => setSearchKey(e.target.value)}
-              value={searchKey}
-              placeholder=" Mã Học Phần"
-              class="w-full uppercase rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-            />
-          </div>
-        </div>
-        <div class=" md:w-[50%]">
-          <div class="mb-5">
-            <label
-              for="lName"
-              class="mb-3 block text-base font-medium text-[#07074D]"
-            >
-              Tên Học Phần
-            </label>
-            <input
-              type="text"
-              name="lName"
-              value={arr[0]?.name}
-              id="lName"
-              placeholder="Tên Học Phần"
-              class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="md:grid md:grid-cols-3 md:gap-4 md:mx-2 md:my-4">
+
+      <div class="md:grid md:grid-cols-3 md:gap-4 md:mx-2 md:my-4 my-4">
         <div class="col-span-2 ">
           <>
+            <>
+              <div className=" flex ml-4 w-[90%] md:w-[80%]">
+                <div class=" md:w-[30%] mx-1">
+                  <div class="mb-5">
+                    <label
+                      for="lName"
+                      class="mb-3 block text-base font-medium text-white"
+                    >
+                      Mã Học Phần
+                    </label>
+                    <input
+                      type="text"
+                      name="key"
+                      id="lName"
+                      onChange={(e) => setSearchKey(e.target.value)}
+                      value={searchKey}
+                      placeholder=" Mã Học Phần"
+                      class="w-full uppercase rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                    />
+                  </div>
+                </div>
+                <div class=" md:w-[50%]">
+                  <div class="mb-5">
+                    <label
+                      for="lName"
+                      class="mb-3 block text-base font-medium text-white"
+                    >
+                      Tên Học Phần
+                    </label>
+                    <input
+                      type="text"
+                      name="lName"
+                      value={arr[0]?.name}
+                      id="lName"
+                      placeholder="Tên Học Phần"
+                      class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                    />
+                  </div>
+                </div>
+              </div>
+            </>
             <CardTL searchKey={searchKey} />
           </>
         </div>

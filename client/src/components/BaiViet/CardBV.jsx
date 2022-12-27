@@ -1,34 +1,50 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
 import LazyLoad from "react-lazyload";
-
-import {
-  AiFillHeart,
-  AiOutlineHeart,
-  AiFillWechat,
-  AiOutlineLike,
-} from "react-icons/ai";
-import { FaLockOpen, FaLock, FaRegEye } from "react-icons/fa";
-import { AiFillLike } from "react-icons/ai";
 import { useContext } from "react";
 import { ProductContext } from "../../contexts/ProductContextProvider";
 import { like_post } from "../../service/BaiViet/LikePost.js";
-
-import { GET_ALL_DOC, GET_ALL_POST } from "../../service/apiConstant.js";
+import { GET_ALL_POST } from "../../service/apiConstant.js";
 import { view_post } from "../../service/BaiViet/ViewPost.js";
-function CardBV() {
+import { pagination_post } from "../../service/BaiViet/PaginationPost.js";
+function CardBV({ searchKey }) {
   const { user } = useContext(ProductContext);
   const [dataPost, setDataPost] = useState([]);
-
-  const auth = user.token;
-  const photoURL = user.photoURL;
-
+  const [data, setData] = useState([]);
+  const [ArrayPost, setArrayPost] = useState([]);
+  const [page, setPage] = useState(1);
   const [like, setLike] = useState({
     post_id: "",
     photoURL: "",
   });
+  //set value
+  const auth = user.token;
+  const photoURL = user.photoURL;
+
+  const getPagination = async () => {
+    try {
+      const { data } = await pagination_post(page);
+      console.log(data);
+      setArrayPost(data);
+      setData(data);
+    } catch (error) {}
+  };
+
+  const nextPage = () => {
+    const pg = page < Math.ceil(dataPost.length / 10) ? page + 1 : 1;
+    setPage(pg);
+    // getPagination();
+  };
+  const prevPage = () => {
+    const pg = page === 1 ? 1 : page - 1;
+    setPage(pg);
+    // getPagination();
+  };
+
+  useEffect(() => {
+    getPagination();
+  }, [page]);
 
   const getAllPost = async () => {
     try {
@@ -76,12 +92,21 @@ function CardBV() {
       console.log(error);
     }
   };
-
+  const arrData = dataPost.filter((item) => {
+    return item?.tag?.toLocaleLowerCase() === searchKey?.toLocaleLowerCase();
+  });
+  useEffect(() => {
+    if (arrData == "") {
+      setArrayPost(data);
+    } else {
+      setArrayPost(arrData.splice(0, 10));
+    }
+  }, [searchKey]);
   return (
     <div className="w-full  justify-center items-center ">
       <>
-        {dataPost &&
-          dataPost?.map((item, index) => {
+        {ArrayPost &&
+          ArrayPost?.map((item, index) => {
             return (
               <LazyLoad key={item._id} placeholder={"Loading..."}>
                 <div className="flex justify-center items-center w-full">
@@ -378,6 +403,53 @@ function CardBV() {
               </LazyLoad>
             );
           })}
+        <div className="my-3 w-full   flex justify-center items-center ">
+          {/* <!-- Previous Button --> */}
+          <div className="w-[95%] flex justify-between items-center">
+            <a
+              onClick={(e) => prevPage()}
+              class="cursor-pointer inline-flex justify-start items-center 
+              px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-green-300 hover:text-green-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            >
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5 mr-2"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              Previous
+            </a>
+            <a
+              onClick={(e) => {
+                nextPage();
+              }}
+              class="cursor-pointer inline-flex justify-end items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg
+               hover:bg-green-300 hover:text-green-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            >
+              Next
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5 ml-2"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </a>
+          </div>
+        </div>
       </>
     </div>
   );

@@ -5,16 +5,16 @@ const PostsList = require("../controllers/Posts/PostList.controller.js");
 const LikeOnePost = require("../controllers/Posts/LikeOnePost.controller.js");
 const RemovePost = require("../controllers/Posts/RemovePost.controller.js");
 const UpdatePost = require("../controllers/Posts/UpdatePost.controller.js");
-
+const Post = require("../controllers/posts.controller.js");
 //! router
 
 const apiPost = express.Router();
 
-apiPost.post("/addpost", CreatePost);
-apiPost.post("/deletepost", RemovePost);
-apiPost.post("/updatepost", UpdatePost);
-apiPost.get("/getpost", PostsList);
-apiPost.post("/likepost", LikeOnePost);
-apiPost.post("/viewpost", CountViewPost);
+apiPost.post("/addpost", Post.CreatePost);
+apiPost.post("/deletepost", Post.RemovePost);
+apiPost.post("/updatepost", Post.UpdatePost);
+apiPost.get("/getpost", Post.PostsList);
+apiPost.post("/likepost", Post.LikeOnePost);
+apiPost.post("/viewpost", Post.CountViewPost);
 
 module.exports = apiPost;

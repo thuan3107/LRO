@@ -7,7 +7,7 @@ const { StatusCode } = require("../../utils/constants.js");
 const { jsonGenerate } = require("../../utils/helpers.js");
 
 const PaginationDoc = async (req, res) => {
-  const PAGE_SIZE = 2;
+  const PAGE_SIZE = 10;
   try {
     var page = req.query.page;
     if (page) {

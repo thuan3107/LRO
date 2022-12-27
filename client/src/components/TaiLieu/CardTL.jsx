@@ -40,7 +40,7 @@ function CardTL({ searchKey }) {
   // console.log(docs.length);
   //* pagination page
   const nextPage = () => {
-    const pg = page < Math.ceil(docs.length / 2) ? page + 1 : 1;
+    const pg = page < Math.ceil(docs.length / 10) ? page + 1 : 1;
     setPage(pg);
     // getPagination();
   };
@@ -101,7 +101,7 @@ function CardTL({ searchKey }) {
     if (arrData == "") {
       setArrayDocs(data);
     } else {
-      setArrayDocs(arrData);
+      setArrayDocs(arrData.splice(0, 10));
     }
   }, [searchKey]);
   return (
@@ -410,7 +410,7 @@ function CardTL({ searchKey }) {
           <div className="w-[95%] flex justify-between items-center">
             <a
               onClick={(e) => prevPage()}
-              class="inline-flex justify-start items-center 
+              class="cursor-pointer inline-flex justify-start items-center 
               px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-green-300 hover:text-green-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
             >
               <svg
@@ -432,7 +432,7 @@ function CardTL({ searchKey }) {
               onClick={(e) => {
                 nextPage();
               }}
-              class="inline-flex justify-end items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg
+              class="cursor-pointer inline-flex justify-end items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg
                hover:bg-green-300 hover:text-green-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
             >
               Next

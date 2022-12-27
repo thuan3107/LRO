@@ -1,10 +1,8 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const connection = require("./db");
 const cors = require("cors");
-
-
+const connection = require("./db");
 
 const AuthMiddleware = require("./middlewares/AuthMidleware.js");
 const apiRoute = require("./routes/api.js");
@@ -21,15 +19,20 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
+//Router login and register
 app.use("/api/", apiRoute);
+// router get and getall not authmiddleware
 app.use("/get/", getRoutes);
+//router handler for post model
 app.use("/post/", AuthMiddleware, postsRoutes);
+//router handler for docs model
 app.use("/docs/", AuthMiddleware, docsRoutes);
 
-app.get("/", (req, res) => {
-  res.send("Server Todo List Run");
-});
+//Server runing
 const PORT = process.env.PORT;
+app.get("/", (req, res) => {
+  res.send("Server Run");
+});
 const server = app.listen(
   PORT,
   console.log(`Server running on PORT ${PORT}...`)
