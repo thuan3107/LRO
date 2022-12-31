@@ -5,7 +5,7 @@
         "username":"Simpsons",
         "email":"simpsons@gmail.com",
         "password":"123456789",
-        "photoURL":"https://whatsondisneyplus.com/wp-content/uploads/2021/09/bart-.png",
+        "photoURL":"https://i.ibb.co/xhtSS8k/Simpsons.png",
         "access":"admin"
     },
     {
@@ -14,7 +14,7 @@
         "username":"Nobi Nobita",
         "email":"nobita@gmail.com",
         "password":"123456789",
-        "photoURL":"https://lh3.googleusercontent.com/-2guXvdAbyDk/Yq1FJle21lI/AAAAAAAA91c/ouu5uwFxcaosgiwXJd5jTPj-1oHXvokogCNcBGAsYHQ/h240/nobita-4.png",
+        "photoURL":"https://i.ibb.co/pKs1yM5/nobita-4.png",
         "access":"admin"
     },
     {
@@ -23,8 +23,35 @@
         "username":"Edogawa Conan",
         "email":"conan@gmail.com",
         "password":"123456789",
-        "photoURL":"https://thuthuatnhanh.com/wp-content/uploads/2019/05/hinh-anh-conan.jpg",
+        "photoURL":"https://i.ibb.co/JHtS7kX/conan.png",
+        "access":"admin"
+    },  {
+        "form":"admin",
+        "uid":"123456789",
+        "username":"Psyduck",
+        "email":"Psyduck@gmail.com",
+        "password":"123456789",
+        "photoURL":"https://i.ibb.co/pxBpkF4/Psyduck.png",
+        "access":"admin"
+    },
+    {
+        "form":"admin",
+        "uid":"123456789",
+        "username":"Shizuka",
+        "email":"shizuka@gmail.com",
+        "password":"123456789",
+        "photoURL":"https://i.ibb.co/sJhx8Xm/sizuka.png",
+        "access":"admin"
+    },
+    {
+        "form":"admin",
+        "uid":"123456789",
+        "username":"BearPooh",
+        "email":"pooh@gmail.com",
+        "password":"123456789",
+        "photoURL":"https://i.ibb.co/P5tL2W9/pooh.png",
         "access":"admin"
     }
-   
 ]
+
+

@@ -2,6 +2,7 @@ import "./App.css";
 import { useEffect, useState, StrictMode, useContext } from "react";
 import React, { Component } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+
 import axios from "axios";
 import LazyLoad from "react-lazyload";
 import { ProductContext } from "./contexts/ProductContextProvider.jsx";
@@ -26,6 +27,8 @@ import {
 
 function App() {
   const { user } = useContext(ProductContext);
+  // let location = useLocation();
+  console.log(process.env.REACT_APP_API_KEY);
 
   return (
     <>
@@ -41,7 +44,7 @@ function App() {
       <StrictMode>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/*" element={<Home />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             {user && user?.userId ? (
@@ -51,7 +54,10 @@ function App() {
                 <Route
                   path="/baiviet"
                   element={
-                    <LazyLoad placeholder={"Loading..."}>
+                    <LazyLoad
+                      placeholder={"Loading..."}
+                      fallback={<div>Loading...</div>}
+                    >
                       <BaiVietPage />
                     </LazyLoad>
                   }
