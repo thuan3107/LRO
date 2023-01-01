@@ -23,6 +23,7 @@ import {
   UpdateBaiVietPage,
   ViewBaiVietPage,
   ContentManagement,
+  ProFile,
 } from "./page/";
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
             {user && user?.userId ? (
               <>
                 <Route path="/me/drafts/" element={<ContentManagement />} />
+                <Route path="/u/:id" element={<ProFile />} />
                 //* BaiVietPage
                 <Route
                   path="/baiviet"

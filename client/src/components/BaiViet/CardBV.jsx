@@ -67,7 +67,7 @@ function CardBV({ searchKey }) {
       const result = await like_post(auth, like);
       console.log(result);
       if (result.data.status === 200) {
-        getAllPost();
+        getPagination();
         return;
       }
 
@@ -116,18 +116,26 @@ function CardBV({ searchKey }) {
                     placeholder={"Loading..."}
                     fallback={<div>Loading...</div>}
                   >
-                    <div className="flex justify-center items-center w-full">
-                      <div class="flex justify-start items-start bg-white shadow-lg rounded-lg  my-1 shadow-green-200/30 w-[95%] ">
+                    <div className="flex justify-center items-center w-full ">
+                      <div
+                        class="flex justify-start items-start bg-white shadow-lg rounded-lg  my-1 shadow-green-200/30 w-[95%]
+                      group relative  cursor-alias   before:absolute before:inset-y-0 before:right-0 before:w-[88%] before:rounded-r-lg before:bg-gradient-to-r before:from-transparent before:to-green-300 before:opacity-0 before:transition before:duration-500 hover:before:opacity-100
+                      "
+                      >
                         <div class="flex items-start px-4 py-4">
                           <img
-                            class="w-12 h-12 rounded-full object-cover mr-4 shadow"
+                            class="w-12 h-12 rounded-full object-cover mr-4 shadow
+                            group-hover:scale-[1.3]
+                            "
                             src={item?.createrPhoto}
                             alt="avatar"
                           />
                           <div class="">
                             <div class="flex items-center justify-between">
-                              <h2 class="text-lg font-semibold text-gray-900 mt-1">
-                                {item?.creater}
+                              <h2 class="text-lg font-semibold cursor-pointer z-50  text-gray-900 mt-1 hover:text-blue-500">
+                                <Link to={`/u/${item.userId}`}>
+                                  {item?.creater}
+                                </Link>
                               </h2>
                               <small class="text-sm text-gray-700 mx-2">
                                 {item?.date}
@@ -136,32 +144,32 @@ function CardBV({ searchKey }) {
                             {/* <p class="text-gray-700">{item.date} </p> */}
                             <div>
                               <div class="inline-block relative py-1 text-xs mx-1">
-                                <div class="absolute inset-0 text-blue-200 flex">
+                                <div class="absolute inset-0 text-blue-200 group-hover:text-green-200 flex">
                                   <svg height="100%" viewBox="0 0 50 100">
                                     <path
                                       d="M49.9,0a17.1,17.1,0,0,0-12,5L5,37.9A17,17,0,0,0,5,62L37.9,94.9a17.1,17.1,0,0,0,12,5ZM25.4,59.4a9.5,9.5,0,1,1,9.5-9.5A9.5,9.5,0,0,1,25.4,59.4Z"
                                       fill="currentColor"
                                     />
                                   </svg>
-                                  <div class="flex-grow h-full -ml-px bg-blue-200 rounded-md rounded-l-none"></div>
+                                  <div class="flex-grow h-full -ml-px bg-blue-200 group-hover:bg-green-200 rounded-md rounded-l-none"></div>
                                 </div>
-                                <span class="relative text-blue-500 uppercase font-semibold pr-px">
+                                <span class="relative text-blue-500 group-hover:text-green-500 uppercase font-semibold pr-px">
                                   <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                   {item?.tag}
                                   <span>&nbsp;</span>
                                 </span>
                               </div>
                               <div class="inline-block relative py-1 text-xs mx-1">
-                                <div class="absolute inset-0 text-blue-200 flex">
+                                <div class="absolute inset-0 text-blue-200 group-hover:text-green-200 flex">
                                   <svg height="100%" viewBox="0 0 50 100">
                                     <path
                                       d="M49.9,0a17.1,17.1,0,0,0-12,5L5,37.9A17,17,0,0,0,5,62L37.9,94.9a17.1,17.1,0,0,0,12,5ZM25.4,59.4a9.5,9.5,0,1,1,9.5-9.5A9.5,9.5,0,0,1,25.4,59.4Z"
                                       fill="currentColor"
                                     />
                                   </svg>
-                                  <div class="flex-grow h-full -ml-px bg-blue-200 rounded-md rounded-l-none"></div>
+                                  <div class="flex-grow h-full -ml-px bg-blue-200 group-hover:bg-green-200 rounded-md rounded-l-none"></div>
                                 </div>
-                                <span class="relative text-blue-500 uppercase font-semibold pr-px">
+                                <span class="relative  group-hover:text-green-500 text-blue-500 uppercase font-semibold pr-px">
                                   <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                   {item?.nameTag}
                                   <span>&nbsp;</span>
@@ -391,7 +399,7 @@ function CardBV({ searchKey }) {
                               <Link
                                 to={`/baiviet/view/${item?._id}`}
                                 onClick={(e) => handlerView(item?._id)}
-                                class="flex mr-2 text-gray-700 text-sm mr-4"
+                                class="flex mr-2 text-gray-700 text-sm mr-4 z-50"
                               >
                                 <svg
                                   width="16px"

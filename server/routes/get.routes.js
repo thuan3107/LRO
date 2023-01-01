@@ -10,6 +10,7 @@ const Doc = require("../models/docs.models.js");
 const User = require("../models/User.js");
 const P = require("../controllers/posts.controller.js");
 const D = require("../controllers/docs.controller.js");
+const Auth = require("../controllers/auth.controller.js");
 
 // Get all songs
 docRoutes.get("/alldocs", async (req, res) => {
@@ -38,7 +39,9 @@ docRoutes.post("/findonepost", P.FindOnePost);
 docRoutes.get("/pagedoc", D.PaginationDoc);
 docRoutes.get("/pagepost", P.PaginationPost);
 
-
 docRoutes.get("/dochight", D.GetAllDOC_Highlight_Article);
 docRoutes.get("/posthight", P.GetAllPOST_Highlight_Article);
+
+docRoutes.get("/viewuser", Auth.FindOneUser);
+docRoutes.get("/viewdoclist", D.ViewDocsList);
 module.exports = docRoutes;

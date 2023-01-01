@@ -1,0 +1,462 @@
+{
+    "Nobita": [
+        {
+            "userId": "63b0668142a5e930a140d1fe",
+            "title": "Thiết kế Web căn bản",
+            "nameTag": "Thiết kế Web căn bản",
+            "tag": "TN202",
+            "isPrivate": false,
+            "creater": "Nobi Nobita",
+            "createrPhoto": "https://i.ibb.co/pKs1yM5/nobita-4.png",
+            "desc": "TN202Thiết kế Web căn bảnNobi Nobita",
+            "view": "1000"
+        },
+        {
+            "userId": "63b0668142a5e930a140d1fe",
+            "title": "Thiết kế hệ thống thông tin",
+            "nameTag": "Thiết kế hệ thống thông tin",
+            "tag": "TN204",
+            "isPrivate": false,
+            "creater": "Nobi Nobita",
+            "createrPhoto": "https://i.ibb.co/pKs1yM5/nobita-4.png",
+            "desc": "TN204Thiết kế hệ thống thông tinNobi Nobita",
+            "view": "100"
+        },
+        {
+            "userId": "63b0668142a5e930a140d1fe",
+            "title": "Luận văn tốt nghiệp - TTK",
+            "nameTag": "Luận văn tốt nghiệp - TTK",
+            "tag": "TN360",
+            "isPrivate": false,
+            "creater": "Nobi Nobita",
+            "createrPhoto": "https://i.ibb.co/pKs1yM5/nobita-4.png",
+            "desc": "TN360Luận văn tốt nghiệp - TTKNobi Nobita",
+            "view": "90"
+        },
+        {
+            "userId": "63b0668142a5e930a140d1fe",
+            "title": "Tiểu luận tốt nghiệp - TTK",
+            "nameTag": "Tiểu luận tốt nghiệp - TTK",
+            "tag": "TN253",
+            "isPrivate": false,
+            "creater": "Nobi Nobita",
+            "createrPhoto": "https://i.ibb.co/pKs1yM5/nobita-4.png",
+            "desc": "TN253Tiểu luận tốt nghiệp - TTKNobi Nobita",
+            "view": "80"
+        },
+        {
+            "userId": "63b0668142a5e930a140d1fe",
+            "title": "Toán tài chính căn bản",
+            "nameTag": "Toán tài chính căn bản",
+            "tag": "TN254",
+            "isPrivate": false,
+            "creater": "Nobi Nobita",
+            "createrPhoto": "https://i.ibb.co/pKs1yM5/nobita-4.png",
+            "desc": "TN254Toán tài chính căn bảnNobi Nobita",
+            "view": "70"
+        },
+        {
+            "userId": "63b0668142a5e930a140d1fe",
+            "title": "Mô hình toán kinh tế",
+            "nameTag": "Mô hình toán kinh tế",
+            "tag": "KT320",
+            "isPrivate": false,
+            "creater": "Nobi Nobita",
+            "createrPhoto": "https://i.ibb.co/pKs1yM5/nobita-4.png",
+            "desc": "KT320Mô hình toán kinh tếNobi Nobita",
+            "view": "60"
+        },
+        {
+            "userId": "63b0668142a5e930a140d1fe",
+            "title": "Lý thuyết quy hoạch phi tuyến",
+            "nameTag": "Lý thuyết quy hoạch phi tuyến",
+            "tag": "TN352",
+            "isPrivate": false,
+            "creater": "Nobi Nobita",
+            "createrPhoto": "https://i.ibb.co/pKs1yM5/nobita-4.png",
+            "desc": "TN352Lý thuyết quy hoạch phi tuyếnNobi Nobita",
+            "view": "50"
+        }
+    ],
+    "Shizuka": [
+        {
+            "userId": "63b0669a42a5e930a140d207",
+            "title": "Thuế",
+            "nameTag": "Thuế",
+            "tag": "KT330",
+            "isPrivate": false,
+            "creater": "Shizuka",
+            "createrPhoto": "https://i.ibb.co/sJhx8Xm/sizuka.png",
+            "desc": "KT330ThuếShizuka",
+            "view": "1001"
+        },
+        {
+            "userId": "63b0669a42a5e930a140d207",
+            "title": "Quản trị nguồn nhân lực",
+            "nameTag": "Quản trị nguồn nhân lực",
+            "tag": "KT204",
+            "isPrivate": false,
+            "creater": "Shizuka",
+            "createrPhoto": "https://i.ibb.co/sJhx8Xm/sizuka.png",
+            "desc": "KT204Quản trị nguồn nhân lựcShizuka",
+            "view": "101"
+        },
+        {
+            "userId": "63b0669a42a5e930a140d207",
+            "title": "Hệ thống thông tin kinh tế",
+            "nameTag": "Hệ thống thông tin kinh tế",
+            "tag": "KT314E",
+            "isPrivate": false,
+            "creater": "Shizuka",
+            "createrPhoto": "https://i.ibb.co/sJhx8Xm/sizuka.png",
+            "desc": "KT314EHệ thống thông tin kinh tếShizuka",
+            "view": "91"
+        },
+        {
+            "userId": "63b0669a42a5e930a140d207",
+            "title": "Hành vi tổ chức",
+            "nameTag": "Hành vi tổ chức",
+            "tag": "KT431",
+            "isPrivate": false,
+            "creater": "Shizuka",
+            "createrPhoto": "https://i.ibb.co/sJhx8Xm/sizuka.png",
+            "desc": "KT431Hành vi tổ chứcShizuka",
+            "view": "81"
+        },
+        {
+            "userId": "63b0669a42a5e930a140d207",
+            "title": "Quản trị kinh doanh lữ hành",
+            "nameTag": "Quản trị kinh doanh lữ hành",
+            "tag": "KT211",
+            "isPrivate": false,
+            "creater": "Shizuka",
+            "createrPhoto": "https://i.ibb.co/sJhx8Xm/sizuka.png",
+            "desc": "KT211Quản trị kinh doanh lữ hànhShizuka",
+            "view": "71"
+        },
+        {
+            "userId": "63b0669a42a5e930a140d207",
+            "title": "Quản trị kinh doanh lưu trú",
+            "nameTag": "Quản trị kinh doanh lưu trú",
+            "tag": "KT212",
+            "isPrivate": false,
+            "creater": "Shizuka",
+            "createrPhoto": "https://i.ibb.co/sJhx8Xm/sizuka.png",
+            "desc": "KT212Quản trị kinh doanh lưu trúShizuka",
+            "view": "61"
+        },
+        {
+            "userId": "63b0669a42a5e930a140d207",
+            "title": "Quản trị kinh doanh nhà hàng",
+            "nameTag": "Quản trị kinh doanh nhà hàng",
+            "tag": "KT213",
+            "isPrivate": false,
+            "creater": "Shizuka",
+            "createrPhoto": "https://i.ibb.co/sJhx8Xm/sizuka.png",
+            "desc": "KT213Quản trị kinh doanh nhà hàngShizuka",
+            "view": "51"
+        }
+    ],
+    "PsyDuck": [
+        {
+            "userId": "63b0669442a5e930a140d204",
+            "title": "Truyền động điện",
+            "nameTag": "Truyền động điện",
+            "tag": "KC205",
+            "isPrivate": false,
+            "creater": "Psyduck",
+            "createrPhoto": "https://i.ibb.co/pxBpkF4/Psyduck.png",
+            "desc": "KC205Truyền động điệnPsyduck",
+            "view": "1002"
+        },
+        {
+            "userId": "63b0669442a5e930a140d204",
+            "title": "Đồ án điện công nghiệp",
+            "nameTag": "Đồ án điện công nghiệp",
+            "tag": "KC208",
+            "isPrivate": false,
+            "creater": "Psyduck",
+            "createrPhoto": "https://i.ibb.co/pxBpkF4/Psyduck.png",
+            "desc": "KC208Đồ án điện công nghiệpPsyduck",
+            "view": "102"
+        },
+        {
+            "userId": "63b0669442a5e930a140d204",
+            "title": "Lập trình PLC",
+            "nameTag": "Lập trình PLC",
+            "tag": "KC342",
+            "isPrivate": false,
+            "creater": "Psyduck",
+            "createrPhoto": "https://i.ibb.co/pxBpkF4/Psyduck.png",
+            "desc": "KC342Lập trình PLCPsyduck",
+            "view": "92"
+        },
+        {
+            "userId": "63b0669442a5e930a140d204",
+            "title": "Kỹ thuật chiếu sáng",
+            "nameTag": "Kỹ thuật chiếu sáng",
+            "tag": "CN273E",
+            "isPrivate": false,
+            "creater": "Psyduck",
+            "createrPhoto": "https://i.ibb.co/pxBpkF4/Psyduck.png",
+            "desc": "CN273EKỹ thuật chiếu sángPsyduck",
+            "view": "82"
+        },
+        {
+            "userId": "63b0669442a5e930a140d204",
+            "title": "Pháp văn chuyên môn - KH&CN",
+            "nameTag": "Pháp văn chuyên môn - KH&CN",
+            "tag": "XH019",
+            "isPrivate": false,
+            "creater": "Psyduck",
+            "createrPhoto": "https://i.ibb.co/pxBpkF4/Psyduck.png",
+            "desc": "XH019Pháp văn chuyên môn - KH&CNPsyduck",
+            "view": "72"
+        },
+        {
+            "userId": "63b0669442a5e930a140d204",
+            "title": "Anh văn chuyên môn - Kỹ thuật điện",
+            "nameTag": "Anh văn chuyên môn - Kỹ thuật điện",
+            "tag": "CN158",
+            "isPrivate": false,
+            "creater": "Psyduck",
+            "createrPhoto": "https://i.ibb.co/pxBpkF4/Psyduck.png",
+            "desc": "CN158Anh văn chuyên môn - Kỹ thuật điệnPsyduck",
+            "view": "62"
+        },
+        {
+            "userId": "63b0669442a5e930a140d204",
+            "title": "Thiết kế hệ thống điện",
+            "nameTag": "Thiết kế hệ thống điện",
+            "tag": "CN279E",
+            "isPrivate": false,
+            "creater": "Psyduck",
+            "createrPhoto": "https://i.ibb.co/pxBpkF4/Psyduck.png",
+            "desc": "CN279EThiết kế hệ thống điệnPsyduck",
+            "view": "52"
+        },
+        {
+            "userId": "63b0669442a5e930a140d204",
+            "title": "Năng lượng tái tạo và quản lý",
+            "nameTag": "Năng lượng tái tạo và quản lý",
+            "tag": "KC363",
+            "isPrivate": false,
+            "creater": "Psyduck",
+            "createrPhoto": "https://i.ibb.co/pxBpkF4/Psyduck.png",
+            "desc": "KC363Năng lượng tái tạo và quản lýPsyduck",
+            "view": "42"
+        },
+        {
+            "userId": "63b0669442a5e930a140d204",
+            "title": "Đánh giá độ tin cậy của hệ thống điện",
+            "nameTag": "Đánh giá độ tin cậy của hệ thống điện",
+            "tag": "CN284",
+            "isPrivate": false,
+            "creater": "Psyduck",
+            "createrPhoto": "https://i.ibb.co/pxBpkF4/Psyduck.png",
+            "desc": "CN284Đánh giá độ tin cậy của hệ thống điệnPsyduck",
+            "view": "32"
+        }
+    ],
+    "Simpson": [
+        {
+            "userId": "63b0665a42a5e930a140d1fb",
+            "title": "Công nghệ Web",
+            "nameTag": "Công nghệ Web",
+            "tag": "CT275",
+            "isPrivate": false,
+            "creater": "Simpsons",
+            "createrPhoto": "https://i.ibb.co/xhtSS8k/Simpsons.png",
+            "desc": "CT275Công nghệ WebSimpsons",
+            "view": "1003"
+        },
+        {
+            "userId": "63b0665a42a5e930a140d1fb",
+            "title": "Phát triển phần mềm",
+            "nameTag": "Phát triển phần mềm",
+            "tag": "CT300",
+            "isPrivate": false,
+            "creater": "Simpsons",
+            "createrPhoto": "https://i.ibb.co/xhtSS8k/Simpsons.png",
+            "desc": "CT300Phát triển phần mềmSimpsons",
+            "view": "103"
+        },
+        {
+            "userId": "63b0665a42a5e930a140d1fb",
+            "title": "Quản lý dự án phần mềm",
+            "nameTag": "Quản lý dự án phần mềm",
+            "tag": "CT223",
+            "isPrivate": false,
+            "creater": "Simpsons",
+            "createrPhoto": "https://i.ibb.co/xhtSS8k/Simpsons.png",
+            "desc": "CT223Quản lý dự án phần mềmSimpsons",
+            "view": "93"
+        },
+        {
+            "userId": "63b0665a42a5e930a140d1fb",
+            "title": "An toàn hệ thống",
+            "nameTag": "An toàn hệ thống",
+            "tag": "CT222",
+            "isPrivate": false,
+            "creater": "Simpsons",
+            "createrPhoto": "https://i.ibb.co/xhtSS8k/Simpsons.png",
+            "desc": "CT222An toàn hệ thốngSimpsons",
+            "view": "83"
+        },
+        {
+            "userId": "63b0665a42a5e930a140d1fb",
+            "title": "An ninh mạng",
+            "nameTag": "An ninh mạng",
+            "tag": "CT211",
+            "isPrivate": false,
+            "creater": "Simpsons",
+            "createrPhoto": "https://i.ibb.co/xhtSS8k/Simpsons.png",
+            "desc": "CT211An ninh mạngSimpsons",
+            "view": "73"
+        },
+        {
+            "userId": "63b0665a42a5e930a140d1fb",
+            "title": "Pháp y máy tính",
+            "nameTag": "Pháp y máy tính",
+            "tag": "CT297",
+            "isPrivate": false,
+            "creater": "Simpsons",
+            "createrPhoto": "https://i.ibb.co/xhtSS8k/Simpsons.png",
+            "desc": "CT297Pháp y máy tínhSimpsons",
+            "view": "63"
+        },
+        {
+            "userId": "63b0665a42a5e930a140d1fb",
+            "title": "Phát triển ứng dụng Web",
+            "nameTag": "Phát triển ứng dụng Web",
+            "tag": "CT449",
+            "isPrivate": false,
+            "creater": "Simpsons",
+            "createrPhoto": "https://i.ibb.co/xhtSS8k/Simpsons.png",
+            "desc": "CT449Phát triển ứng dụng WebSimpsons",
+            "view": "53"
+        },
+        {
+            "userId": "63b0665a42a5e930a140d1fb",
+            "title": "Phát triển ứng dụng trên thiết bị di động",
+            "nameTag": "Phát triển ứng dụng trên thiết bị di động",
+            "tag": "TN216",
+            "isPrivate": false,
+            "creater": "Simpsons",
+            "createrPhoto": "https://i.ibb.co/xhtSS8k/Simpsons.png",
+            "desc": "TN216Phát triển ứng dụng trên thiết bị di độngSimpsons",
+            "view": "43"
+        },
+        {
+            "userId": "63b0665a42a5e930a140d1fb",
+            "title": "Nền tảng phần mềm nhúng và IoT",
+            "nameTag": "Nền tảng phần mềm nhúng và IoT",
+            "tag": "CT295",
+            "isPrivate": false,
+            "creater": "Simpsons",
+            "createrPhoto": "https://i.ibb.co/xhtSS8k/Simpsons.png",
+            "desc": "CT295Nền tảng phần mềm nhúng và IoTSimpsons"
+        }
+    ],
+    "Conan": [
+        {
+            "userId": "63b0668942a5e930a140d201",
+            "title": "Công tác phục vụ bạn đọc",
+            "nameTag": "Công tác phục vụ bạn đọc",
+            "tag": "TV331",
+            "isPrivate": false,
+            "creater": "Edogawa Conan",
+            "createrPhoto": "https://i.ibb.co/JHtS7kX/conan.png",
+            "desc": "TV331Công tác phục vụ bạn đọcEdogawa Conan",
+            "view": "1004"
+        },
+        {
+            "userId": "63b0668942a5e930a140d201",
+            "title": "Nhập môn hệ thống thông tin địa lý",
+            "nameTag": "Nhập môn hệ thống thông tin địa lý",
+            "tag": "TN211",
+            "isPrivate": false,
+            "creater": "Edogawa Conan",
+            "createrPhoto": "https://i.ibb.co/JHtS7kX/conan.png",
+            "desc": "TN211Nhập môn hệ thống thông tin địa lýEdogawa Conan",
+            "view": "104"
+        },
+        {
+            "userId": "63b0668942a5e930a140d201",
+            "title": "Siêu dữ liệu ứng dụng",
+            "nameTag": "Siêu dữ liệu ứng dụng",
+            "tag": "TV257",
+            "isPrivate": false,
+            "creater": "Edogawa Conan",
+            "createrPhoto": "https://i.ibb.co/JHtS7kX/conan.png",
+            "desc": "TV257Siêu dữ liệu ứng dụngEdogawa Conan",
+            "view": "94"
+        },
+        {
+            "userId": "63b0668942a5e930a140d201",
+            "title": "Quản lý nguồn tài liệu số",
+            "nameTag": "Quản lý nguồn tài liệu số",
+            "tag": "TV302",
+            "isPrivate": false,
+            "creater": "Edogawa Conan",
+            "createrPhoto": "https://i.ibb.co/JHtS7kX/conan.png",
+            "desc": "TV302Quản lý nguồn tài liệu sốEdogawa Conan",
+            "view": "84"
+        },
+        {
+            "userId": "63b0668942a5e930a140d201",
+            "title": "Hệ thống mạng máy tính căn bản",
+            "nameTag": "Hệ thống mạng máy tính căn bản",
+            "tag": "TN205",
+            "isPrivate": false,
+            "creater": "Edogawa Conan",
+            "createrPhoto": "https://i.ibb.co/JHtS7kX/conan.png",
+            "desc": "TN205Hệ thống mạng máy tính căn bảnEdogawa Conan",
+            "view": "74"
+        },
+        {
+            "userId": "63b0668942a5e930a140d201",
+            "title": "Ứng dụng nghiệp vụ chuyên môn",
+            "nameTag": "Ứng dụng nghiệp vụ chuyên môn",
+            "tag": "TV263",
+            "isPrivate": false,
+            "creater": "Edogawa Conan",
+            "createrPhoto": "https://i.ibb.co/JHtS7kX/conan.png",
+            "desc": "TV263Ứng dụng nghiệp vụ chuyên mônEdogawa Conan",
+            "view": "64"
+        },
+        {
+            "userId": "63b0668942a5e930a140d201",
+            "title": "Thương mại điện tử",
+            "nameTag": "Thương mại điện tử",
+            "tag": "KT337",
+            "isPrivate": false,
+            "creater": "Edogawa Conan",
+            "createrPhoto": "https://i.ibb.co/JHtS7kX/conan.png",
+            "desc": "KT337Thương mại điện tửEdogawa Conan",
+            "view": "54"
+        },
+        {
+            "userId": "63b0668942a5e930a140d201",
+            "title": "Internet và các công nghệ trên Internet",
+            "nameTag": "Internet và các công nghệ trên Internet",
+            "tag": "TV334E",
+            "isPrivate": false,
+            "creater": "Edogawa Conan",
+            "createrPhoto": "https://i.ibb.co/JHtS7kX/conan.png",
+            "desc": "TV334EInternet và các công nghệ trên InternetEdogawa Conan",
+            "view": "44"
+        },
+        {
+            "userId": "63b0668942a5e930a140d201",
+            "title": "Tạo lập văn bản và giao tiếp hành chính",
+            "nameTag": "Tạo lập văn bản và giao tiếp hành chính",
+            "tag": "XN223",
+            "isPrivate": false,
+            "creater": "Edogawa Conan",
+            "createrPhoto": "https://i.ibb.co/JHtS7kX/conan.png",
+            "desc": "XN223Tạo lập văn bản và giao tiếp hành chínhEdogawa Conan",
+            "view": "34"
+        }
+    ]
+}

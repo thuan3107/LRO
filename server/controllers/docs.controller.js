@@ -249,3 +249,43 @@ exports.DocsListPagination = async (req,res)=>{
     );
   }
 }
+
+
+
+//* Get doc list pagination
+//! Trả về kết quả theo page do user đăng tải
+exports.ViewDocsList = async (req,res)=>{
+  const PAGE_SIZE = 10;
+  try {
+    var page = req.query.page;
+    var uid = req.query.uid;
+    page = parseInt(page);
+    if (page) {
+      if (page < 1) page = 1;
+      var skip = (page - 1) * PAGE_SIZE;
+      const infoCreators =  await User.findById({_id:uid})
+      .select("-password")
+      .select("-form")
+      .select("-uid")
+      .select("-posts")
+      .select("-blog")
+      .exec();
+      const count =  infoCreators.docs.length;
+      const id =  infoCreators._id;
+      const docsList = await Docs.find({userId:id})
+        .skip(skip)
+        .limit(PAGE_SIZE)
+        res.json(jsonGenerate(StatusCode.SUCCESS, `Docs List for UserId ${id}`, { id,count, infoCreators,result:docsList}));
+
+      
+    } else {
+      return res.json(
+        jsonGenerate(StatusCode.UNPROCESSABLE_ENTITY, "Lỗi Truy Vấn", error)
+      );
+    }
+  } catch (error) {
+    return res.json(
+      jsonGenerate(StatusCode.UNPROCESSABLE_ENTITY, "Error", error)
+    );
+  }
+}

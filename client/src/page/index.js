@@ -1,6 +1,7 @@
 export { default as Home } from "./Home.jsx";
 export { default as LoginPage } from "./LoginPage.jsx";
 export { default as RegisterPage } from "./RegisterPage.jsx";
+export { default as ProFile } from "./ProFile.jsx";
 export { default as ContentManagement } from "./ContentManagement.jsx";
 
 //!Bài Viết

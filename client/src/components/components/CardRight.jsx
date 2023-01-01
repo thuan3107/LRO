@@ -11,9 +11,18 @@ function CardRight({ data, type }) {
       {data?.map((item, index) => {
         return (
           <>
-            <div class="relative flex flex-col justify-end overflow-hidden rounded-b-xl pt-6">
-              <div class="group relative flex cursor-pointer justify-between rounded-xl bg-blue-200 before:absolute before:inset-y-0 before:right-0 before:w-1/2 before:rounded-r-xl before:bg-gradient-to-r before:from-transparent before:to-blue-600 before:opacity-0 before:transition before:duration-500 hover:before:opacity-100">
-                <div class="relative space-y-1 p-4">
+            <div class="group first-letter:relative flex flex-col justify-end overflow-hidden rounded-b-xl pt-6 ">
+              <div
+                class=" 
+
+              text-sm  group-hover:text-red-400 group-hover:flex hidden  text-white
+              group-hover:translate-x-2 ease-in-out transform transition duration-500
+              "
+              >
+                {item.creater}
+              </div>
+              <div class=" relative flex cursor-pointer justify-between rounded-xl bg-blue-200 before:absolute before:inset-y-0 before:right-0 before:w-1/2 before:rounded-r-xl before:bg-gradient-to-r before:from-transparent before:to-blue-600 before:opacity-0 before:transition before:duration-500 hover:before:opacity-100">
+                <div class="relative space-y-1 p-4 ">
                   <div class="flex text-md text-blue-900">
                     <div class="inline-block relative py-1 text-xs ">
                       <div class="absolute inset-0 text-green-300 flex">
@@ -31,16 +40,16 @@ function CardRight({ data, type }) {
                         <span>&nbsp;</span>
                       </span>
                     </div>
-                    <h1 className="ml-1">
+                    <h1 className="ml-1 text-sm">
                       {" "}
-                      {item.title.substring(0, 20) + "..."}
+                      {item.nameTag.substring(0, 27) + "..."}
                     </h1>
                   </div>
                   <div className={`${type == "baiviet" ? "" : "hidden"}`}>
                     <Link to={`/baiviet/view/${item._id}`}>
                       <div class="relative h-6 text-blue-800 text-sm">
-                        <span class="transition duration-300 group-hover:invisible group-hover:opacity-0">
-                          {item.creater}
+                        <span class="text-md transition duration-300 group-hover:invisible group-hover:opacity-0">
+                          {item.title.substring(0, 27)}
                         </span>
                         <a
                           href=""
@@ -65,9 +74,9 @@ function CardRight({ data, type }) {
                   </div>
                   <div className={`${type == "tailieu" ? "" : "hidden"}`}>
                     <Link to={`/tailieu/view/${item._id}`}>
-                      <div class="relative h-6 text-blue-800 text-sm">
-                        <span class="transition duration-300 group-hover:invisible group-hover:opacity-0">
-                          {item.creater}
+                      <div class="relative h-6 text-blue-800 text-sm ">
+                        <span class=" block transition duration-300 group-hover:invisible group-hover:opacity-0">
+                          {item.title}
                         </span>
                         <a
                           href=""
@@ -91,8 +100,9 @@ function CardRight({ data, type }) {
                     </Link>
                   </div>
                 </div>
+
                 <img
-                  class="absolute bottom-0 right-6 w-[6rem] h-[6rem] rounded-full transition duration-300 group-hover:scale-[1.3]"
+                  class="absolute bottom-0 z-99 right-6 w-[6rem] h-[6rem] rounded-full transition duration-300 group-hover:scale-[1.3]"
                   src={item.createrPhoto}
                   alt=""
                 />

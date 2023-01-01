@@ -21,6 +21,7 @@ exports.CreatePost = async (req, res) => {
       createrId: req.body.createrId,
       createrPhoto: req.body.createrPhoto,
       isPrivate: req.body.isPrivate,
+      view: req.body.view,
     });
 
     if (result) {
