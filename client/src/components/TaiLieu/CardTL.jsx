@@ -10,6 +10,7 @@ import dataCourse from "../../data/course.js";
 import { view_doc } from "../../service/TaiLieu/ViewDoc.js";
 import { pagination_doc } from "../../service/TaiLieu/PaginationDoc.js";
 import Skenleton from "../components/Skenleton.jsx";
+import Tag from "../components/Tag.jsx";
 function CardTL({ searchKey }) {
   const { user } = useContext(ProductContext);
   const token = user?.token;
@@ -141,38 +142,8 @@ function CardTL({ searchKey }) {
                             </div>
                             {/* <p class="text-gray-700">{item.date} </p> */}
                             <div>
-                              <div class="inline-block relative py-1 text-xs mx-1">
-                                <div class="absolute inset-0 text-blue-200 group-hover:text-green-200 flex">
-                                  <svg height="100%" viewBox="0 0 50 100">
-                                    <path
-                                      d="M49.9,0a17.1,17.1,0,0,0-12,5L5,37.9A17,17,0,0,0,5,62L37.9,94.9a17.1,17.1,0,0,0,12,5ZM25.4,59.4a9.5,9.5,0,1,1,9.5-9.5A9.5,9.5,0,0,1,25.4,59.4Z"
-                                      fill="currentColor"
-                                    />
-                                  </svg>
-                                  <div class="flex-grow h-full -ml-px bg-blue-200 group-hover:bg-green-200 rounded-md rounded-l-none"></div>
-                                </div>
-                                <span class="relative text-blue-500 group-hover:text-green-500 uppercase font-semibold pr-px">
-                                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                  {item?.tag}
-                                  <span>&nbsp;</span>
-                                </span>
-                              </div>
-                              <div class="inline-block relative py-1 text-xs mx-1">
-                                <div class="absolute inset-0 text-blue-200 group-hover:text-green-200 flex">
-                                  <svg height="100%" viewBox="0 0 50 100">
-                                    <path
-                                      d="M49.9,0a17.1,17.1,0,0,0-12,5L5,37.9A17,17,0,0,0,5,62L37.9,94.9a17.1,17.1,0,0,0,12,5ZM25.4,59.4a9.5,9.5,0,1,1,9.5-9.5A9.5,9.5,0,0,1,25.4,59.4Z"
-                                      fill="currentColor"
-                                    />
-                                  </svg>
-                                  <div class="flex-grow h-full -ml-px bg-blue-200 group-hover:bg-green-200 rounded-md rounded-l-none"></div>
-                                </div>
-                                <span class="relative  group-hover:text-green-500 text-blue-500 uppercase font-semibold pr-px">
-                                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                  {item?.nameTag}
-                                  <span>&nbsp;</span>
-                                </span>
-                              </div>
+                              <Tag value={item?.tag} />
+                              <Tag value={item?.nameTag} />
                             </div>
                             <p class="mt-3 text-gray-700 text-sm">
                               {item?.title}
@@ -182,7 +153,7 @@ function CardTL({ searchKey }) {
                                 onClick={(e) => {
                                   handlerLike(item?._id);
                                 }}
-                                class="flex mr-2 text-gray-700 text-sm mr-3"
+                                class="flex mr-2 text-gray-700 text-sm mr-3 z-50"
                               >
                                 <span>{item?.like.length}</span>
                                 <span className="mx-1">
@@ -395,7 +366,7 @@ function CardTL({ searchKey }) {
                                 <span>{item?.view}</span>
                               </div>
                               <Link
-                                to={`/baiviet/view/${item?._id}`}
+                                to={`/tailieu/view/${item?._id}`}
                                 onClick={(e) => handlerView(item?._id)}
                                 class="flex mr-2 text-gray-700 text-sm mr-4 z-50"
                               >

@@ -9,6 +9,7 @@ import { GET_ALL_POST } from "../../service/apiConstant.js";
 import { view_post } from "../../service/BaiViet/ViewPost.js";
 import { pagination_post } from "../../service/BaiViet/PaginationPost.js";
 import Skenleton from "../components/Skenleton.jsx";
+import Tag from "../components/Tag.jsx";
 function CardBV({ searchKey }) {
   const { user } = useContext(ProductContext);
   const [dataPost, setDataPost] = useState([]);
@@ -26,7 +27,7 @@ function CardBV({ searchKey }) {
   const getPagination = async () => {
     try {
       const { data } = await pagination_post(page);
-      console.log(data);
+      // console.log(data);
       setArrayPost(data);
       setData(data);
     } catch (error) {}
@@ -143,38 +144,8 @@ function CardBV({ searchKey }) {
                             </div>
                             {/* <p class="text-gray-700">{item.date} </p> */}
                             <div>
-                              <div class="inline-block relative py-1 text-xs mx-1">
-                                <div class="absolute inset-0 text-blue-200 group-hover:text-green-200 flex">
-                                  <svg height="100%" viewBox="0 0 50 100">
-                                    <path
-                                      d="M49.9,0a17.1,17.1,0,0,0-12,5L5,37.9A17,17,0,0,0,5,62L37.9,94.9a17.1,17.1,0,0,0,12,5ZM25.4,59.4a9.5,9.5,0,1,1,9.5-9.5A9.5,9.5,0,0,1,25.4,59.4Z"
-                                      fill="currentColor"
-                                    />
-                                  </svg>
-                                  <div class="flex-grow h-full -ml-px bg-blue-200 group-hover:bg-green-200 rounded-md rounded-l-none"></div>
-                                </div>
-                                <span class="relative text-blue-500 group-hover:text-green-500 uppercase font-semibold pr-px">
-                                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                  {item?.tag}
-                                  <span>&nbsp;</span>
-                                </span>
-                              </div>
-                              <div class="inline-block relative py-1 text-xs mx-1">
-                                <div class="absolute inset-0 text-blue-200 group-hover:text-green-200 flex">
-                                  <svg height="100%" viewBox="0 0 50 100">
-                                    <path
-                                      d="M49.9,0a17.1,17.1,0,0,0-12,5L5,37.9A17,17,0,0,0,5,62L37.9,94.9a17.1,17.1,0,0,0,12,5ZM25.4,59.4a9.5,9.5,0,1,1,9.5-9.5A9.5,9.5,0,0,1,25.4,59.4Z"
-                                      fill="currentColor"
-                                    />
-                                  </svg>
-                                  <div class="flex-grow h-full -ml-px bg-blue-200 group-hover:bg-green-200 rounded-md rounded-l-none"></div>
-                                </div>
-                                <span class="relative  group-hover:text-green-500 text-blue-500 uppercase font-semibold pr-px">
-                                  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                  {item?.nameTag}
-                                  <span>&nbsp;</span>
-                                </span>
-                              </div>
+                              <Tag value={item?.tag} />
+                              <Tag value={item?.nameTag} />
                             </div>
                             <p class="mt-3 text-gray-700 text-sm">
                               {item?.title}
@@ -184,7 +155,7 @@ function CardBV({ searchKey }) {
                                 onClick={(e) => {
                                   handlerLike(item?._id);
                                 }}
-                                class="flex mr-2 text-gray-700 text-sm mr-3"
+                                class="flex mr-2 text-gray-700 text-sm mr-3 z-50 "
                               >
                                 <span>{item?.like.length}</span>
                                 <span className="mx-1">

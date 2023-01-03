@@ -25,7 +25,7 @@ function Header() {
   const [isOpen, setIsOpen] = useState(1);
   const LinkTo = useNavigate();
   const { user } = useContext(ProductContext);
-
+  let id = user?.userId;
   const href = window.location.href;
   useEffect(() => {
     if (href.includes("tailieu")) {
@@ -40,7 +40,7 @@ function Header() {
       setIsOpen(1);
     }
     // console.log(href);
-  }, [href]); 
+  }, [href]);
   const handlerLogout = () => {
     localStorage.clear();
     window.location = "/";
@@ -224,7 +224,8 @@ function Header() {
                           <>
                             <Menu.Item>
                               {({ active }) => (
-                                <a
+                                <Link
+                                  to={`/u/${id}`}
                                   href="#"
                                   className={classNames(
                                     active ? "bg-gray-100" : "",
@@ -232,7 +233,7 @@ function Header() {
                                   )}
                                 >
                                   Trang Cá Nhân
-                                </a>
+                                </Link>
                               )}
                             </Menu.Item>
                             <Menu.Item>

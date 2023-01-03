@@ -1,11 +1,6 @@
 const docRoutes = require("express").Router();
-const FindOneDoc = require("../controllers/Docs/FindOneDoc.controller.js");
-const FindOnePost = require("../controllers/Posts/FindOnePost.controller.js");
-const LikeOneDoc = require("../controllers/Docs/LikeOneDoc.controller.js");
-
-const GetAllPostList = require("../controllers/Posts/GetAllPost.ctroller.js");
-const PaginationDoc = require("../controllers/Docs/PaginationDoc.controller.js");
-const PaginationPost = require("../controllers/Posts/PaginationPost.controller.js");
+const { StatusCode } = require("../utils/constants.js");
+const { jsonGenerate } = require("../utils/helpers.js");
 const Doc = require("../models/docs.models.js");
 const User = require("../models/User.js");
 const P = require("../controllers/posts.controller.js");
@@ -21,10 +16,30 @@ docRoutes.get("/alldocs", async (req, res) => {
     res.status(500).send({ message: "Internal Server Error" });
   }
 });
-docRoutes.get("/alluser", async (req, res) => {
+docRoutes.get("/userhight", async (req, res) => {
   try {
-    const dataDocs = await User.find().select("-password").exec();
-    res.status(200).send({ data: dataDocs });
+    const SIZE = req.query.S;
+    const list = await User.find().select("-password").exec();
+
+    const arr = list.sort(function (a, b) {
+      if (a.posts.length + a.docs.length > b.posts.length + b.docs.length)
+        return -1;
+      return 1;
+    });
+    const data = arr.slice(0, SIZE);
+    if (data) {
+      return res.json(
+        jsonGenerate(StatusCode.SUCCESS, "Succssfully", {
+          data,
+          // LenPosts,
+        })
+      );
+    } else {
+      return res.json(
+        jsonGenerate(StatusCode.UNPROCESSABLE_ENTITY, "Something went wrong")
+      );
+    }
+
     // res.send({ data: dataDocs });
   } catch (error) {
     res.status(503).send({ message: "Internal Server Error" });

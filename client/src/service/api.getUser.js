@@ -20,3 +20,6 @@ export const view_doc_user = async (page, id) => {
     },
   });
 };
+
+
+

@@ -11,7 +11,7 @@ function CardRight({ data, type }) {
       {data?.map((item, index) => {
         return (
           <>
-            <div class="group first-letter:relative flex flex-col justify-end overflow-hidden rounded-b-xl pt-6 ">
+            <div class=" overflow-hidden  group first-letter:relative flex flex-col justify-end  rounded-b-xl pt-6 ">
               <div
                 class=" 
 
