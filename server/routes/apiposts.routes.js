@@ -1,10 +1,5 @@
 const express = require("express");
-const CountViewPost = require("../controllers/Posts/CountView.controller.js");
-const CreatePost = require("../controllers/Posts/CreatePost.controller.js");
-const PostsList = require("../controllers/Posts/PostList.controller.js");
-const LikeOnePost = require("../controllers/Posts/LikeOnePost.controller.js");
-const RemovePost = require("../controllers/Posts/RemovePost.controller.js");
-const UpdatePost = require("../controllers/Posts/UpdatePost.controller.js");
+
 const Post = require("../controllers/posts.controller.js");
 //! router
 

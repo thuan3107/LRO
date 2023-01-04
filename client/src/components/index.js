@@ -12,6 +12,8 @@ export { default as CardTL } from "./TaiLieu/CardTL.jsx";
 export { default as CreateFormBV } from "./BaiViet/CreateFormBV.jsx";
 export { default as UpdateFormBV } from "./BaiViet/UpdateFormBV.jsx";
 export { default as CardBV } from "./BaiViet/CardBV.jsx";
+//Blog
+export {default as CreateFormBlog} from "./Blogs/CreateFormBlog.jsx" 
 
 //! Contet Managements
 export { default as ManagementTL } from "./ContentManagement/ManagementTL.jsx";

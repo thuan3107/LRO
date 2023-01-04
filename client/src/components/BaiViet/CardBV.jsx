@@ -447,7 +447,7 @@ function CardBV({ searchKey }) {
         </>
       ) : (
         <>
-          <Skenleton />
+          <Skenleton num={8} />
         </>
       )}
     </div>

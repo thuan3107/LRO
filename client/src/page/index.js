@@ -12,7 +12,9 @@ export { default as ViewBaiVietPage } from "./BaiViet/ViewBaiVietPage.jsx";
 
 //!Blogs
 export { default as BlogsPage } from "./Blogs/BlogsPage.jsx";
-
+export { default as CreateBlog } from "./Blogs/CreateBlog.jsx";
+export { default as ViewBlog } from "./Blogs/ViewBlog.jsx";
+export { default as UpdateBlog } from "./Blogs/UpdateBlog.jsx";
 //!Thảo Luận
 export { default as ThaoLuanPage } from "./ThaoLuan/ThaoLuanPage.jsx";
 
@@ -20,6 +22,10 @@ export { default as ThaoLuanPage } from "./ThaoLuan/ThaoLuanPage.jsx";
 export { default as TaiLieuPage } from "./TaiLieu/TaiLieuPage.jsx";
 export { default as CreateTaiLieuPage } from "./TaiLieu/CreateTaiLieuPage.jsx";
 export { default as ViewTaiLieuPage } from "./TaiLieu/ViewTaiLieuPage.jsx";
+
+
+
+
 
 // //! Contet Managements 
 // export {default as }

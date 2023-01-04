@@ -445,7 +445,7 @@ function CardTL({ searchKey }) {
         </>
       ) : (
         <>
-          <Skenleton />
+          <Skenleton num={8} />
         </>
       )}
     </div>

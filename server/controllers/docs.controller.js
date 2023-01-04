@@ -15,12 +15,12 @@ exports.CreateDoc = async (req, res) => {
       userId: req.userId,
       title: req.body.title,
       tag: req.body.tag,
-      nameTag: req.body.nameTag,
-      dataURL: req.body.dataURL,
-      creater: req.body.creater,
-      createrId: req.body.createrId,
-      createrPhoto: req.body.createrPhoto,
+      desc: req.body.desc,
+      creatorsName: req.body.creatorsName,
+      creatorsId: req.body.creatorsId,
+      creatorsPhoto: req.body.creatorsPhoto,
       isPrivate: req.body.isPrivate,
+      view: req.body.view,
     });
 
     if (result) {

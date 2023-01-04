@@ -1,14 +1,19 @@
-const docRoutes = require("express").Router();
+const express = require("express");
+
+// const getRoutes = require("express").Router();
 const { StatusCode } = require("../utils/constants.js");
 const { jsonGenerate } = require("../utils/helpers.js");
 const Doc = require("../models/docs.models.js");
 const User = require("../models/User.js");
 const P = require("../controllers/posts.controller.js");
 const D = require("../controllers/docs.controller.js");
+const B = require("../controllers/blogs.controller.js");
 const Auth = require("../controllers/auth.controller.js");
 
+const getRoutes = express.Router();
+
 // Get all songs
-docRoutes.get("/alldocs", async (req, res) => {
+getRoutes.get("/alldocs", async (req, res) => {
   try {
     const dataDocs = await Doc.find();
     res.status(200).send({ data: dataDocs });
@@ -16,7 +21,7 @@ docRoutes.get("/alldocs", async (req, res) => {
     res.status(500).send({ message: "Internal Server Error" });
   }
 });
-docRoutes.get("/userhight", async (req, res) => {
+getRoutes.get("/userhight", async (req, res) => {
   try {
     const SIZE = req.query.S;
     const list = await User.find().select("-password").exec();
@@ -45,18 +50,23 @@ docRoutes.get("/userhight", async (req, res) => {
     res.status(503).send({ message: "Internal Server Error" });
   }
 });
-docRoutes.get("/allpost", P.GetAllPostList);
+getRoutes.get("/allpost", P.GetAllPostList);
 
-docRoutes.post("/findonedocs", D.FindOneDoc);
-docRoutes.post("/findonepost", P.FindOnePost);
+//* trả về data của id đó
+// dùng để xem
+getRoutes.post("/findonedocs", D.FindOneDoc);
+getRoutes.post("/findonepost", P.FindOnePost);
+getRoutes.post("/findoneblog", B.FindOneBlog);
 
 //get pagination doc
-docRoutes.get("/pagedoc", D.PaginationDoc);
-docRoutes.get("/pagepost", P.PaginationPost);
-
-docRoutes.get("/dochight", D.GetAllDOC_Highlight_Article);
-docRoutes.get("/posthight", P.GetAllPOST_Highlight_Article);
-
-docRoutes.get("/viewuser", Auth.FindOneUser);
-docRoutes.get("/viewdoclist", D.ViewDocsList);
-module.exports = docRoutes;
+getRoutes.get("/pagedoc", D.PaginationDoc);
+getRoutes.get("/pagepost", P.PaginationPost);
+getRoutes.get("/pageblog", B.PaginationBlog);
+//* trả về danh sách dữ liệu có số view cao
+getRoutes.get("/dochight", D.GetAllDOC_Highlight_Article);
+getRoutes.get("/posthight", P.GetAllPOST_Highlight_Article);
+getRoutes.get("/bloghight", B.GetAllBLOG_Highlight_Article);
+//* trả về
+getRoutes.get("/viewuser", Auth.FindOneUser);
+// getRoutes.get("/viewdoclist", D.ViewDocsList);
+module.exports = getRoutes;

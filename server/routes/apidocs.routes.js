@@ -9,13 +9,13 @@ const RemoveDoc = require("../controllers/Docs/RemoveDoc.controller.js");
 const Doc = require("../controllers/docs.controller.js");
 //! router
 
-const apiProtected = express.Router();
+const apiDocs = express.Router();
 
 //* docs
-apiProtected.post("/adddoc", Doc.CreateDoc);
-apiProtected.post("/deletedoc", Doc.RemoveDoc);
-apiProtected.get("/getdoc", Doc.DocsList);
-apiProtected.post("/likedoc", Doc.LikeOneDoc);
-apiProtected.post("/viewdoc", Doc.CountViewDoc);
-apiProtected.get("/doclist", Doc.DocsListPagination);
-module.exports = apiProtected;
+apiDocs.post("/adddoc", Doc.CreateDoc);
+apiDocs.post("/deletedoc", Doc.RemoveDoc);
+apiDocs.get("/getdoc", Doc.DocsList);
+apiDocs.post("/likedoc", Doc.LikeOneDoc);
+apiDocs.post("/viewdoc", Doc.CountViewDoc);
+apiDocs.get("/doclist", Doc.DocsListPagination);
+module.exports = apiDocs;

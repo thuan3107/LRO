@@ -24,6 +24,9 @@ import {
   ViewBaiVietPage,
   ContentManagement,
   ProFile,
+  CreateBlog,
+  UpdateBlog,
+  ViewBlog,
 } from "./page/";
 
 function App() {
@@ -76,6 +79,9 @@ function App() {
                 <Route path="/tailieu/view/:id" element={<ViewTaiLieuPage />} />
                 //*BlogsPage
                 <Route path="/blogs" element={<BlogsPage />} />
+                <Route path="/blogs/create" element={<CreateBlog />} />
+                <Route path="/blogs/update/:id" element={<UpdateBlog />} />
+                <Route path="/blogs/view/:id" element={<ViewBlog />} />
                 //* ThaoLuanPage
                 <Route path="/thaoluan" element={<ThaoLuanPage />} />
               </>
