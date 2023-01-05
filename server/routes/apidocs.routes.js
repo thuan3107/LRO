@@ -15,6 +15,7 @@ const apiDocs = express.Router();
 apiDocs.post("/adddoc", Doc.CreateDoc);
 apiDocs.post("/deletedoc", Doc.RemoveDoc);
 apiDocs.get("/getdoc", Doc.DocsList);
+apiDocs.post("/isPrivatedoc", Doc.isPrivateDoc);
 apiDocs.post("/likedoc", Doc.LikeOneDoc);
 apiDocs.post("/viewdoc", Doc.CountViewDoc);
 apiDocs.get("/doclist", Doc.DocsListPagination);

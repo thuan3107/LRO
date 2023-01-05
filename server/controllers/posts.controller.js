@@ -88,9 +88,6 @@ exports.LikeOnePost = async (req, res) => {
     try {
       const list = await Posts.findById(post_id);
       if (!list.like.includes(photoURL)) {
-        // if (post.dislike.includes(photoURL)) {
-        //   await post.updateOne({ $pull: { dislike: photoURL } });
-        // }
         await list.updateOne({ $push: { like: photoURL } });
 
         return res.json(jsonGenerate(StatusCode.SUCCESS, "Like Succssfully"));
@@ -103,6 +100,26 @@ exports.LikeOnePost = async (req, res) => {
     }
   } catch (error) {}
 };
+
+//* isPrivate post
+exports.isPrivatePost = async (req, res) => {
+  try {
+    const { post_id } = req.body;
+    try {
+      const list = await Posts.findById(post_id);
+      if (list.isPrivate == true) {
+        await list.updateOne({ isPrivate: false });
+        return res.json(jsonGenerate(StatusCode.SUCCESS, "Like Succssfully"));
+      } else {
+        await list.updateOne({ isPrivate: true });
+        return res.json(jsonGenerate(StatusCode.SUCCESS, "UnLike Succssfully"));
+      }
+    } catch (error) {
+      return res.status(500).json("Internal server error ");
+    }
+  } catch (error) {}
+};
+
 //* count view post
 exports.CountViewPost = async (req, res) => {
   try {

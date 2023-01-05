@@ -11,6 +11,7 @@ import { useContext } from "react";
 import { ProductContext } from "../../contexts/ProductContextProvider";
 import { get_doc } from "../../service/TaiLieu/GetDoc.js";
 import { get_doc_list } from "../../service/TaiLieu/GetDocList.js";
+import { isprivate_doc } from "../../service/TaiLieu/IsPrivateDoc.js";
 function ManagementTL() {
   const { user } = useContext(ProductContext);
   const auth = user.token;
@@ -81,6 +82,17 @@ function ManagementTL() {
   useEffect(() => {
     getAllDocs();
   }, []);
+  const handleIsPrivate = async (id) => {
+    try {
+      const result = await isprivate_doc(auth, id);
+      console.log(result);
+      if (result.data.status == 200) {
+        // getAllPost();
+        getAllDocs();
+        // toast("Delete Successfully");
+      }
+    } catch (error) {}
+  };
 
   return (
     <div>
@@ -105,7 +117,10 @@ function ManagementTL() {
                 <div className="bg-[#f8f9fa] justify-end  w-full md:w-[92%] p-2 md:ml-10  z-[100] ">
                   <div className="flex justify-between  ">
                     <div className="flex justify-start items-center">
-                      <p className="text-2xl mx-2">
+                      <p
+                        onClick={() => handleIsPrivate(item._id)}
+                        className="text-2xl mx-2"
+                      >
                         {item.isPrivate ? (
                           <>
                             <FaLock className="text-red-400" />
@@ -187,7 +202,11 @@ function ManagementTL() {
             </>
           );
         })}
-        <div className="my-3 w-full   flex justify-center items-center ">
+        <div
+          className={`${
+            result.length < 10 ? "hidden" : "block"
+          } my-3 w-full   flex justify-center items-center `}
+        >
           {/* <!-- Previous Button --> */}
           <div className="w-[95%] flex justify-between items-center">
             <a

@@ -6,7 +6,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
-import { GET_ALL_POST } from "../../service/apiConstant.js";
+import { GET_ALL_POST, ISPRIVATE_POST } from "../../service/apiConstant.js";
 import { get_posts } from "../../service/BaiViet/GetPost.js";
 import { useContext } from "react";
 import { ProductContext } from "../../contexts/ProductContextProvider";
@@ -15,6 +15,7 @@ import {
   get_doc_list,
   get_post_list,
 } from "../../service/BaiViet/GetPostList.js";
+import { isprivate_post } from "../../service/BaiViet/IsPrivatePost.js";
 function ManaBV() {
   const { user } = useContext(ProductContext);
   const auth = user.token;
@@ -86,6 +87,17 @@ function ManaBV() {
     }
   };
 
+  const handleIsPrivate = async (id) => {
+    try {
+      const result = await isprivate_post(auth, id);
+      console.log(result);
+      if (result.data.status == 200) {
+        getAllPost();
+        // toast("Delete Successfully");
+      }
+    } catch (error) {}
+  };
+
   return (
     <div>
       <ToastContainer />
@@ -109,7 +121,10 @@ function ManaBV() {
                 <div className="bg-[#f8f9fa] justify-end  w-full md:w-[92%] p-2 md:ml-10  z-[100] ">
                   <div className="flex justify-between  ">
                     <div className="flex justify-start items-center">
-                      <p className="text-2xl mx-2">
+                      <p
+                        onClick={() => handleIsPrivate(item._id)}
+                        className="text-2xl mx-2"
+                      >
                         {item.isPrivate ? (
                           <>
                             <FaLock className="text-red-400" />
@@ -196,7 +211,11 @@ function ManaBV() {
             </>
           );
         })}
-        <div className="my-3 w-full   flex justify-center items-center ">
+        <div
+          className={`${
+            result.length < 10 ? "hidden" : "block"
+          } my-3 w-full   flex justify-center items-center `}
+        >
           {/* <!-- Previous Button --> */}
           <div className="w-[95%] flex justify-between items-center">
             <a

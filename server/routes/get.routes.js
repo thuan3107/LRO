@@ -5,6 +5,7 @@ const { StatusCode } = require("../utils/constants.js");
 const { jsonGenerate } = require("../utils/helpers.js");
 const Doc = require("../models/docs.models.js");
 const User = require("../models/User.js");
+const Blogs = require("../models/blogs.models.js");
 const P = require("../controllers/posts.controller.js");
 const D = require("../controllers/docs.controller.js");
 const B = require("../controllers/blogs.controller.js");
@@ -16,6 +17,14 @@ const getRoutes = express.Router();
 getRoutes.get("/alldocs", async (req, res) => {
   try {
     const dataDocs = await Doc.find();
+    res.status(200).send({ data: dataDocs });
+  } catch (error) {
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+});
+getRoutes.get("/allblogs", async (req, res) => {
+  try {
+    const dataDocs = await Blogs.find();
     res.status(200).send({ data: dataDocs });
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });

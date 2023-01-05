@@ -8,6 +8,7 @@ const apiBlogs = express.Router();
 apiBlogs.post("/addblog", Blog.CreateBlog);
 apiBlogs.post("/updateblog", Blog.UpdateBlog);
 apiBlogs.post("/deleteblog", Blog.RemoveBlog);
+apiBlogs.post("/isPrivateblog", Blog.isPrivateBlog);
 apiBlogs.post("/likeblog", Blog.LikeOneBlog);
 apiBlogs.post("/viewblog", Blog.CountViewBlog);
 apiBlogs.get("/bloglist", Blog.BlogsListPagination);

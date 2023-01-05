@@ -54,7 +54,7 @@ exports.CreateBlog = async (req, res) => {
 
 //* update post
 exports.UpdateBlog = async (req, res) => {
-  const newPost = ({ post_id, title, desc, tag } = req.body);
+  const newPost = ({ blog_id, title, desc, tag } = req.body);
   try {
     const result = await Blogs.findByIdAndUpdate(post_id, newPost);
     return res.json(
@@ -88,6 +88,29 @@ exports.RemoveBlog = async (req, res) => {
     );
   }
 };
+//* isPrivate post
+exports.isPrivateBlog = async (req, res) => {
+  try {
+    const { blog_id } = req.body;
+    try {
+      const list = await Blogs.findById(blog_id);
+      if (list.isPrivate == true) {
+        await list.updateOne({ isPrivate: false });
+        return res.json(
+          jsonGenerate(StatusCode.SUCCESS, "isPrivate flase Succssfully")
+        );
+      } else {
+        await list.updateOne({ isPrivate: true });
+        return res.json(
+          jsonGenerate(StatusCode.SUCCESS, "isPrivate true Succssfully")
+        );
+      }
+    } catch (error) {
+      return res.status(500).json("Internal server error ");
+    }
+  } catch (error) {}
+};
+
 //* like post
 exports.LikeOneBlog = async (req, res) => {
   try {
@@ -223,9 +246,9 @@ exports.BlogsListPagination = async (req, res) => {
         .select("-form")
         .select("-uid")
         .select("-docs")
-        .select("-blog")
+        .select("-posts")
         .exec();
-      const count = infoCreators.posts.length;
+      const count = infoCreators.blog.length;
       const id = infoCreators._id;
       const docsList = await Blogs.find({ userId: id })
         .skip(skip)

@@ -67,6 +67,25 @@ exports.RemoveDoc = async (req, res) => {
     );
   }
 };
+//* isPrivate post
+exports.isPrivateDoc = async (req, res) => {
+  try {
+    const { docs_id } = req.body;
+    try {
+      const list = await Docs.findById(docs_id);
+      if (list.isPrivate == true) {
+        await list.updateOne({ isPrivate: false });
+        return res.json(jsonGenerate(StatusCode.SUCCESS, "Like Succssfully"));
+      } else {
+        await list.updateOne({ isPrivate: true });
+        return res.json(jsonGenerate(StatusCode.SUCCESS, "UnLike Succssfully"));
+      }
+    } catch (error) {
+      return res.status(500).json("Internal server error ");
+    }
+  } catch (error) {}
+};
+
 //* Like Doc
 exports.LikeOneDoc = async (req, res) => {
   try {
@@ -212,6 +231,8 @@ exports.PaginationDoc = async (req, res) => {
     );
   }
 };
+
+
 
 //* Get doc list pagination
 //! Trả về kết quả theo page do user đăng tải
