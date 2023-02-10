@@ -28,11 +28,10 @@ function Login() {
   // console.log(form);
   const [form2, setForm2] = useState({
     form: "",
-    uid: "",
     username: "",
     email: "",
     password: "",
-    photoURL: "",
+    avatar: "",
   });
 
   //* func
@@ -43,11 +42,10 @@ function Login() {
     // const { refreshToken, providerData } = user;
     // setForm2
     form2.form = "google";
-    form2.uid = user?.uid;
     form2.username = user?.displayName;
     form2.email = user?.email;
     form2.password = user?.email;
-    form2.photoURL = user?.photoURL;
+    form2.avatar = user?.photoURL;
     Func_Register();
     // Func_Login();
   };

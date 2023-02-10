@@ -14,6 +14,7 @@ export { default as UpdateFormBV } from "./BaiViet/UpdateFormBV.jsx";
 export { default as CardBV } from "./BaiViet/CardBV.jsx";
 //Blog
 export {default as CreateFormBlog} from "./Blogs/CreateFormBlog.jsx" 
+export { default as UpdateFormBlog } from "./Blogs/UpdateFormBlog.jsx"; 
 
 //! Contet Managements
 export { default as ManagementTL } from "./ContentManagement/ManagementTL.jsx";
