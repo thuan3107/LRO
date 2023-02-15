@@ -26,7 +26,7 @@ exports.CreateArt = async (req, res) => {
       const user = await User.findOneAndUpdate(
         { _id: req.userId },
         {
-          $push: { article: result },
+          $push: { articles: result },
         }
       );
       return res.json(

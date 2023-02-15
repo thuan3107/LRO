@@ -308,20 +308,30 @@ function Header() {
                         <span className="sr-only flex">View notifications</span>
                         {/* <a className="h-6 w-6" aria-hidden="true" /> */}
                         <span className="h-6 w-auto flex">
-                          <span className="mx-1">Login Now</span>
+                          <span className="mx-1">Đăng Nhập</span>
+                        </span>
+                      </Link>
+                      <Link
+                        to="/register"
+                        type="button"
+                        className="p-1 mx-2 text-blue-500 hover:text-pink-500  focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      >
+                        <span className="sr-only flex">View notifications</span>
+                        {/* <a className="h-6 w-6" aria-hidden="true" /> */}
+                        <span className="h-6 w-auto flex">
+                          <span className="mx-1">Đăng Ký</span>
                         </span>
                       </Link>
                     </>
                   )}
-
                   {/* Profile dropdown */}
-                  <Menu as="div" className="relative ml-3">
+                  <Menu as="div" className="relative ml-3 z-200">
                     <div>
                       <Menu.Button className="flex rounded-full shadow-lg shadow-blue-700/10 bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="sr-only">Open user menu</span>
                         <img
                           className="h-8 w-8 rounded-full"
-                          src={user?.photoURL ? user?.photoURL : AVT}
+                          src={user?.avatar ? user?.avatar : AVT}
                           alt=""
                         />
                       </Menu.Button>

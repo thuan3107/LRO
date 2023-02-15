@@ -2,6 +2,9 @@ const { validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
 const Jwt = require("jsonwebtoken");
 const User = require("../models/User.js");
+const Art = require("../models/articles.models.js");
+const Doc = require("../models/docs.models.js");
+const Dis = require("../models/disscussion.models.js");
 const { StatusCode } = require("../utils/constants.js");
 const { jsonGenerate } = require("../utils/helpers.js");
 
@@ -51,7 +54,7 @@ exports.Login = async (req, res) => {
         uid: user.uid,
         username: username,
         email: user.email,
-        photoURL: user.photoURL,
+        avatar: user.avatar,
         access: user.access,
         token: token,
       })
@@ -209,5 +212,52 @@ exports.ChangeThePassword = async (req, res) => {
     );
   } catch (error) {
     return res.status(500).json("Internal server error ");
+  }
+};
+
+exports.SearchData = async (req, res) => {
+  const PAGE_SIZE = 10;
+  const skip = 1;
+  try {
+    const { data } = req.body;
+    const list1 = await Doc.find({
+      $or: [
+        {
+          title: data,
+        },
+        {
+          tag: data,
+        },
+      ],
+    }).limit(PAGE_SIZE);
+    const list2 = await Art.find({
+      $or: [
+        {
+          title: data,
+        },
+        {
+          tag: data,
+        },
+      ],
+    }).limit(PAGE_SIZE);
+    const list3 = await Dis.find({
+      $or: [
+        {
+          title: data,
+        },
+        {
+          tag: data,
+        },
+      ],
+    }).limit(PAGE_SIZE);
+
+    const result = list1.concat(list2, list3);
+    return res.json(
+      jsonGenerate(StatusCode.SUCCESS, "Data Succssfully", result)
+    );
+  } catch (error) {
+    return res.json(
+      jsonGenerate(StatusCode.UNPROCESSABLE_ENTITY, "Error", error)
+    );
   }
 };
