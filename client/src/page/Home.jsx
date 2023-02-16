@@ -30,19 +30,11 @@ function Home() {
 
       <div className=" w-full flex justify-center items-center bg-white">
         <div className="w-[80%] py-5 px-4 bg-blue-gray-100 flex justify-center items-center -mt-[50px] ">
-          <div class="grid grid-cols-5 gap-4">
-            {arr.map((i) => {
-              return <CardDoc />;
-            })}
-          </div>
+          <div class="grid grid-cols-5 gap-4"></div>
         </div>
       </div>
-
-      <div className="bg-white">
-        {arr.map((i) => {
-          return <CardPost />;
-        })}
-      </div>
+      <CardDoc />
+      <CardPost />
 
       <div className="w-full bg-white flex justify-center items-center p-3">
         <a

@@ -57,6 +57,8 @@ exports.Login = async (req, res) => {
         avatar: user.avatar,
         access: user.access,
         token: token,
+        first_name: user.first_name,
+        last_name: user.last_name,
       })
     );
   }

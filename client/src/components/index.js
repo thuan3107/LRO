@@ -30,6 +30,8 @@ export { default as CardViewUser } from "./components/CardViewUser.jsx";
 export { default as CardProFile } from "./components/CardProFile.jsx";
 export { default as Tag } from "./components/Tag.jsx";
 export { default as CardAuthor } from "./components/CardAuthor.jsx";
+export { default as CardDoc } from "./components/CardDoc.jsx";
+
 //! ViewProFile
 export { default as BoxViewBV } from "./ViewProFile/BoxViewBV.jsx";
 export { default as BoxViewTL } from "./ViewProFile/BoxViewTL.jsx";
