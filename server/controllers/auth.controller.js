@@ -218,37 +218,34 @@ exports.ChangeThePassword = async (req, res) => {
 
 exports.SearchData = async (req, res) => {
   const PAGE_SIZE = 10;
-const skip = 1;
-
-try {
+  const skip = 1;
+  try {
     const { data } = req.body;
-
     const original = data;
-
-const filter = original.normalize('NFD').replace(/[\u0300-\u036f]/g, '');  // Chuỗi không dấu 
-const regExp = new RegExp(filter, 'i');
+    const filter = original.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Chuỗi không dấu
+    const regExp = new RegExp(filter, "i");
     const list1 = await Doc.find({
       $or: [
         {
-            title: regExp
+          title: regExp,
         },
         {
-            tag: regExp
-        }
-     ]
-    }).skip(skip).limit(PAGE_SIZE);
-    
-  
+          tag: regExp,
+        },
+      ],
+    })
+      .skip(skip)
+      .limit(PAGE_SIZE);
 
     // const result = list1.concat(list2);
     return res.json(
-        jsonGenerate(StatusCode.SUCCESS, "Data Succssfully", list1)
+      jsonGenerate(StatusCode.SUCCESS, "Data Succssfully", list1)
     );
-} catch (error) {
+  } catch (error) {
     return res.json(
-        jsonGenerate(StatusCode.UNPROCESSABLE_ENTITY, "Error", error)
+      jsonGenerate(StatusCode.UNPROCESSABLE_ENTITY, "Error", error)
     );
-}
+  }
 
 };
 
