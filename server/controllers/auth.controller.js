@@ -217,23 +217,31 @@ exports.ChangeThePassword = async (req, res) => {
 };
 
 exports.SearchData = async (req, res) => {
-  const PAGE_SIZE = 10;
+  const PAGE_SIZE = 5;
   const skip = 1;
   try {
     const { data } = req.body;
-    const original = data;
-    const filter = original.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Chuỗi không dấu
-    const regExp = new RegExp(filter, "i");
     const list1 = await Doc.find({
-      $or: [
+      $$or: [
         {
-          title: regExp,
+          title: new RegExp(req.params.q, "i"),
         },
         {
-          tag: regExp,
+          tag: new RegExp(req.params.q, "i"),
         },
       ],
     })
+      .select("-date")
+      .select("-time")
+      .select("-isPrivate")
+      .select("-content")
+      .select("-creatorsId")
+      .select("-view")
+      .select("-like")
+      .select("-docs_URL")
+      .select("-creatorsPhoto")
+      .select("-userId")
+      .select("-category")
       .skip(skip)
       .limit(PAGE_SIZE);
 
