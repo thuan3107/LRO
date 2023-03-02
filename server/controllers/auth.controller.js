@@ -166,12 +166,19 @@ exports.FindOneUser = async (req, res) => {
 
 exports.UpdatePersonalInformation = async (req, res) => {
   const _id = req.userId;
-  const { first_name, last_name, email, phone, avatar, isSex } = req.body;
-  const data = { first_name, last_name, email, phone, avatar, isSex };
+  const { first_name, last_name, username, email, phone, avatar, isSex } =
+    req.body;
+  const data = { first_name, last_name, username, email, phone, avatar, isSex };
   const userExist = await User.findOne({
     $or: [
       {
         email: email,
+      },
+      {
+        username: username,
+      },
+      {
+        phone: phone,
       },
     ],
   });
@@ -181,7 +188,7 @@ exports.UpdatePersonalInformation = async (req, res) => {
     return res.json(
       jsonGenerate(
         StatusCode.UNPROCESSABLE_ENTITY,
-        "User or Email already exists"
+        "UserName or Email or Phone already exists"
       )
     );
   }
@@ -254,7 +261,6 @@ exports.SearchData = async (req, res) => {
       jsonGenerate(StatusCode.UNPROCESSABLE_ENTITY, "Error", error)
     );
   }
-
 };
 
 /*
