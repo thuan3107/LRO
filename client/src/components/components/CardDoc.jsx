@@ -116,17 +116,17 @@ function CardDoc() {
                                       <p class="text-gray-800 font-light mt-1 text-xs">
                                         {/* {item?.content.substring(0, 60) + "..."} */}
                                       </p>
-                                      <p className="text-xs text-blue-800 w-full h-8 ">
+                                      <div className="text-xs text-blue-800 w-auto h-auto whitespace-nowrap ">
                                         {item?.tag.slice(0, 3).map((i) => {
                                           return (
                                             <>
-                                              <span className="mx-1 p-1 bg-pink-200 rounded-md font-thin">
+                                              <div className="whitespace-nowrap font-thin">
                                                 {i}
-                                              </span>
+                                              </div>
                                             </>
                                           );
                                         })}
-                                      </p>
+                                      </div>
                                       <div className="w-full h-[2px] bg-black"></div>
                                       <div>
                                         {/* button */}
