@@ -155,8 +155,8 @@ function Login() {
         localStorage.setItem("user", JSON.stringify(result.data.data));
 
         setTimeout(() => {
-          navigation("/");
-          // window.location.reload();
+          // navigation("/");
+          window.location.href = "/";
         }, 2000);
         return;
       }
