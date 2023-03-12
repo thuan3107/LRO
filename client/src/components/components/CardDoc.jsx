@@ -13,6 +13,8 @@ import { CategoryArr } from "../../data/CategoryDoc.js";
 function CardDoc() {
   const { user } = useContext(ProductContext);
   const [page, setPage] = useState(Number(1));
+  const [category, setCategory] = useState("");
+
   const [DocsData, setDocsData] = useState([]);
   const [like, setLike] = useState({
     _id: "",
@@ -43,7 +45,7 @@ function CardDoc() {
 
   const getPagination = async () => {
     try {
-      const { data } = await FUNC_PAGE_DOCS(page);
+      const { data } = await FUNC_PAGE_DOCS(page, category);
       setDocsData(data);
     } catch (error) {}
   };
@@ -64,13 +66,13 @@ function CardDoc() {
 
   useEffect(() => {
     getPagination();
-  }, [page]);
+  }, [page, category]);
 
   const handlerView = async (id) => {};
 
   function renderCategory(value) {
     const category = CategoryArr.find((item) => item.value === value);
-    const categoryName = category ? category.name : "Không tìm thấy danh mục";
+    const categoryName = category ? category.name : "Tất cả Danh Mục";
     return categoryName;
   }
   // console.log(DocsData);
@@ -86,12 +88,35 @@ function CardDoc() {
                     <div className=" w-full  flex justify-center items-center">
                       <div className=" md:w-[92%] lg:w-[88%] py-5 px-4 bg-blue-100 justify-center items-center ">
                         <div className="w-full  p-2 my-2 ">
-                          <h1>Lọc theo Danh Mục</h1>
+                          <div class="w-2/3 bg-white h-auto tracking-wide  border border-black-800 mx-1 rounded-lg relative">
+                            <h5 class="text-lg font-semibold p-2">
+                              Danh Mục Được Chọn
+                              <button
+                                class={`
+                              border-2 border-transparent bg-blue-500 p-2 mx-2 font-bold uppercase text-white rounded transition-all hover:border-blue-500 hover:bg-transparent hover:text-blue-500`}
+                              >
+                                {renderCategory(category)}
+                              </button>
+                            </h5>
+                          </div>
                           <div className="w-full   justify-center items-center  overflow-x-scroll">
                             <div class="flex justify-center w-max mx-auto p-5 rounded border-2 border-gray-200">
+                              <button
+                                onClick={(e) => setCategory("")}
+                                class={` border-2 border-transparent bg-blue-500 ml-3 py-2 px-4 font-bold uppercase text-white rounded transition-all hover:border-blue-500 hover:bg-transparent hover:text-blue-500`}
+                              >
+                                Tất cả
+                              </button>
                               {CategoryArr?.map((i) => {
                                 return (
-                                  <button class=" border-2 border-transparent bg-blue-500 ml-3 py-2 px-4 font-bold uppercase text-white rounded transition-all hover:border-blue-500 hover:bg-transparent hover:text-blue-500">
+                                  <button
+                                    onClick={(e) => setCategory(i.value)}
+                                    class={`${
+                                      category == i.value
+                                        ? "bg-white text-blue-500"
+                                        : ""
+                                    } border-2 border-transparent bg-blue-500 ml-3 py-2 px-4 font-bold uppercase text-white rounded transition-all hover:border-blue-500 hover:bg-transparent hover:text-blue-500`}
+                                  >
                                     {i.name}
                                   </button>
                                 );
@@ -451,7 +476,52 @@ function CardDoc() {
             </>
           ) : (
             <>
-              <Skenleton num={8} />
+              <div className="">
+                <div className=" w-full  flex justify-center items-center">
+                  <div className=" md:w-[92%] lg:w-[88%] py-5 px-4 bg-blue-100 justify-center items-center ">
+                    <div className="w-full  p-2 my-2 ">
+                      <div class="w-2/3 bg-white h-auto tracking-wide  border border-black-800 mx-1 rounded-lg relative">
+                        <h5 class="text-lg font-semibold p-2">
+                          Danh Mục Được Chọn
+                          <button
+                            class={`
+                              border-2 border-transparent bg-blue-500 p-2 mx-2 font-bold uppercase text-white rounded transition-all hover:border-blue-500 hover:bg-transparent hover:text-blue-500`}
+                          >
+                            {renderCategory(category)}
+                          </button>
+                        </h5>
+                      </div>
+                      <div className="w-full   justify-center items-center  overflow-x-scroll">
+                        <div class="flex justify-center w-max mx-auto p-5 rounded border-2 border-gray-200">
+                          <button
+                            onClick={(e) => setCategory("")}
+                            class={` border-2 border-transparent bg-blue-500 ml-3 py-2 px-4 font-bold uppercase text-white rounded transition-all hover:border-blue-500 hover:bg-transparent hover:text-blue-500`}
+                          >
+                            Tất cả
+                          </button>
+                          {CategoryArr?.map((i) => {
+                            return (
+                              <button
+                                onClick={(e) => setCategory(i.value)}
+                                class={`${
+                                  category == i.value
+                                    ? "bg-white text-blue-500"
+                                    : ""
+                                } border-2 border-transparent bg-blue-500 ml-3 py-2 px-4 font-bold uppercase text-white rounded transition-all hover:border-blue-500 hover:bg-transparent hover:text-blue-500`}
+                              >
+                                {i.name}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="grid  gap-4 lg:grid lg:grid-cols-2 lg:gap-6">
+                      <Skenleton num={12} />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </>
           )}
         </div>
