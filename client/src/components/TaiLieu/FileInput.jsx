@@ -8,10 +8,11 @@ import check from "../../images/check.png";
 // import styles from "./fileinput.css";
 import { ProductContext } from "../../contexts/ProductContextProvider.jsx";
 import { DocForm } from "../index.js";
+import removeVietnameseAndWhitespace from "../../func/remove.class.js";
 
 const FileInput = ({ name, label, value, type, handleInputState, ...rest }) => {
   const { user } = useContext(ProductContext);
-  const uid = user?.userId;
+  const uid = user?.userId + removeVietnameseAndWhitespace(user?.username);
   // console.log(uid);
   const inputRef = useRef();
   const [progress, setProgress] = useState(0);
@@ -20,7 +21,8 @@ const FileInput = ({ name, label, value, type, handleInputState, ...rest }) => {
   const handleUpload = () => {
     console.log(value);
     setProgressShow(false);
-    const fileName = new Date().getTime() + value.name;
+    const fileName =
+      new Date().getTime() + removeVietnameseAndWhitespace(value?.name);
     const storageRef = ref(
       storage,
       type === "docs" ? `/docs/${uid}/${fileName}` : `/images/${fileName}`

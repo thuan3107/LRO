@@ -2,9 +2,10 @@
 const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
-  form: { type: String },
-  first_name: { type: String },
-  last_name: { type: String },
+  form: { type: String, required: true },
+  first_name: { type: String, required: true },
+  last_name: { type: String, required: true },
+  // fullname:{ type:String , default : last_name +" " first_name},
   username: {
     type: String,
     min: 6,
@@ -28,12 +29,13 @@ const userSchema = mongoose.Schema({
   },
   avatar: {
     type: String,
+    required: true,
   },
   access: {
     type: String,
     default: "user",
   },
-  isSex: { type: String },
+  isSex: { type: String, required: true },
   docs: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -44,12 +46,6 @@ const userSchema = mongoose.Schema({
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "articles",
-    },
-  ],
-  disscussion: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "blogs",
     },
   ],
   date: {

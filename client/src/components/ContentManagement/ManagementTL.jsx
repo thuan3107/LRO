@@ -8,6 +8,11 @@ import Swal from "sweetalert2";
 import { useContext } from "react";
 import { ProductContext } from "../../contexts/ProductContextProvider";
 
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { storage } from "../../firebase.js";
+import firebase from "firebase/app";
+
+
 import {
   FUNC_DELETE_DOC,
   FUNC_DOC_LIST_FOR_USER,
