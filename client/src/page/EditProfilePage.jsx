@@ -70,38 +70,46 @@ function EditProfilePage() {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      if (!isFormEmpty()) {
-        console.log(Form);
-        const result = await FUNC_UPDATE_PROFILE_USER(auth, Form);
-        console.log(result);
-        if (result.status == 200) {
-          if (result.data.status == 200) {
+      if (Form.phone.length == 10) {
+        if (!isFormEmpty()) {
+          console.log(Form);
+          const result = await FUNC_UPDATE_PROFILE_USER(auth, Form);
+          console.log(result);
+          if (result.status == 200) {
+            if (result.data.status == 200) {
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: `Xác Nhận Cập Nhật Thông Tin`,
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              localStorage.clear();
+              window.location = "/login";
+            }
+          } else {
             Swal.fire({
               position: "center",
-              icon: "success",
-              title: `Xác Nhận Cập Nhật Thông Tin`,
+              icon: "error",
+              title: result.message,
               showConfirmButton: false,
               timer: 1500,
             });
-            localStorage.clear();
-            window.location = "/login";
           }
         } else {
           Swal.fire({
             position: "center",
             icon: "error",
-            title: result.message,
+            title: "Vui Lòng Điền Đủ Thông tin",
             showConfirmButton: false,
             timer: 1500,
           });
         }
       } else {
         Swal.fire({
-          position: "center",
           icon: "error",
-          title: "Vui Lòng Điền Đủ Thông tin",
-          showConfirmButton: false,
-          timer: 1500,
+          title: "Oops...",
+          text: "Số điện thoại không hợp lệ",
         });
       }
     } catch (error) {}
@@ -203,7 +211,7 @@ function EditProfilePage() {
                             html="first-name"
                             class="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
                           >
-                            First name
+                            Họ
                           </label>
                         </div>
                       </div>
@@ -222,7 +230,7 @@ function EditProfilePage() {
                             html="last-name"
                             class="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
                           >
-                            Last name
+                            Tên
                           </label>
                         </div>
                       </div>
@@ -244,7 +252,7 @@ function EditProfilePage() {
                             html="first-name"
                             class="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"
                           >
-                            Phone
+                            Số điện thoại
                           </label>
                         </div>
                       </div>
@@ -259,9 +267,9 @@ function EditProfilePage() {
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           >
                             {/* <option selected>Choose a Sex</option> */}
-                            <option value="1">Man</option>
-                            <option value="2">Women</option>
-                            <option value="3">Orther</option>
+                            <option value="1">Nam</option>
+                            <option value="2">Nữ</option>
+                            <option value="3">Khác</option>
                           </select>
                         </div>
                       </div>

@@ -11,12 +11,17 @@ function ChangePass() {
   const { user } = useContext(ProductContext);
   let auth = user?.token;
   const [isMenu, setIsMenu] = useState(1);
+  const [isOldPass, setOldIsPass] = useState();
   const [isPass, setIsPass] = useState();
   const [isConfirmPass, setIsConfirmPass] = useState();
+  const [Form, setForm] = useState({
+    oldPassword: "",
+    password: "",
+  });
   const handleChange = async (e) => {
     if (isConfirmPass === isPass) {
-      const result = await FUNC_CHANGE_PASS_USER(auth, isConfirmPass);
-      console.log(result);
+      const result = await FUNC_CHANGE_PASS_USER(auth, Form);
+      // console.log(result);
       if (result.data.status == 200) {
         let timerInterval;
         Swal.fire({
@@ -52,17 +57,28 @@ function ChangePass() {
         window.location.href = `/u/${user?.userId}`;
         setIsPass("");
         setIsConfirmPass("");
+      } else if (result.data.status == 201) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${result.data.message}`,
+        });
       }
     } else {
-      console.log(isConfirmPass);
-      console.log(isPass);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Mật Khẩu Không Khớp",
+      });
     }
   };
 
   useEffect(() => {
-    console.log(isConfirmPass);
-    console.log(isPass);
-  }, [isPass, isConfirmPass]);
+    setForm({
+      oldPassword: isOldPass,
+      password: isConfirmPass,
+    });
+  }, [isPass, isConfirmPass, isOldPass]);
   return (
     <>
       <div className="z-1">
@@ -77,6 +93,24 @@ function ChangePass() {
                     THAY ĐỔI MẬT KHẨU
                   </h2>
                   <div class="mt-4 space-y-4 lg:mt-5 md:space-y-5">
+                    <div>
+                      <label
+                        for="password"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      >
+                        Mật Khẩu Hiện Tại
+                      </label>
+                      <input
+                        type="password"
+                        name="oldpassword"
+                        id="oldpassword"
+                        // placeholder="••••••••"
+                        value={isOldPass}
+                        onChange={(e) => setOldIsPass(e.target.value)}
+                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required=""
+                      />
+                    </div>
                     <div>
                       <label
                         for="password"

@@ -5,9 +5,9 @@ import {
   CardAuthor,
   CardBV,
   CardRight,
+  Footer,
   Header,
 } from "../../components/index.js";
-
 
 import CardPost from "../../components/components/CardPost.jsx";
 
@@ -23,6 +23,9 @@ function BaiVietPage() {
         <div class="w-full">
           <CardPost />
         </div>
+      </div>
+      <div>
+        <Footer />
       </div>
     </div>
   );

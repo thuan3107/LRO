@@ -34,6 +34,9 @@ function SearchPage() {
           </div>
         </div>
       </div>
+      <div>
+        <Footer />
+      </div>
     </>
   );
 }

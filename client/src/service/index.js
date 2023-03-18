@@ -36,15 +36,13 @@ export const FUNC_UPDATE_PROFILE_USER = async (auth,data) => {
   });
 };
 
-export const FUNC_CHANGE_PASS_USER = async (auth,password) => {
+export const FUNC_CHANGE_PASS_USER = async (auth, data) => {
   return axios({
     method: "post",
     headers: { auth: auth },
 
     url: `${API_URL}/apiart/changepass`,
-    data: {
-      password: password,
-    },
+    data,
   });
 };
 

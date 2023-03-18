@@ -4,6 +4,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
+
+import Swal from "sweetalert2";
 // import Register from "../Register";
 import { FaFacebookF, FaGoogle, FaRegEnvelope } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
@@ -146,31 +148,33 @@ function Login() {
   };
 
   const handleSubmit = async (e) => {
-    const result = await login(form);
-    if (result.status == 200) {
-      if (result.data.status === 200) {
-        toast(result.data.message);
-        toast("Vui Lòng Chờ");
-        // console.log(result);
-        localStorage.setItem("user", JSON.stringify(result.data.data));
+    try {
+      const result = await login(form);
+      if (result.status == 200) {
+        if (result.data.status === 200) {
+          toast(result.data.message);
+          toast("Vui Lòng Chờ");
+          // console.log(result);
+          localStorage.setItem("user", JSON.stringify(result.data.data));
 
-        setTimeout(() => {
-          // navigation("/");
-          window.location.href = "/";
-        }, 2000);
-        return;
-      }
-      if (result.data.status === 201) {
-        setErorrs(result.data.data);
-        toast(result.data.data);
-        return;
-      }
+          setTimeout(() => {
+            // navigation("/");
+            window.location.href = "/";
+          }, 2000);
+          return;
+        }
+        if (result.data.status === 201) {
+          setErorrs(result.data.data);
+          toast(result.data.data);
+          return;
+        }
 
-      if (result.data.status === 202) {
-        toast(result.data.message);
-        return;
+        if (result.data.status === 202) {
+          toast(result.data.message);
+          return;
+        }
       }
-    }
+    } catch (error) {}
   };
   return (
     <>

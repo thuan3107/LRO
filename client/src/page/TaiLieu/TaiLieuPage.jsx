@@ -12,6 +12,7 @@ import {
   CardTL,
   CardDoc,
   Header,
+  Footer,
 } from "../../components/index.js";
 import { ProductContext } from "../../contexts/ProductContextProvider.jsx";
 import {
@@ -20,7 +21,6 @@ import {
   KNM,
   KNTN,
   KTCN,
-
   NLN,
   NN,
   YTSK,
@@ -118,6 +118,9 @@ function TaiLieuPage() {
         <div className="w-full py-5 px-4  flex justify-center items-center ">
           <CardTL />
         </div>
+      </div>
+      <div>
+        <Footer />
       </div>
     </>
   );

@@ -170,13 +170,39 @@ function SignUp() {
     setForm2({ ...form2, [e.target.name]: e.target.value });
   };
 
+  const isFormEmpty = () => {
+    return Object.values(form2).some((x) => x === "" || x === null);
+  };
   // submit btn register
   const handleSubmit = async (e) => {
-    // const result = await re(form);
-    form2.form = "LRO";
-    form2.avatar = avatar;
-    // form2.uid = user?.uid;
-    if (form2.password === form2.passwordConfirmation) {
+    try {
+      // const result = await re(form);
+      form2.form = "LRO";
+      form2.avatar = avatar;
+      // form2.uid = user?.uid;
+      if (!isFormEmpty()) {
+        if (form2.password === form2.passwordConfirmation) {
+          if (form2.phone.length == 10) {
+            SignUp();
+          } else {
+            toast("Số điện thoại không hợp lệ");
+          }
+        } else {
+          toast("Mật Khẩu Không Khớp");
+        }
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Bạn đã quên điền gì đó!!",
+          footer: '<a href="">Why do I have this issue?</a>',
+        });
+      }
+    } catch (error) {}
+  };
+
+  const SignUp = async (e) => {
+    try {
       const result = await register(form2);
       if (result.status == 200) {
         if (result.data.status === 200) {
@@ -198,11 +224,8 @@ function SignUp() {
           return;
         }
       }
-    } else {
-      toast("Mật Khẩu Không Khớp");
-    }
+    } catch (error) {}
   };
-
   useEffect(() => {
     console.table(form2);
   }, [form2]);

@@ -207,66 +207,65 @@ exports.UpdatePersonalInformation = async (req, res) => {
  } catch (error) {}
 };
 
-exports.ChangeThePassword = async (req, res) => {
-  // const newpass = ({ password } = req.body);
-  const _id = req.userId;
-
-  const salt = await bcrypt.genSalt(10);
-  const password = await bcrypt.hash(req.body.password, salt);
-  const NewPass = { password };
-  try {
-    const result = await User.findByIdAndUpdate(_id, NewPass);
-    return res.json(
-      jsonGenerate(StatusCode.SUCCESS, "Update Succssfully", result)
-    );
-  } catch (error) {
-    return res.status(500).json("Internal server error ");
-  }
-};
-
-// exports.SearchData = async (req, res) => {
-//   const PAGE_SIZE = 10;
-//   const skip = 1;
+// exports.ChangeThePassword = async (req, res) => {
+//   // const newpass = ({ password } = req.body);
 //   try {
-//     const { data } = req.body;
-//     const list1 = await Doc.find({
-//       $or: [
-//         {
-//           title: new RegExp(req.params.q, "i"),
-//         },
-//         {
-//           tag: new RegExp(req.params.q, "i"),
-//         },
-//       ],
-//     })
-//       .skip(skip)
-//       .limit(PAGE_SIZE);
-
-//     const list2 = await Art.find({
-//       $or: [
-//         {
-//           title: new RegExp(req.params.q, "i"),
-//         },
-//         {
-//           tag: new RegExp(req.params.q, "i"),
-//         },
-//       ],
-//     })
-//       .skip(skip)
-//       .limit(PAGE_SIZE);
-
-//     const result = list1.concat(list2);
-//     return res.json(
-//       jsonGenerate(StatusCode.SUCCESS, "Data Succssfully", result)
-//     );
+//     const _id = req.userId;
+//     const user = await User.findOne(_id);
+//     const verified = bcrypt.compareSync(req.body.oldpassword, user.password);
+//     if (!verified) {
+//       return res.json(
+//         jsonGenerate(
+//           StatusCode.UNPROCESSABLE_ENTITY,
+//           "Username or password is incorrect"
+//         )
+//       );
+//     } else {
+//       const salt = await bcrypt.genSalt(10);
+//       const password = await bcrypt.hash(req.body.password, salt);
+//       const NewPass = { password };
+//       const result = await User.findByIdAndUpdate(_id, NewPass);
+//       return res.json(
+//         jsonGenerate(StatusCode.SUCCESS, "Update Succssfully", result)
+//       );
+//     }
 //   } catch (error) {
-//     return res.json(
-//       jsonGenerate(StatusCode.UNPROCESSABLE_ENTITY, "Error", error)
-//     );
+//     return res.status(500).json("Internal server error ");
 //   }
 // };
 
 
+exports.ChangeThePassword = async (req, res) => {
+  const { oldPassword, password } = req.body;
+
+  try {
+    const user = await User.findById(req.userId);
+
+    const verified = await bcrypt.compare(oldPassword, user.password);
+    if (!verified)
+    return res.json(
+      jsonGenerate(StatusCode.VALIDATION_ERROR, "Incorrect old password")
+    );
+
+
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const verifiedNew = await bcrypt.compare(hashedPassword, user.password);
+    if(!verifiedNew){
+      return res.json(
+        jsonGenerate(StatusCode.VALIDATION_ERROR, "New Password Matches Existing Password")
+      );
+    }
+    await User.findByIdAndUpdate(req.userId, { password: hashedPassword });
+    return res.json(
+              jsonGenerate(StatusCode.SUCCESS, "Password has been changed", hashedPassword)
+            );
+   
+  } catch (error) {
+    return res.status(500).json("Internal server error ");
+  }
+};
 
 exports.SearchData = async (req, res) => {
     const PAGE_SIZE = 10;

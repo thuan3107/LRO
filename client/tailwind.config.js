@@ -48,7 +48,7 @@ module.exports = withMT({
       colors: {
         primary: "#08629d",
         secondary: "",
-        while: "#F2F9FC",
+        while: "#ECF9FF",
         black: "#19181A",
       },
       screens: {

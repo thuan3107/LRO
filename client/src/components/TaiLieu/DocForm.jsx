@@ -97,7 +97,6 @@ function DocForm() {
   };
 
   function checkForm() {
-    console.log(data.tag.length);
     if (selected.length > 0 && selected.length < 6) {
       if (selected.length > 2) {
         return true;
