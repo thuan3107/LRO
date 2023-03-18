@@ -2,17 +2,17 @@ import React, { useEffect, useState } from "react";
 import { register } from "../../service/Account/Register.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 // import Register from "../Register";
-import {FaFacebookF, FaGoogle, FaRegEnvelope} from 'react-icons/fa';
-import {MdLockOutline} from 'react-icons/md';
+import { FaFacebookF, FaGoogle, FaRegEnvelope } from "react-icons/fa";
+import { MdLockOutline } from "react-icons/md";
 import {
-getAuth,
-signInWithPopup,
-FacebookAuthProvider,
-GoogleAuthProvider,
-GithubAuthProvider,
+  getAuth,
+  signInWithPopup,
+  FacebookAuthProvider,
+  GoogleAuthProvider,
+  GithubAuthProvider,
 } from "firebase/auth";
 import { app } from "../../firebase.js";
 import removeVietnameseAndWhitespace from "../../func/remove.class.js";
@@ -176,14 +176,14 @@ function Login() {
     <>
       <ToastContainer />
 
-      <div className="relative flex bg-gray-200 opacity-100 justify-center min-h-[90vh] items-center  overflow-hidden">
+      <div className="relative flex bg-white opacity-100 justify-center min-h-[90vh] items-center  overflow-hidden">
         <div className="w-full m-auto  rounded-xs   lg:max-w-4xl">
           <div class="grid grid-flow-row-dense grid-cols-3  ">
             <div class="col-span-2  w-full z-10">
               <div className="relative flex flex-col justify-center  overflow-hidden">
-                <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl lg:max-w-xl">
+                <div className="w-full p-6 m-auto bg-blue-200 rounded-md shadow-xl lg:max-w-xl">
                   <h1 className="text-3xl font-semibold text-center text-purple-700 uppercase">
-                    Sign in
+                    Đăng Nhập
                   </h1>
                   <div className="mt-6">
                     <div className="mb-2">
@@ -191,7 +191,7 @@ function Login() {
                         for="email"
                         className="block text-sm font-semibold text-gray-800"
                       >
-                        User Name
+                        Tên tài khoản
                       </label>
                       <input
                         type="text"
@@ -207,7 +207,7 @@ function Login() {
                         for="password"
                         className="block text-sm font-semibold text-gray-800"
                       >
-                        Password
+                        Mật khẩu
                       </label>
                       <input
                         type="password"
@@ -228,7 +228,7 @@ function Login() {
                       href="#"
                       className="text-xs text-purple-600 hover:underline"
                     >
-                      Forget Password?
+                      Quên mật khẩu
                     </a>
                     <div className="mt-6">
                       <button
@@ -236,14 +236,14 @@ function Login() {
                         id="register_Submit"
                         className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600"
                       >
-                        Submit
+                        Đăng nhập
                       </button>
                     </div>
                   </div>
                   <div className="relative flex items-center justify-center w-full mt-6 border border-t">
-                    <div className="absolute px-5 bg-white">Or</div>
+                    <div className="absolute px-5 ">Hoặc</div>
                   </div>
-                  <div className="flex mt-4 gap-x-2">
+                  {/* <div className="flex mt-4 gap-x-2">
                     <button
                       onClick={loginWithGoogle}
                       type="button"
@@ -278,44 +278,71 @@ function Login() {
                         <path d="M512,257.555c0,-141.385 -114.615,-256 -256,-256c-141.385,0 -256,114.615 -256,256c0,127.777 93.616,233.685 216,252.89l0,-178.89l-65,0l0,-74l65,0l0,-56.4c0,-64.16 38.219,-99.6 96.695,-99.6c28.009,0 57.305,5 57.305,5l0,63l-32.281,0c-31.801,0 -41.719,19.733 -41.719,39.978l0,48.022l71,0l-11.35,74l-59.65,0l0,178.89c122.385,-19.205 216,-125.113 216,-252.89Z" />
                       </svg>
                     </button>
+                  </div> */}
+                  <div class="btn-wrapper mt-4 text-center">
+                    <button
+                      onClick={loginWithFacebook}
+                      class="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
+                      type="button"
+                    >
+                      <svg
+                        viewBox="0 0 512 512"
+                        className="w-5 h-5 mr-1 text-blue-600 fill-current"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M512,257.555c0,-141.385 -114.615,-256 -256,-256c-141.385,0 -256,114.615 -256,256c0,127.777 93.616,233.685 216,252.89l0,-178.89l-65,0l0,-74l65,0l0,-56.4c0,-64.16 38.219,-99.6 96.695,-99.6c28.009,0 57.305,5 57.305,5l0,63l-32.281,0c-31.801,0 -41.719,19.733 -41.719,39.978l0,48.022l71,0l-11.35,74l-59.65,0l0,178.89c122.385,-19.205 216,-125.113 216,-252.89Z" />
+                      </svg>
+                      Facebook
+                    </button>
+                    <button
+                      onClick={loginWithGoogle}
+                      class="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
+                      type="button"
+                    >
+                      <img
+                        alt="..."
+                        class="w-5 mr-1"
+                        src="https://demos.creative-tim.com/notus-js/assets/img/google.svg"
+                      />
+                      Google{" "}
+                    </button>
                   </div>
-
                   <p className="mt-8 text-xs font-light text-center text-gray-700">
-                    {" "}
-                    Don't have an account?{" "}
-                    <Link
+                    Bạn chưa có tài khoản
+                    <NavLink
                       to="/register"
                       className="font-medium text-purple-600 hover:underline"
                     >
-                      Sign up
-                    </Link>
+                      Đăng Ký Ngay
+                    </NavLink>
                   </p>
                 </div>
               </div>
             </div>
             <div className=" w-full z-50  -ml-4 shadow-md">
               <div className="relative flex flex-col justify-center h-full overflow-hidden">
-                <div className="w-full h-full m-auto flex justify-center items-center  p-6 m-auto  bg-primary rounded-md shadow-xl lg:max-w-xl">
+                <div className="w-full h-full m-auto flex justify-center items-center  p-6 m-auto  bg-blue-400 rounded-md shadow-xl lg:max-w-xl">
                   <div className="h-full w-full flex items-center justify-center">
                     <div className=" h-full w-full flex text-center flex-col space-y-5 items-center justify-center ">
                       <div className="text-3xl font-sans font-bold">
-                        <p>Hello, Friend!</p>
+                        <p>Chào!</p>
                       </div>
 
                       <div className="text-slate-400">
                         <p>
-                          Fill up personal information and
-                          <br /> start journey with us
+                          Điền thông tin và
+                          <br />
+                          Bắt đầu cuộc hành trình với Chúng tôi
                         </p>
                       </div>
 
                       <div>
-                        <a
-                          href="./register"
+                        <NavLink
+                          to="/register"
                           className="bg-blue-600 text-white font-bold py-2 px-10 rounded-full"
                         >
-                          SIGN UP
-                        </a>
+                          Đăng Ký Ngay
+                        </NavLink>
                       </div>
                     </div>
                   </div>

@@ -14,7 +14,17 @@ import {
   Header,
 } from "../../components/index.js";
 import { ProductContext } from "../../contexts/ProductContextProvider.jsx";
-import { CNTT, Kte, Sinhhoc, Yte } from "../../images/index.js";
+import {
+  CNTT,
+  GDDT,
+  KNM,
+  KNTN,
+  KTCN,
+
+  NLN,
+  NN,
+  YTSK,
+} from "../../images/index.js";
 import Banner from "../../components/components/Banner.jsx";
 
 function TaiLieuPage() {
@@ -29,14 +39,42 @@ function TaiLieuPage() {
     {
       url: CNTT,
       caption: "Slide 1",
+      category: "CNTT",
     },
     {
-      url: Yte,
+      url: GDDT,
       caption: "Slide 2",
+      category: "CNTT",
     },
     {
-      url: Sinhhoc,
+      url: KNTN,
       caption: "Slide 3",
+      category: "CNTT",
+    },
+    {
+      url: KNM,
+      caption: "Slide 4",
+      category: "CNTT",
+    },
+    {
+      url: KTCN,
+      caption: "Slide 5",
+      category: "CNTT",
+    },
+    {
+      url: NLN,
+      caption: "Slide 6",
+      category: "CNTT",
+    },
+    {
+      url: NN,
+      caption: "Slide 7",
+      category: "CNTT",
+    },
+    {
+      url: YTSK,
+      caption: "Slide 8",
+      category: "CNTT",
     },
   ];
   const randomizedArray = slideImages.sort(() => Math.random() - 0.5);

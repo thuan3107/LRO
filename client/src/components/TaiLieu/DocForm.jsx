@@ -207,7 +207,7 @@ function DocForm() {
             <div className={` w-full  h-full bg-white`}>
               <div class="w-full h-full">
                 <div className="w-full  h-full flex justify-center items-center ">
-                  <div className="w-[60%] h-auto p-5  bg-red-500">
+                  <div className="w-[60%] h-auto p-5  bg-blue-200 rounded-2xl">
                     <div className="flex justify-between w-full gap-4">
                       <div className="mb-2 w-full">
                         <label
@@ -248,22 +248,6 @@ function DocForm() {
                     </div>
                     <div className="w-full flex justify-between gap-4">
                       <div className="mb-2 w-full">
-                        <div className="mb-2 w-full h-full">
-                          <label
-                            for="small"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                          >
-                            Diễn giải
-                          </label>
-                          <textarea
-                            required
-                            name="content"
-                            onChange={handleChange}
-                            className="mb-2 w-full h-40"
-                          ></textarea>
-                        </div>
-                      </div>
-                      <div className="mb-2 w-full">
                         <div className="mb-2 w-full">
                           <label
                             for="small"
@@ -280,30 +264,48 @@ function DocForm() {
                             classNames={` w-full border-0`}
                           />
                         </div>
-                        <div className="mt-6 w-full">
-                          <label
-                            for="small"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      </div>
+                    </div>
+                    <div className="mb-2 w-full">
+                      <div className="mb-2 w-full h-full">
+                        <label
+                          for="small"
+                          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >
+                          Diễn giải
+                        </label>
+                        <textarea
+                          required
+                          name="content"
+                          onChange={handleChange}
+                          className="mb-2 w-full h-40"
+                        ></textarea>
+                      </div>
+                    </div>
+                    <div className="w-full flex justify-end mb-4">
+                      <div className=" w-1/3">
+                        <label
+                          for="small"
+                          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >
+                          Chế độ đăng tin
+                        </label>
+                        <div className="flex gap-1 bg-white  rounded-md justify-center items-center">
+                          <div
+                            onClick={(e) => setisP(!isP)}
+                            className={`${
+                              isP ? "bg-white" : "bg-green-400"
+                            } cursor-pointer block w-full px-4 py-2  text-purple-700  border-none rounded-md duration-100 ease-in-out focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40`}
                           >
-                            Chế độ đăng tin
-                          </label>
-                          <div className="flex gap-1 bg-white  rounded-md justify-center items-center">
-                            <div
-                              onClick={(e) => setisP(!isP)}
-                              className={`${
-                                isP ? "bg-white" : "bg-green-400"
-                              } cursor-pointer block w-full px-4 py-2  text-purple-700  border-none rounded-md duration-100 ease-in-out focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40`}
-                            >
-                              Công khai
-                            </div>
-                            <div
-                              onClick={(e) => setisP(!isP)}
-                              className={`${
-                                !isP ? "bg-white" : "bg-green-400"
-                              } cursor-pointer block w-full px-4 py-2  text-purple-700  border-none rounded-md duration-100 ease-in-out focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40`}
-                            >
-                              Riêng Tư
-                            </div>
+                            Công khai
+                          </div>
+                          <div
+                            onClick={(e) => setisP(!isP)}
+                            className={`${
+                              !isP ? "bg-white" : "bg-green-400"
+                            } cursor-pointer block w-full px-4 py-2  text-purple-700  border-none rounded-md duration-100 ease-in-out focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40`}
+                          >
+                            Riêng Tư
                           </div>
                         </div>
                       </div>
@@ -313,8 +315,7 @@ function DocForm() {
                         <div onClick={(e) => back} class="flex">
                           <label
                             for="choose-me"
-                            class="hover:bg-green-400 select-none cursor-pointer rounded-lg border-2 border-gray-200
-   py-3 px-6 font-bold text-gray-200 transition-colors duration-200 ease-in-out peer-checked:bg-gray-200 peer-checked:text-gray-900 peer-checked:border-gray-200 "
+                            class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
                           >
                             Quay Lại
                           </label>
@@ -329,8 +330,7 @@ function DocForm() {
                           />
                           <label
                             for="choose-me"
-                            class="select-none cursor-pointer rounded-lg border-2 border-gray-200
-   py-3 px-6 font-bold text-gray-200 transition-colors duration-200 ease-in-out peer-checked:bg-gray-200 peer-checked:text-gray-900 peer-checked:border-gray-200 "
+                            class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
                           >
                             Xoá
                           </label>
@@ -338,8 +338,7 @@ function DocForm() {
                         <div onClick={(e) => handleSubmit(e)} class="flex">
                           <label
                             for="choose-me"
-                            class="select-none cursor-pointer rounded-lg border-2 border-gray-200
-   py-3 px-6 font-bold text-gray-200 transition-colors duration-200 ease-in-out peer-checked:bg-gray-200 peer-checked:text-gray-900 peer-checked:border-gray-200 "
+                            class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
                           >
                             Đăng Tin
                           </label>

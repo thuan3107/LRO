@@ -1,6 +1,12 @@
 // import mongoose from "mongoose";
 const mongoose = require("mongoose");
 
+var today = new Date();
+var day =
+  today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear();
+var time =
+  today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
 const userSchema = mongoose.Schema({
   form: { type: String, required: true },
   first_name: { type: String, required: true },
@@ -49,8 +55,8 @@ const userSchema = mongoose.Schema({
     },
   ],
   date: {
-    type: Date,
-    default: Date.now,
+    type: String,
+    default: day,
   },
 });
 

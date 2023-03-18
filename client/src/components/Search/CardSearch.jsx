@@ -16,8 +16,8 @@ function CardSearch({ data }) {
                       !item?.isPrivate ? " " : "hidden"
                     } w-full min-h-[117px] flex items-center justify-center `}
                   >
-                    <div class="w-[90%] h-full flex items-center justify-center bg-gray-100 rounded-md  hover:bg-blue-400 ease-in-out duration-100 ">
-                      <div class="w-full h-full bg-gray-200  py-3 px-4 rounded-lg    shadow-md shadow-blue-300/30">
+                    <div class="w-[90%] h-full flex items-center justify-center bg-blue-100 rounded-md  hover:bg-blue-400 ease-in-out duration-100 ">
+                      <div class="w-full h-full bg-blue-100  py-3 px-4 rounded-lg    shadow-md shadow-blue-300/30">
                         <div className="flex justify-between items-center">
                           <div className="flex justify-start items-center">
                             <img

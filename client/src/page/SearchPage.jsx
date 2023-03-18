@@ -24,9 +24,9 @@ function SearchPage() {
       </div>
       <div>
         <div className="w-full h-auto bg-white flex justify-center items-center">
-          <div className="w-[90%]  bg-pink-50 rounded-md">
-            <div className="my-4 mx-2">
-              <span className="lg:text-3xl md:text-2xl text-blue-800 font-extrabold ">
+          <div className="w-[90%]  bg-white rounded-md">
+            <div className="my-4 mx-2 w-full items-center justify-center flex">
+              <span className="lg:text-3xl md:text-2xl items-center text-blue-800 font-serif ">
                 Kết Quả Tìm Kiếm Dành Cho Bạn
               </span>
             </div>

@@ -242,12 +242,12 @@ function SignUp() {
   return (
     <>
       <ToastContainer />
-      <div class="relative min-h-screen flex items-center justify-center bg-center bg-blue-300 py-12 px-4 sm:px-6 lg:px-8  bg-no-repeat bg-cover relative items-center">
+      <div class="relative min-h-screen flex items-center justify-center bg-center bg-white py-12 px-4 sm:px-6 lg:px-8  bg-no-repeat bg-cover">
         {/* <div class="absolute  bg-black opacity-60 inset-0 z-0"></div> */}
         {layout ? (
           <>
             <div
-              class={`max-w-3xl w-full space-y-8 p-10 bg-white rounded-xl shadow-lg z-10`}
+              class={`max-w-3xl w-full space-y-8 p-10 bg-blue-200 rounded-xl shadow-lg z-10`}
             >
               <div class="grid  gap-8 grid-cols-1">
                 <div class="flex flex-col ">
@@ -263,7 +263,7 @@ function SignUp() {
                       Tiếp tục
                     </h2>
                   </div>
-                  <div class="mt-5">
+                  <div class="">
                     <div class="form">
                       <div class="md:space-y-2 mb-3">
                         <label class="text-xs font-semibold text-gray-600 py-2">
@@ -283,7 +283,7 @@ function SignUp() {
                           </div>
                           <label class="cursor-pointer ">
                             <span class="focus:outline-none text-white text-sm py-2 px-4 rounded-full bg-green-400 hover:bg-green-500 hover:shadow-lg">
-                              Browse
+                              Chọn Ảnh Đại Diện
                             </span>
                             <input
                               id="file-upload"
@@ -376,10 +376,10 @@ function SignUp() {
                   </div>
                 </div>
               </div>
-              <div class="rounded-t mb-0 px-6 py-6">
+              <div class="rounded-t mb-0 px-6 ">
                 <div class="text-center mb-3">
                   <h6 class="text-blueGray-500 text-sm font-bold">
-                    Sign in with
+                    Đăng Nhập Với
                   </h6>
                 </div>
                 <div class="btn-wrapper text-center">
@@ -417,7 +417,7 @@ function SignUp() {
         ) : (
           <>
             <div
-              class={` max-w-3xl w-full space-y-8 p-10 bg-white rounded-xl shadow-lg z-10`}
+              class={` max-w-3xl w-full space-y-8 p-10 bg-blue-200 rounded-xl shadow-lg z-10`}
             >
               <div class="flex flex-col sm:flex-row items-center">
                 <h2 class="font-semibold text-lg mr-auto">Đăng Ký Tài Khoản</h2>
@@ -432,7 +432,7 @@ function SignUp() {
               <div class="mb-3 space-y-2 w-full text-xs">
                 <div class="w-full flex flex-col mb-3">
                   <label class="font-semibold text-gray-600 py-2">
-                    UserName
+                    Tên Tài Khoản
                   </label>
                   <input
                     placeholder=""

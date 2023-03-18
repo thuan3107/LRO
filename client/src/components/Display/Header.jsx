@@ -45,7 +45,7 @@ function Header() {
 
   return (
     <>
-      <Disclosure as="nav" className="bg-white text-black ">
+      <Disclosure as="nav" className="bg-blue-300 text-black ">
         {({ open }) => (
           <>
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">

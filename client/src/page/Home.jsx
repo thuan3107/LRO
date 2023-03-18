@@ -8,9 +8,9 @@ function Home() {
     <div>
       <Header />
 
-      <div className=" w-full h-[200px] bg-[#08629D] justify-center items-center">
+      <div className=" w-full h-[200px] bg-blue-700/90 justify-center items-center">
         <div className=" w-full h-[95%] justify-center items-center">
-          <p className="p-3 text-5xl text-white font-body uppercase flex justify-center items-center ">
+          <p className="p-3 text-5xl text-white font-serif uppercase flex justify-center items-center ">
             LEARNING RESOURCE ONLINE
           </p>
           <p className="p-3 text-2xl text-white font-body   justify-center items-center ">
@@ -27,7 +27,7 @@ function Home() {
       </div>
 
       <div className=" w-full flex justify-center items-center bg-white">
-        <div className="w-[90%] py-5 px-4 bg-blue-100 flex justify-center items-center -mt-[50px] ">
+        <div className="w-[90%] py-5 px-4 bg-blue-200 flex justify-center items-center -mt-[50px] rounded-3xl">
           {/* <CardDoc /> */}
           <HighLightDoc />
         </div>

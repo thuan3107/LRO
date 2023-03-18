@@ -38,38 +38,12 @@ function CardTL() {
               )}
             </div>
           </div>
-          <div className="w-full  bg-pink-100">
-            <div class="w-full max-w-xs xl:max-w-lg 2xl:max-w-2xl bg-gray-100 rounded-md hidden xl:flex items-center">
-              {/* <select
-                class="bg-transparent uppercase font-bold text-sm p-4 mr-4"
-                name=""
-                id=""
-              >
-                <option>all categories</option>
-                {CategoryArr?.map((i) => {
-                  return (
-                    <option onClick={(e) => setCategory(i.value)}>
-                      {i.name}
-                    </option>
-                  );
-                })}
-              </select> */}
-            </div>
-            {/* <h5 class="text-lg font-semibold p-2">
-              Danh Mục Được Chọn
-              <button
-                class={`
-                              border-2 border-transparent bg-blue-500 p-2 mx-2 font-bold uppercase text-white rounded transition-all hover:border-blue-500 hover:bg-transparent hover:text-blue-500`}
-              >
-                {renderCategory(category)}
-              </button>
-            </h5> */}
-          </div>
-          <div className="w-full   justify-center items-center  overflow-x-scroll">
+
+          <div className="w-full   justify-center items-center   overflow-x-scroll scrollbar-thin scrollbar-thumb-blue-700 scrollbar-track-blue-300">
             <div class="flex justify-center w-max mx-auto p-2 rounded border-2 border-gray-200">
               <button
                 onClick={(e) => setCategory("")}
-                class={` border-2 border-transparent bg-blue-500 ml-3 py-2 px-4 font-bold uppercase text-white rounded transition-all hover:border-blue-500 hover:bg-transparent hover:text-blue-500`}
+                class={` border-2 hover:border-transparent hover:bg-blue-500 ml-3 py-2 px-4 font-bold uppercase hover:text-white rounded transition-all border-blue-500 bg-transparent text-blue-500`}
               >
                 Tất cả
               </button>
@@ -81,7 +55,7 @@ function CardTL() {
                       category == i.value
                         ? "bg-white text-green-500  border-2 border-green-500 bg-transparent "
                         : ""
-                    } border-2 border-transparent bg-blue-500 ml-3 py-1 px-2 font-bold uppercase text-white rounded transition-all hover:border-blue-500 hover:bg-transparent hover:text-blue-500`}
+                    } border-2 hover:border-transparent hover:bg-blue-500 ml-3 py-2 px-4 font-bold uppercase hover:text-white rounded transition-all border-blue-500 bg-transparent text-blue-500`}
                   >
                     {i.name}
                   </button>
