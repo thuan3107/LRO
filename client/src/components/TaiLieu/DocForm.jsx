@@ -221,7 +221,7 @@ function DocForm() {
                           id="title"
                           onChange={handleChange}
                           name="title"
-                          className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                          className="block w-full px-4 py-2 mt-2 text-blue-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         />
                       </div>
                       <div className="mb-2 w-full">
@@ -236,7 +236,7 @@ function DocForm() {
                           id="small"
                           name="category"
                           required
-                          className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                          className="block w-full px-4 py-2 mt-2 text-blue-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         >
                           <option selected>Chọn một danh mục</option>
                           {CategoryArr.map((i) => {
@@ -259,7 +259,7 @@ function DocForm() {
                             onChange={setSelected}
                             name="tag"
                             id="tag"
-                            placeHolder="Gắn thẻ bài viết của bạn. Tối đa 5 thẻ. Ít nhất 1 thẻ!"
+                            placeHolder="Gắn thẻ bài viết của bạn. Tối đa 5 thẻ. Ít nhất 3 thẻ!"
                             classNames={` w-full border-0`}
                           />
                         </div>
@@ -294,7 +294,7 @@ function DocForm() {
                             onClick={(e) => setisP(!isP)}
                             className={`${
                               isP ? "bg-white" : "bg-green-400"
-                            } cursor-pointer block w-full px-4 py-2  text-purple-700  border-none rounded-md duration-100 ease-in-out focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40`}
+                            } cursor-pointer block w-full px-4 py-2  text-blue-700  border-none rounded-md duration-100 ease-in-out focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40`}
                           >
                             Công khai
                           </div>
@@ -302,7 +302,7 @@ function DocForm() {
                             onClick={(e) => setisP(!isP)}
                             className={`${
                               !isP ? "bg-white" : "bg-green-400"
-                            } cursor-pointer block w-full px-4 py-2  text-purple-700  border-none rounded-md duration-100 ease-in-out focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40`}
+                            } cursor-pointer block w-full px-4 py-2  text-blue-700  border-none rounded-md duration-100 ease-in-out focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40`}
                           >
                             Riêng Tư
                           </div>

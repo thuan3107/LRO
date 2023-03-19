@@ -168,7 +168,7 @@ function EditProfilePage() {
       </div>
       <div className="w-full h-[90vh] bg-white flex justify-center items-center">
         <div className="w-[80%] h-full  ">
-          <div className="w-full h-[90%] border-2 bg-blue-300 border-green-400 shadow-xl shadow-pink-300/30 rounded-3xl">
+          <div className="w-full h-[89%] border-2 bg-blue-400 my-4 border-green-400 shadow-xl shadow-pink-300/30 rounded-3xl">
             <div class="w-full h-full grid grid-cols-3 gap-4">
               <div class="w-full h-full flex justify-center items-center ">
                 <div className="w-full h-full flex justify-center items-center">
@@ -195,7 +195,7 @@ function EditProfilePage() {
               <div class="col-span-2 w-full h-full flex justify-center items-center ">
                 <div className="w-full h-full flex justify-center items-center">
                   <div>
-                    <div class="grid max-w-3xl gap-2 pt-5 pb-1 px-8 sm:grid-cols-2 bg-white rounded-md border-t-4 border-purple-400">
+                    <div class="grid max-w-3xl gap-2 pt-5 pb-1 px-8 sm:grid-cols-2 bg-white rounded-md border-t-4 border-blue-400">
                       <div class="grid">
                         <div class="bg-white flex min-h-[60px] flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:shadow-inner">
                           <input
@@ -274,7 +274,7 @@ function EditProfilePage() {
                         </div>
                       </div>
                     </div>
-                    <div class="max-w-3xl gap-2 py-5 px-8 sm:grid-cols-2 bg-white  border-b-4 border-purple-400">
+                    <div class="max-w-3xl gap-2 py-5 px-8 sm:grid-cols-2 bg-white  border-b-4 border-blue-400">
                       <div class="block my-2">
                         <div class="bg-white flex min-h-[60px] flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:shadow-inner">
                           <input
@@ -302,7 +302,7 @@ function EditProfilePage() {
                             type="file"
                             name="upload"
                             onChange={(e) => handleUploadImg(e)}
-                            class="mt-4 bg-purple-500 text-white py-2 px-6 rounded-md hover:bg-purple-600 "
+                            class="mt-4 bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600 "
                           /> */}
 
                           <input
@@ -310,7 +310,7 @@ function EditProfilePage() {
                             name="upload-image"
                             accept="image/*"
                             onChange={uploadImage}
-                            class="mt-4 bg-purple-500 text-white py-2 px-6 rounded-md hover:bg-purple-600 "
+                            class="mt-4 bg-blue-400 text-white py-2 px-6 rounded-md hover:bg-blue-600 "
                           />
                         </div>
                       </div>
@@ -318,9 +318,9 @@ function EditProfilePage() {
                     <div onClick={(e) => handleUpdate(e)} class="block ">
                       <button
                         // type="submit"
-                        class="mt-4 bg-purple-500 text-white py-2 px-6 rounded-md hover:bg-purple-600 "
+                        class="mt-4 bg-green-400 text-white py-2 px-6 rounded-md hover:bg-green-500 hover:shadow-xl"
                       >
-                        Update
+                        Cập nhật hồ sơ
                       </button>
                     </div>
                   </div>

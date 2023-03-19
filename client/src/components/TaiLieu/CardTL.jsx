@@ -14,59 +14,64 @@ function CardTL() {
     const categoryName = category ? category.name : "Tất cả Danh Mục";
     return categoryName;
   }
-  useEffect(() => {}, [layout]);
-  return (
-    <div className="w-full flex justify-center items-center ">
-      <div className="w-full flex justify-center items-center">
-        <div className="w-[92%] mt-6">
-          <div className="flex items-end justify-end z-1">
-            <div className="flex rounded-md">
-              {layout ? (
-                <span
-                  className=" p-1 bg-green-300 rounded-md cursor-pointer z-5"
-                  onClick={(e) => setLayout(!layout)}
-                >
-                  <BsFillGrid3X3GapFill className="mx-1 text-xl" />
-                </span>
-              ) : (
-                <span
-                  className=" p-1 bg-green-300 rounded-md cursor-pointer z-5"
-                  onClick={(e) => setLayout(!layout)}
-                >
-                  <BsCardList className="mx-1 text-xl" />
-                </span>
-              )}
-            </div>
-          </div>
+  useEffect(() => {
+    localStorage.setItem("category", category);
+  }, [category]);
 
-          <div className="w-full   justify-center items-center   overflow-x-scroll scrollbar-thin scrollbar-thumb-blue-700 scrollbar-track-blue-300">
-            <div class="flex justify-center w-max mx-auto p-2 rounded border-2 border-gray-200">
-              <button
-                onClick={(e) => setCategory("")}
-                class={` border-2 hover:border-transparent hover:bg-blue-500 ml-3 py-2 px-4 font-bold uppercase hover:text-white rounded transition-all border-blue-500 bg-transparent text-blue-500`}
-              >
-                Tất cả
-              </button>
-              {CategoryArr?.map((i) => {
-                return (
-                  <button
-                    onClick={(e) => setCategory(i.value)}
-                    class={`${
-                      category == i.value
-                        ? "bg-white text-green-500  border-2 border-green-500 bg-transparent "
-                        : ""
-                    } border-2 hover:border-transparent hover:bg-blue-500 ml-3 py-2 px-4 font-bold uppercase hover:text-white rounded transition-all border-blue-500 bg-transparent text-blue-500`}
+  return (
+    <>
+      <div className="w-full flex justify-center items-center ">
+        <div className="w-full flex justify-center items-center">
+          <div className="w-[92%] mt-6">
+            <div className="flex items-end justify-end z-1">
+              <div className="flex rounded-md">
+                {layout ? (
+                  <span
+                    className=" p-1 bg-green-300 rounded-md cursor-pointer z-5"
+                    onClick={(e) => setLayout(!layout)}
                   >
-                    {i.name}
-                  </button>
-                );
-              })}
+                    <BsFillGrid3X3GapFill className="mx-1 text-xl" />
+                  </span>
+                ) : (
+                  <span
+                    className=" p-1 bg-green-300 rounded-md cursor-pointer z-5"
+                    onClick={(e) => setLayout(!layout)}
+                  >
+                    <BsCardList className="mx-1 text-xl" />
+                  </span>
+                )}
+              </div>
             </div>
+
+            <div className="w-full   justify-center items-center   overflow-x-scroll scrollbar-thin scrollbar-thumb-blue-700 scrollbar-track-blue-300">
+              <div class="flex justify-center w-max mx-auto p-2 rounded border-2 border-gray-200">
+                <button
+                  onClick={(e) => setCategory("")}
+                  class={` border-2 hover:border-transparent hover:bg-blue-500 ml-3 py-2 px-4 font-bold uppercase hover:text-white rounded transition-all border-blue-500 bg-transparent text-blue-500`}
+                >
+                  Tất cả
+                </button>
+                {CategoryArr?.map((i) => {
+                  return (
+                    <button
+                      onClick={(e) => setCategory(i.value)}
+                      class={`${
+                        category == i.value
+                          ? "bg-white text-green-500  border-2 border-green-500 bg-transparent "
+                          : ""
+                      } border-2 hover:border-transparent hover:bg-blue-500 ml-3 py-2 px-4 font-bold uppercase hover:text-white rounded transition-all border-blue-500 bg-transparent text-blue-500`}
+                    >
+                      {i.name}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+            <CardDoc category={category} layout={layout} />
           </div>
-          <CardDoc category={category} layout={layout} />
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

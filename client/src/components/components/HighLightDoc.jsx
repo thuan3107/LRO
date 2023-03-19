@@ -87,8 +87,8 @@ function HighLightDoc() {
                               return (
                                 <div class="flex flex-col justify-center ">
                                   <div class="min-h-[280px] relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
-                                    <p className="bg-green-100 w-auto h-8 flex text-md absolute -z-1 rounded-tl-lg rounded-br-full top-0 left-0">
-                                      <span className="p-1">
+                                    <p className="bg-blue-100 w-auto h-8 flex text-md absolute -z-1    rounded-tl-xl rounded-br-full top-0 left-0">
+                                      <span className="p-1 pr-4 text-blue-400 font-mono">
                                         {renderCategory(item?.category)}
                                       </span>
                                     </p>

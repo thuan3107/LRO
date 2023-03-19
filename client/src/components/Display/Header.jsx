@@ -14,7 +14,7 @@ const navigation = [
   { name: "Trang Chủ", href: "/", current: true },
   { name: "Tài Liệu", href: "/tailieu", current: false },
   { name: "Bài Viết", href: "/baiviet", current: false },
-  { name: "Hỏi Đáp", href: "/thaoluan", current: false },
+
 ];
 
 function classNames(...classes) {
@@ -45,7 +45,7 @@ function Header() {
 
   return (
     <>
-      <Disclosure as="nav" className="bg-blue-300 text-black ">
+      <Disclosure as="nav" className="bg-blue-500 text-black ">
         {({ open }) => (
           <>
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -81,8 +81,8 @@ function Header() {
                         to="/"
                         className={`${
                           isOpen === 1
-                            ? "bg-primary text-white"
-                            : "text-black hover:bg-primary hover:text-white"
+                            ? "bg-blue-600 text-white"
+                            : "text-black hover:bg-blue-600 hover:text-white"
                         }  px-3 py-2 rounded-md text-sm font-medium`}
                       >
                         Trang Chủ
@@ -92,8 +92,8 @@ function Header() {
                         to="/tailieu"
                         className={`${
                           isOpen === 2
-                            ? "bg-primary text-white"
-                            : "text-black hover:bg-primary hover:text-white"
+                            ? "bg-blue-600 text-white"
+                            : "text-black hover:bg-blue-600 hover:text-white"
                         }  px-3 py-2 rounded-md text-sm font-medium`}
                       >
                         Tài Liệu
@@ -103,8 +103,8 @@ function Header() {
                         to="/baiviet"
                         className={`${
                           isOpen === 3
-                            ? "bg-primary text-white"
-                            : "text-black hover:bg-primary hover:text-white"
+                            ? "bg-blue-600 text-white"
+                            : "text-black hover:bg-blue-600 hover:text-white"
                         }  px-3 py-2 rounded-md text-sm font-medium`}
                       >
                         Bài Viết
@@ -141,14 +141,14 @@ function Header() {
                           <Menu.Button>
                             <button
                               type="button"
-                              className="rounded-full bg-blue-600 p-1 text-gray-100 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                              className="rounded-full bg-green-500 p-1 text-gray-100 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                             >
                               <span className="sr-only flex">
                                 View notifications
                               </span>
 
                               <span className="h-6 w-auto flex">
-                                <span className="mx-1">Upload</span>
+                                <span className="mx-1">Đăng Tải</span>
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
                                   fill="none"

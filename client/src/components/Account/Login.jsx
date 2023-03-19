@@ -181,12 +181,16 @@ function Login() {
       <ToastContainer />
 
       <div className="relative flex bg-white opacity-100 justify-center min-h-[90vh] items-center  overflow-hidden">
+        <img
+          src={"https://wallpaperaccess.com/full/1236480.jpg"}
+          className="absolute w-full h-full z-0 bg-cover bg-center bg-no-repeat opacity-60 "
+        />
         <div className="w-full m-auto  rounded-xs   lg:max-w-4xl">
           <div class="grid grid-flow-row-dense grid-cols-3  ">
             <div class="col-span-2  w-full z-10">
               <div className="relative flex flex-col justify-center  overflow-hidden">
-                <div className="w-full p-6 m-auto bg-blue-200 rounded-md shadow-xl lg:max-w-xl">
-                  <h1 className="text-3xl font-semibold text-center text-purple-700 uppercase">
+                <div className="w-full h-full bg-cover bg-center bg-no-repeat p-6 m-auto bg-blue-400/30 rounded-md shadow-xl lg:max-w-xl ">
+                  <h1 className="text-3xl font-semibold text-center text-black uppercase">
                     Đăng Nhập
                   </h1>
                   <div className="mt-6">
@@ -202,7 +206,7 @@ function Login() {
                         id="username"
                         onChange={handleChange}
                         name="username"
-                        className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                        className="block w-full px-4 py-2 mt-2 text-blue-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                       />
                     </div>
 
@@ -218,7 +222,7 @@ function Login() {
                         id="password"
                         onChange={handleChange}
                         name="password"
-                        className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                        className="block w-full px-4 py-2 mt-2 text-blue-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                       />
                       {errors?.email && (
                         <>
@@ -230,7 +234,7 @@ function Login() {
                     </div>
                     <a
                       href="#"
-                      className="text-xs text-purple-600 hover:underline"
+                      className="text-xs text-blue-600 hover:underline"
                     >
                       Quên mật khẩu
                     </a>
@@ -238,7 +242,7 @@ function Login() {
                       <button
                         onClick={handleSubmit}
                         id="register_Submit"
-                        className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600"
+                        className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-700 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
                       >
                         Đăng nhập
                       </button>
@@ -315,7 +319,7 @@ function Login() {
                     Bạn chưa có tài khoản
                     <NavLink
                       to="/register"
-                      className="font-medium text-purple-600 hover:underline"
+                      className="font-medium text-blue-600 hover:underline"
                     >
                       Đăng Ký Ngay
                     </NavLink>
@@ -325,7 +329,7 @@ function Login() {
             </div>
             <div className=" w-full z-50  -ml-4 shadow-md">
               <div className="relative flex flex-col justify-center h-full overflow-hidden">
-                <div className="w-full h-full m-auto flex justify-center items-center  p-6 m-auto  bg-blue-400 rounded-md shadow-xl lg:max-w-xl">
+                <div className="w-full h-full m-auto flex justify-center items-center  p-6 m-auto  bg-blue-600/40 rounded-md shadow-xl lg:max-w-xl">
                   <div className="h-full w-full flex items-center justify-center">
                     <div className=" h-full w-full flex text-center flex-col space-y-5 items-center justify-center ">
                       <div className="text-3xl font-sans font-bold">

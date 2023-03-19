@@ -250,7 +250,7 @@ function Register() {
           {/*  
         <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
           <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl lg:max-w-xl">
-            <h1 className="text-3xl font-semibold text-center text-purple-700 uppercase">
+            <h1 className="text-3xl font-semibold text-center text-blue-700 uppercase">
               Sign Up
             </h1>
             <div className="mt-6">
@@ -266,7 +266,7 @@ function Register() {
                   id="username"
                   onChange={handleChange}
                   name="username"
-                  className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                  className="block w-full px-4 py-2 mt-2 text-blue-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
               </div>
               <div className="mb-2">
@@ -281,7 +281,7 @@ function Register() {
                   id="email"
                   onChange={handleChange}
                   name="email"
-                  className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                  className="block w-full px-4 py-2 mt-2 text-blue-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
               </div>
               <div className="mb-2">
@@ -296,7 +296,7 @@ function Register() {
                   id="password"
                   onChange={handleChange}
                   name="password"
-                  className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                  className="block w-full px-4 py-2 mt-2 text-blue-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
                 {errors?.email && (
                   <>
@@ -306,14 +306,14 @@ function Register() {
                   </>
                 )}
               </div>
-               <a href="#" className="text-xs text-purple-600 hover:underline">
+               <a href="#" className="text-xs text-blue-600 hover:underline">
                 Forget Password?
               </a> 
               <div className="mt-6">
                 <button
                   onClick={handleSubmit}
                   id="register_Submit"
-                  className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600"
+                  className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-700 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
                 >
                   Submit
                 </button>
@@ -364,7 +364,7 @@ function Register() {
               You have an account?{" "}
               <Link
                 to="/login"
-                className="font-medium text-purple-600 hover:underline"
+                className="font-medium text-blue-600 hover:underline"
               >
                 Sign in
               </Link>
@@ -410,7 +410,7 @@ function Register() {
                     <>
                       {/* <div className="relative flex flex-col justify-center min-h-screen overflow-hidden"> */}
                       {/* <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl lg:max-w-xl"> */}
-                      <h1 className="text-3xl font-semibold text-center text-purple-700 uppercase">
+                      <h1 className="text-3xl font-semibold text-center text-blue-700 uppercase">
                         Sign Up
                       </h1>
                       <div className="mt-6">
@@ -428,9 +428,9 @@ function Register() {
                               onChange={handleChange}
                               name="first_name"
                               // placeholder="first_name"
-                              className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                              className="block w-full px-4 py-2 mt-2 text-blue-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
 
-                              // className="block w-full border-2 border-white border-b-indigo-500 px-4 py-2 mt-2 text-purple-700 bg-white  rounded "
+                              // className="block w-full border-2 border-white border-b-indigo-500 px-4 py-2 mt-2 text-blue-700 bg-white  rounded "
                             />
                           </div>
 
@@ -447,9 +447,9 @@ function Register() {
                               onChange={handleChange}
                               name="last_name"
                               // placeholder="last_name"
-                              className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                              className="block w-full px-4 py-2 mt-2 text-blue-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
 
-                              // className="block w-full border-2 border-white border-b-indigo-500 px-4 py-2 mt-2 text-purple-700 bg-white  rounded "
+                              // className="block w-full border-2 border-white border-b-indigo-500 px-4 py-2 mt-2 text-blue-700 bg-white  rounded "
                             />
                           </div>
                         </div>
@@ -466,9 +466,9 @@ function Register() {
                             onChange={handleChange}
                             name="username"
                             // placeholder="User Name"
-                            className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                            className="block w-full px-4 py-2 mt-2 text-blue-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
 
-                            // className="block w-full border-2 border-white border-b-indigo-500 px-4 py-2 mt-2 text-purple-700 bg-white  rounded "
+                            // className="block w-full border-2 border-white border-b-indigo-500 px-4 py-2 mt-2 text-blue-700 bg-white  rounded "
                           />
                         </div>
                         <div className="mb-2">
@@ -483,7 +483,7 @@ function Register() {
                             id="email"
                             onChange={handleChange}
                             name="email"
-                            className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                            className="block w-full px-4 py-2 mt-2 text-blue-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                           />
                         </div>
                         <div className="mb-2">
@@ -498,7 +498,7 @@ function Register() {
                             id="password"
                             onChange={handleChange}
                             name="password"
-                            className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                            className="block w-full px-4 py-2 mt-2 text-blue-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                           />
                           {errors?.email && (
                             <>
@@ -513,7 +513,7 @@ function Register() {
                         </div>
                         <a
                           href="#"
-                          className="text-xs text-purple-600 hover:underline"
+                          className="text-xs text-blue-600 hover:underline"
                         >
                           Forget Password?
                         </a>
@@ -521,7 +521,7 @@ function Register() {
                           <button
                             onClick={handleSubmit}
                             id="register_Submit"
-                            className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600"
+                            className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-700 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
                           >
                             Submit
                           </button>
@@ -572,7 +572,7 @@ function Register() {
                         You have an account?{" "}
                         <Link
                           to="/login"
-                          className="font-medium text-purple-600 hover:underline"
+                          className="font-medium text-blue-600 hover:underline"
                         >
                           Sign in
                         </Link>

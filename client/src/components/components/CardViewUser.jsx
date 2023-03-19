@@ -77,7 +77,7 @@ function CardViewUser({ data }) {
       <div>
         {data ? (
           <div class="p-16">
-            <div class=" p-8 bg-white shadow mt-24">
+            <div class=" p-8 bg-blue-300 shadow mt-24">
               <div class="grid grid-cols-1 md:grid-cols-3">
                 <div class="grid grid-cols-3 text-center order-last md:order-first mt-20 md:mt-0">
                   <div>
@@ -96,7 +96,11 @@ function CardViewUser({ data }) {
                 <div class="relative">
                   {" "}
                   <div class="w-44 h-44  mx-auto rounded-full absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500">
-                    <img className="h-full w-full" src={data.avatar} alt="" />
+                    <img
+                      className="h-full w-full rounded-xl"
+                      src={data.avatar}
+                      alt=""
+                    />
                   </div>{" "}
                 </div>{" "}
                 <div
@@ -107,7 +111,7 @@ function CardViewUser({ data }) {
                   <span className={``}>
                     <Link to={`/u/edit/${data._id}`}>
                       <button class="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
-                        Cập Nhật Hồ Sơ
+                        Cập Nhật Tài Khoản
                       </button>
                     </Link>
                   </span>

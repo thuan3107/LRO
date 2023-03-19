@@ -4,9 +4,9 @@ import ChangePass from "../components/ViewProFile/ChangePass.jsx";
 
 function ChangePassPage() {
   return (
-    <div>
+    <div className="">
       <Header />
-      <div className="z-0">
+      <div className="z-0 h-full">
         <ChangePass />
       </div>
     </div>

@@ -27,7 +27,7 @@ function ProFile() {
       <div>
         <Header />
       </div>
-      <div className="">
+      <div className="bg-white">
         <CardViewUser data={data} />
       </div>
     </>

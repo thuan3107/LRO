@@ -179,7 +179,8 @@ function SignUp() {
       // const result = await re(form);
       form2.form = "LRO";
       form2.avatar = avatar;
-      // form2.uid = user?.uid;
+      form2.uid = hex16(form2.username);
+      console.table(form2);
       if (!isFormEmpty()) {
         if (form2.password === form2.passwordConfirmation) {
           if (form2.phone.length == 10) {
@@ -226,6 +227,15 @@ function SignUp() {
       }
     } catch (error) {}
   };
+
+  const hex16 = (text) => {
+    let hex = "";
+    for (let i = 0; i < text.length; i++) {
+      let unicode = text.charCodeAt(i).toString(16);
+      hex += unicode;
+    }
+    return hex;
+  };
   useEffect(() => {
     console.table(form2);
   }, [form2]);
@@ -267,6 +277,12 @@ function SignUp() {
       <ToastContainer />
       <div class="relative min-h-screen flex items-center justify-center bg-center bg-white py-12 px-4 sm:px-6 lg:px-8  bg-no-repeat bg-cover">
         {/* <div class="absolute  bg-black opacity-60 inset-0 z-0"></div> */}
+        <img
+          src={
+            "https://t4.ftcdn.net/jpg/03/83/39/01/360_F_383390104_aTxmmJEIcGe4bPfYjR8lZLcPx5Duc0Y2.jpg"
+          }
+          className="absolute w-full h-full z-0 bg-cover bg-center bg-no-repeat opacity-60 "
+        />
         {layout ? (
           <>
             <div
