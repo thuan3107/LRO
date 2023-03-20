@@ -286,7 +286,7 @@ function Header() {
                       <Link
                         to="/register"
                         type="button"
-                        className="p-1 mx-2 text-blue-500 hover:text-pink-500  focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                        className="p-1 mx-2 text-white hover:text-pink-500  focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                       >
                         <span className="sr-only flex">View notifications</span>
                         {/* <a className="h-6 w-6" aria-hidden="true" /> */}

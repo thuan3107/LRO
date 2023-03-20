@@ -1,16 +1,63 @@
 const User = require("../models/User.js");
 const Docs = require("../models/docs.models.js");
+const Arts = require("../models/arts.models.js");
 const { StatusCode } = require("../utils/constants.js");
 const { jsonGenerate } = require("../utils/helpers.js");
 const { DateNow } = require("../Func/Date.js");
 
-exports.DeleteUser = async (req, res) => {};
+exports.DeleteUser = async (req, res) => {
+  try {
+    await User?.findByIdAndRemove({ _id: req.body._id });
+    return res.json(jsonGenerate(StatusCode.SUCCESS, "deleted", null));
+  } catch (error) {
+    return res.json(
+      jsonGenerate(StatusCode.UNPROCESSABLE_ENTITY, "Could not delete", null)
+    );
+  }
+};
 
-exports.DeleteDoc = async (req, res) => {};
+exports.DeleteDoc = async (req, res) => {
+  try {
+    const result = await Docs.findOneAndDelete({
+      userId: req.body.userId,
+      _id: req.body._id,
+    });
+
+    if (result) {
+      const user = await User.findOneAndUpdate(
+        { _id: req.body.userId },
+        { $pull: { docs: req.body._id } }
+      );
+
+      return res.json(jsonGenerate(StatusCode.SUCCESS, "Todo deleted", null));
+    }
+  } catch (error) {
+    return res.json(
+      jsonGenerate(StatusCode.UNPROCESSABLE_ENTITY, "Could not delete", null)
+    );
+  }
+};
 
 exports.DeleteArt = async (req, res) => {
   try {
-  } catch (error) {}
+    const result = await Arts.findOneAndDelete({
+      userId: req.body.userId,
+      _id: req.body._id,
+    });
+
+    if (result) {
+      const user = await User.findOneAndUpdate(
+        { _id: req.body.userId },
+        { $pull: { docs: req.body._id } }
+      );
+
+      return res.json(jsonGenerate(StatusCode.SUCCESS, "Todo deleted", null));
+    }
+  } catch (error) {
+    return res.json(
+      jsonGenerate(StatusCode.UNPROCESSABLE_ENTITY, "Could not delete", null)
+    );
+  }
 };
 
 // Thống kê user
@@ -19,10 +66,27 @@ exports.StatisticsUsers = async (req, res) => {
     const TUser = await User.find();
     const TotalUser = TUser.length;
 
+    const countsForm = [0, 0, 0]; // Google, Facebook, LRO
+    for (let user of TUser) {
+      if (user.form === "google") {
+        countsForm[0]++;
+      } else if (user.form === "facebook") {
+        countsForm[1]++;
+      } else if (user.form === "LRO") {
+        countsForm[2]++;
+      }
+    }
+
+    const UserHot = TUser.slice(0, 5).sort((a, b) => {
+      return b.docs.length - a.docs.length;
+    });
+
     res.json(
       jsonGenerate(StatusCode.SUCCESS, `User Data Succssfully`, {
         TotalUser,
         TUser,
+        countsForm,
+        UserHot,
       })
     );
   } catch (error) {}
@@ -91,9 +155,10 @@ exports.StatisticsArts = async (req, res) => {
   } catch (error) {}
 };
 
-exports.ChartLineDoc = async (req, res) => {
+exports.ChartLine = async (req, res) => {
   try {
-    const result = [];
+    const DocArr = [];
+    const ArtArr = [];
     const ArrDay = [];
     for (let i = 6; i >= 0; i--) {
       const date = new Date();
@@ -101,13 +166,89 @@ exports.ChartLineDoc = async (req, res) => {
       const formattedDate =
         date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
       const docs = await Docs.find({ date: formattedDate });
-      result.push(docs.length);
+      const arts = await Arts.find({ date: formattedDate });
+      DocArr.push(docs.length);
+      ArtArr.push(arts.length);
       ArrDay.push(formattedDate);
     }
+
     res.json(
-      jsonGenerate(StatusCode.SUCCESS, `Data Successfully`, { result, ArrDay })
+      jsonGenerate(StatusCode.SUCCESS, `Data Successfully`, {
+        DocArr,
+        ArtArr,
+        ArrDay,
+      })
     );
   } catch (error) {
     console.error(error); // log or handle the error properly
+  }
+};
+
+exports.PaginationDoc = async (req, res) => {
+  const PAGE_SIZE = 15;
+  try {
+    var page = req.query.page;
+    var cate = req.query.cate || "";
+
+    if (page) {
+      page = parseInt(page);
+      if (page < 1) page = 1;
+      var skip = (page - 1) * PAGE_SIZE;
+      if (cate) {
+        Docs.find({
+          $and: [
+            {
+              category: cate,
+            },
+          ],
+        })
+          .skip(skip)
+          .limit(PAGE_SIZE)
+          .then((data) => {
+            res.json(data);
+          });
+      } else {
+        Docs.find({})
+          .skip(skip)
+          .limit(PAGE_SIZE)
+          .then((data) => {
+            res.json(data);
+          });
+      }
+    } else {
+      return res.json(
+        jsonGenerate(StatusCode.UNPROCESSABLE_ENTITY, "Lỗi Truy Vấn", error)
+      );
+    }
+  } catch (error) {
+    return res.json(
+      jsonGenerate(StatusCode.UNPROCESSABLE_ENTITY, "Error", error)
+    );
+  }
+};
+
+exports.PaginationArt = async (req, res) => {
+  const PAGE_SIZE = 15;
+  try {
+    var page = req.query.page || 1;
+    if (page) {
+      page = parseInt(page);
+      if (page < 1) page = 1;
+      var skip = (page - 1) * PAGE_SIZE;
+      Arts.find({})
+        .skip(skip)
+        .limit(PAGE_SIZE)
+        .then((data) => {
+          res.json(data);
+        });
+    } else {
+      return res.json(
+        jsonGenerate(StatusCode.UNPROCESSABLE_ENTITY, "Lỗi Truy Vấn", error)
+      );
+    }
+  } catch (error) {
+    return res.json(
+      jsonGenerate(StatusCode.UNPROCESSABLE_ENTITY, "Error", error)
+    );
   }
 };
