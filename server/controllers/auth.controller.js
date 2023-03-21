@@ -240,28 +240,33 @@ exports.ChangeThePassword = async (req, res) => {
 
   try {
     const user = await User.findById(req.userId);
-
-    const verified = await bcrypt.compare(oldPassword, user.password);
+    const salt = await bcrypt.genSalt(10);
+    const verified = bcrypt.compareSync(oldPassword, user.password);
     if (!verified)
-    return res.json(
-      jsonGenerate(StatusCode.VALIDATION_ERROR, "Incorrect old password")
-    );
-
-
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const verifiedNew = await bcrypt.compare(hashedPassword, user.password);
-    if(!verifiedNew){
       return res.json(
-        jsonGenerate(StatusCode.VALIDATION_ERROR, "New Password Matches Existing Password")
+        jsonGenerate(
+          StatusCode.VALIDATION_ERROR,
+          "Mật Khẩu Hiện Tại Không Chính Xác"
+        )
+      );
+    const hashedPassword = await bcrypt.hash(password, salt);
+    const verifiedNew = bcrypt.compareSync(password, user.password);
+    if (verifiedNew) {
+      return res.json(
+        jsonGenerate(
+          StatusCode.VALIDATION_ERROR,
+          "Mật Khẩu Mới Trùng Mật Khẩu Cũ"
+        )
       );
     }
     await User.findByIdAndUpdate(req.userId, { password: hashedPassword });
     return res.json(
-              jsonGenerate(StatusCode.SUCCESS, "Password has been changed", hashedPassword)
-            );
-   
+      jsonGenerate(
+        StatusCode.SUCCESS,
+        "Thay Đổi Mật Khẩu Thành Công",
+        hashedPassword
+      )
+    );
   } catch (error) {
     return res.status(500).json("Internal server error ");
   }

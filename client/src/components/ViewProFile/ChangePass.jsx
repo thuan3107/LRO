@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { GiFastBackwardButton } from "react-icons/gi";
+import { FaRegEye } from "react-icons/fa";
 import { ProductContext } from "../../contexts/ProductContextProvider";
 import { BoxViewBV, BoxViewTL, Skenleton } from "../index.js";
 import Swal from "sweetalert2";
@@ -11,6 +11,7 @@ function ChangePass() {
   const { user } = useContext(ProductContext);
   let auth = user?.token;
   const [isMenu, setIsMenu] = useState(1);
+  const [eye, setEye] = useState(false);
   const [isOldPass, setOldIsPass] = useState();
   const [isPass, setIsPass] = useState();
   const [isConfirmPass, setIsConfirmPass] = useState();
@@ -19,9 +20,11 @@ function ChangePass() {
     password: "",
   });
   const handleChange = async (e) => {
-    if (isConfirmPass === isPass) {
+    console.log("change");
+
+    if (isConfirmPass == isPass) {
       const result = await FUNC_CHANGE_PASS_USER(auth, Form);
-      // console.log(result);
+      console.log(result);
       if (result.data.status == 200) {
         let timerInterval;
         Swal.fire({
@@ -38,6 +41,9 @@ function ChangePass() {
           },
           willClose: () => {
             clearInterval(timerInterval);
+            window.location.href = `/u/${user?.userId}`;
+            setIsPass("");
+            setIsConfirmPass("");
           },
         }).then((result) => {
           /* Read more about handling dismissals below */
@@ -45,18 +51,6 @@ function ChangePass() {
             console.log("I was closed by the timer");
           }
         });
-
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Thay đổi mật khẩu thành công",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-
-        window.location.href = `/u/${user?.userId}`;
-        setIsPass("");
-        setIsConfirmPass("");
       } else if (result.data.status == 201) {
         Swal.fire({
           icon: "error",
@@ -78,6 +72,7 @@ function ChangePass() {
       oldPassword: isOldPass,
       password: isConfirmPass,
     });
+    console.log(Form);
   }, [isPass, isConfirmPass, isOldPass]);
   return (
     <>
@@ -91,6 +86,9 @@ function ChangePass() {
                 <div class="w-full p-6 bg-white rounded-lg shadow dark:border  sm:max-w-md dark:bg-gray-800 dark:border-gray-700 sm:p-8">
                   <h2 class="mb-1 w-full text-center text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                     THAY ĐỔI MẬT KHẨU
+                    <span onClick={() => setEye(!eye)}>
+                      <FaRegEye />
+                    </span>
                   </h2>
                   <div class="mt-4 space-y-4 lg:mt-5 md:space-y-5">
                     <div>
@@ -101,7 +99,7 @@ function ChangePass() {
                         Mật Khẩu Hiện Tại
                       </label>
                       <input
-                        type="password"
+                        type={eye ? "text" : "password"}
                         name="oldpassword"
                         id="oldpassword"
                         // placeholder="••••••••"
@@ -119,7 +117,7 @@ function ChangePass() {
                         Mật Khẩu Mới
                       </label>
                       <input
-                        type="password"
+                        type={eye ? "text" : "password"}
                         name="password"
                         id="password"
                         // placeholder="••••••••"
@@ -137,7 +135,7 @@ function ChangePass() {
                         Nhập Lại Mật Khẩu
                       </label>
                       <input
-                        type="password"
+                        type={eye ? "text" : "password"}
                         name="confirm-password"
                         // placeholder="••••••••"
                         value={isConfirmPass}

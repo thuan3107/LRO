@@ -52,15 +52,17 @@ function HighLightDoc() {
 
   const nextPage = () => {
     const maxPage = Math.ceil(DocsData.length / 12);
-    setPage(page + 1 > maxPage ? 1 : page + 1);
+    setPage(page > maxPage ? 1 : page + 1);
+    getPagination();
   };
   const prevPage = () => {
     setPage(page <= 1 ? 1 : page - 1);
+    getPagination();
   };
 
   useEffect(() => {
     getPagination();
-  }, [page]);
+  }, []);
 
   const handlerView = async (id) => {};
 
@@ -81,12 +83,12 @@ function HighLightDoc() {
                   <div className="">
                     <div className=" w-full  flex justify-center items-center">
                       <div className="w-full py-5 px-4  flex justify-center items-center ">
-                        <div class="grid grid-cols-2 gap-6">
+                        <div class="grid  gap-4 lg:grid lg:grid-cols-2 lg:gap-6">
                           {DocsData &&
                             DocsData.map((item, index) => {
                               return (
                                 <div class="flex flex-col justify-center ">
-                                  <div class="min-h-[280px] relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
+                                  <div class="w-[360px] md:w-full min-h-[280px] relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] p-3  md:max-w-3xl mx-auto border border-white bg-white">
                                     <p className="bg-blue-100 w-auto h-8 flex text-md absolute -z-1    rounded-tl-xl rounded-br-full top-0 left-0">
                                       <span className="p-1 pr-4 text-blue-400 font-mono">
                                         {renderCategory(item?.category)}
@@ -385,7 +387,7 @@ function HighLightDoc() {
                 <div className="my-3 w-full   flex justify-center items-center ">
                   {/* <!-- Previous Button --> */}
                   <div className="w-[95%] flex justify-between items-center">
-                    <a
+                    <button
                       onClick={(e) => prevPage()}
                       class="cursor-pointer inline-flex justify-start items-center 
               px-4 py-2 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-green-300 hover:text-green-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
@@ -404,8 +406,8 @@ function HighLightDoc() {
                         ></path>
                       </svg>
                       Previous
-                    </a>
-                    <a
+                    </button>
+                    <button
                       onClick={(e) => {
                         nextPage();
                       }}
@@ -426,7 +428,7 @@ function HighLightDoc() {
                           clip-rule="evenodd"
                         ></path>
                       </svg>
-                    </a>
+                    </button>
                   </div>
                 </div>
               </>

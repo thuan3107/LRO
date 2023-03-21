@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -14,7 +14,6 @@ const navigation = [
   { name: "Trang Chủ", href: "/", current: true },
   { name: "Tài Liệu", href: "/tailieu", current: false },
   { name: "Bài Viết", href: "/baiviet", current: false },
-
 ];
 
 function classNames(...classes) {
@@ -275,7 +274,9 @@ function Header() {
                       <Link
                         to="/login"
                         type="button"
-                        className="rounded-md bg-blue-600 p-1 text-gray-100 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                        className="rounded-md bg-green-400 p-1 text-white
+                         hover:text-white hover:bg-green-600/60 hover:border-t-2 hover:border-b-2 hover:rounded-xl
+                         focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                       >
                         <span className="sr-only flex">View notifications</span>
                         {/* <a className="h-6 w-6" aria-hidden="true" /> */}
@@ -283,17 +284,18 @@ function Header() {
                           <span className="mx-1">Đăng Nhập</span>
                         </span>
                       </Link>
-                      <Link
+                      <NavLink
                         to="/register"
                         type="button"
-                        className="p-1 mx-2 text-white hover:text-pink-500  focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                        className="p-1 mx-2 text-white border-t-2 border-b-2 transition ease-in-out
+                          hover:text-blue-500 hover:bg-white hover:rounded-lg focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                       >
                         <span className="sr-only flex">View notifications</span>
                         {/* <a className="h-6 w-6" aria-hidden="true" /> */}
                         <span className="h-6 w-auto flex">
                           <span className="mx-1">Đăng Ký</span>
                         </span>
-                      </Link>
+                      </NavLink>
                     </>
                   )}
                   {/* Profile dropdown */}

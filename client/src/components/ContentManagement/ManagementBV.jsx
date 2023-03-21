@@ -19,7 +19,7 @@ function ManaBV() {
   const auth = user.token;
   const userId = user.userId;
   const [page, setPage] = useState(1);
-  const [count, setCount] = useState("");
+  const [count, setCount] = useState(0);
   const [infoCreators, setInfoCreators] = useState("");
   const [result, setResult] = useState([]);
 
@@ -29,7 +29,7 @@ function ManaBV() {
     try {
       const { data } = await FUNC_ART_LIST_FOR_USER(auth, page);
       setDataPost(data);
-      setCount(data.data.infoCreators.docs.length);
+      setCount(data.data?.count);
       setInfoCreators(data.data.infoCreators);
       setResult(data.data.result);
       console.log(data);
@@ -56,19 +56,20 @@ function ManaBV() {
     getAllPost();
   }, [page]);
 
-  function handleDelete(id) {
+  function handleDelete(id, title) {
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Bạn muốn xoá bài viết",
+      text: title,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "Huỷ",
+      confirmButtonText: "Chấp nhận xoá",
     }).then((result) => {
       if (result.isConfirmed) {
         DeletePosts(id);
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        Swal.fire("Deleted!", "Xoá Bài Viết Thành Công", "success");
       }
     });
   }
@@ -79,7 +80,7 @@ function ManaBV() {
       console.log(result);
       if (result.data.status == 200) {
         getAllPost();
-        toast("Delete Successfully");
+        toast("1 Bài Viết đã được xoá");
       }
     } catch (error) {
       console.log(error);
@@ -157,7 +158,7 @@ function ManaBV() {
                         </button>
                       </Link>
                       <button
-                        onClick={(e) => handleDelete(item._id)}
+                        onClick={(e) => handleDelete(item._id, item?.title)}
                         class="group shadow-lg shadow-cyan-300/50 relative overflow-hidden rounded bg-sky-400 bg-red-300 hover:bg-pink-400 hover:shadow-green-300/80 px-2 py-1 mx-1 font-sans uppercase  ring-sky-500 transition-all after:bg-sky-500 active:shadow-md active:ring-2"
                       >
                         <p class="text-primary  shadow-lg shadow-blue-400/10 transition-all group-active:scale-90">

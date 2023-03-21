@@ -47,17 +47,16 @@ function CardPost() {
     }
   };
 
+
+
   const nextPage = () => {
-    console.log("NEXT PAGE = " + page);
-    const pg = page <= Math.ceil(ArtsData.length / 12) ? page + 1 : 1;
-    setPage(pg);
+    const maxPage = Math.ceil(ArtsData.length / 15);
+    setPage(page > maxPage ? 1 : page + 1);
+    console.log(page);
     // getPagination();
   };
   const prevPage = () => {
-    console.log("PREV PAGE = " + page);
-
-    const pg = page === 1 ? 1 : page - 1;
-    setPage(pg);
+    setPage(page <= 1 ? 1 : page - 1);
     // getPagination();
   };
 

@@ -46,16 +46,20 @@ function CardDoc({ category, layout }) {
   const getPagination = async () => {
     try {
       const { data } = await FUNC_PAGE_DOCS(page, category);
+      // console.log(data);
       setDocsData(data);
     } catch (error) {}
   };
 
   const nextPage = () => {
-    const maxPage = Math.ceil(DocsData.length / 12);
-    setPage(page + 1 > maxPage ? 1 : page + 1);
+    const maxPage = Math.ceil(DocsData.length / 15);
+    setPage(page > maxPage ? 1 : page + 1);
+    console.log(page);
+    // getPagination();
   };
   const prevPage = () => {
     setPage(page <= 1 ? 1 : page - 1);
+    // getPagination();
   };
 
   useEffect(() => {
@@ -86,7 +90,7 @@ function CardDoc({ category, layout }) {
                             DocsData.map((item, index) => {
                               return (
                                 <div class="flex flex-col justify-center ">
-                                  <div class="w-[360px] md:w-auto min-h-[280px] relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] p-3  md:max-w-3xl mx-auto border border-white bg-white">
+                                  <div class="w-[360px] md:w-full min-h-[280px] relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] p-3  md:max-w-3xl mx-auto border border-white bg-white">
                                     <p className="bg-blue-100 w-auto h-8 flex text-md absolute -z-1    rounded-tl-xl rounded-br-full top-0 left-0">
                                       <span className="p-1 pr-4 text-blue-400 font-mono">
                                         {renderCategory(item?.category)}
@@ -456,7 +460,7 @@ function CardDoc({ category, layout }) {
                         {DocsData?.map((item, index) => {
                           return (
                             <>
-                              <div class="!z-5 relative flex flex-col rounded-[20px] max-w-[300px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 flex flex-col w-full !p-4 3xl:p-![18px] bg-white undefined">
+                              <div class="!z-5 relative flex flex-col rounded-[20px] max-w-[300px]  bg-clip-border shadow-3xl shadow-shadow-500  w-full !p-4 3xl:p-![18px] bg-white undefined">
                                 <div class="h-full w-full">
                                   <div class="relative w-full">
                                     <iframe

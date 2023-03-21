@@ -29,6 +29,7 @@ function Login() {
   const [errors, setErorrs] = useState(null);
   const [form, setForm] = useState({
     username: "",
+    email: "",
     password: "",
   });
   // console.log(form);
@@ -149,6 +150,7 @@ function Login() {
 
   const handleSubmit = async (e) => {
     try {
+      form.email = form.username;
       const result = await login(form);
       if (result.status == 200) {
         if (result.data.status === 200) {

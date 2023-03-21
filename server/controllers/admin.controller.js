@@ -48,7 +48,7 @@ exports.DeleteArt = async (req, res) => {
     if (result) {
       const user = await User.findOneAndUpdate(
         { _id: req.body.userId },
-        { $pull: { docs: req.body._id } }
+        { $pull: { articles: req.body._id } }
       );
 
       return res.json(jsonGenerate(StatusCode.SUCCESS, "Todo deleted", null));

@@ -53,21 +53,22 @@ function ManagementTL() {
     getAllDocs();
   }, [page]);
 
-  function handleDelete(id) {
+  function handleDelete(id, title) {
     Swal.fire({
-      title: "Are you sure?",
-      text: `${id}`,
+      title: "Bạn muốn xoá tài liệu",
+      text: `${title}`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "Huỷ",
+      confirmButtonText: "Chấp nhận xoá",
     }).then((result) => {
       if (result.isConfirmed) {
         // deleteCollection("CMT/tailieu/", id);
 
         DeleteDocs(id);
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        Swal.fire("Deleted!", "Xoá Thành Công", "success");
       }
     });
   }
@@ -78,7 +79,7 @@ function ManagementTL() {
       console.log(result);
       if (result.data.status == 200) {
         getAllDocs();
-        toast("Delete Successfully");
+        toast("1 tài liệu đã được xoá");
       }
     } catch (error) {
       console.log(error);
@@ -154,7 +155,7 @@ function ManagementTL() {
                         </p>
                       </button>
                       <button
-                        onClick={(e) => handleDelete(item._id)}
+                        onClick={(e) => handleDelete(item._id, item?.title)}
                         class="group shadow-lg shadow-cyan-300/50 relative overflow-hidden rounded bg-sky-400 bg-red-300 hover:bg-pink-400 hover:shadow-green-300/80 px-2 py-1 mx-1 font-sans uppercase  ring-sky-500 transition-all after:bg-sky-500 active:shadow-md active:ring-2"
                       >
                         <p class="text-primary  shadow-lg shadow-blue-400/10 transition-all group-active:scale-90">
