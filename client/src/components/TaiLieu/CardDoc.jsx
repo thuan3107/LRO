@@ -10,6 +10,7 @@ import {
 import Skenleton from "../components/Skenleton.jsx";
 import { Link } from "react-router-dom";
 import { CategoryArr } from "../../data/CategoryDoc.js";
+import { NotLogin } from "../../func/NotiteNotLogin.js";
 function CardDoc({ category, layout }) {
   const { user } = useContext(ProductContext);
   const [page, setPage] = useState(Number(1));
@@ -115,7 +116,9 @@ function CardDoc({ category, layout }) {
                                         <div class="bg-gray-200 px-3 py-1 rounded-full font-medium text-gray-800 hidden md:block">
                                           <div
                                             onClick={(e) => {
-                                              handlerLike(item?._id);
+                                              user
+                                                ? handlerLike(item?._id)
+                                                : NotLogin();
                                             }}
                                             class="flex  text-gray-700 font-medium z-50  cursor-pointer"
                                           >
@@ -308,12 +311,26 @@ function CardDoc({ category, layout }) {
                                         </div>
                                       </div>
                                       <h3 class=" text-gray-800 md:text-lg text-[16px] font-light">
-                                        <Link to={`/tailieu/view/${item?._id}`}>
-                                          <h3 class="text-gray-900 hover:text-blue-500 cursor-pointer font-extrabold m-1 py-1 ">
-                                            {item?.title.substring(0, 27) +
-                                              "..."}
-                                          </h3>
-                                        </Link>
+                                        {user ? (
+                                          <Link
+                                            to={`/tailieu/view/${item?._id}`}
+                                          >
+                                            <h3 class="text-gray-900 hover:text-blue-500 cursor-pointer font-extrabold m-1 py-1 ">
+                                              {item?.title.substring(0, 27) +
+                                                "..."}
+                                            </h3>
+                                          </Link>
+                                        ) : (
+                                          <>
+                                            <h3
+                                              onClick={(e) => NotLogin()}
+                                              class="text-gray-900 hover:text-blue-500 cursor-pointer font-extrabold m-1 py-1 "
+                                            >
+                                              {item?.title.substring(0, 27) +
+                                                "..."}
+                                            </h3>
+                                          </>
+                                        )}
                                       </h3>
                                       <p class="md:text-xs font-thin text-gray-500 text-base">
                                         {item?.content.substring(0, 90) +
@@ -369,11 +386,22 @@ function CardDoc({ category, layout }) {
                                           alt="avatar"
                                           className="w-8 h-8 rounded-full mr-2 "
                                         />
-                                        <Link to={`/u/${item?.userId}`}>
-                                          <h1 className="text-md text-blue-900  hover:text-green-400  hover:font-semibold  cursor-pointer">
-                                            {item?.creatorsName}
-                                          </h1>
-                                        </Link>
+                                        {user ? (
+                                          <Link to={`/u/${item?.userId}`}>
+                                            <h1 className="text-md text-blue-900  hover:text-green-400  hover:font-semibold  cursor-pointer">
+                                              {item?.creatorsName}
+                                            </h1>
+                                          </Link>
+                                        ) : (
+                                          <>
+                                            <h1
+                                              onClick={(e) => NotLogin()}
+                                              className="text-md text-blue-900  hover:text-green-400  hover:font-semibold  cursor-pointer"
+                                            >
+                                              {item?.creatorsName}
+                                            </h1>
+                                          </>
+                                        )}
                                       </p>
                                     </div>
                                   </div>
@@ -407,7 +435,7 @@ function CardDoc({ category, layout }) {
                           clip-rule="evenodd"
                         ></path>
                       </svg>
-                      Previous
+                      Sau
                     </a>
                     <a
                       onClick={(e) => {
@@ -416,7 +444,7 @@ function CardDoc({ category, layout }) {
                       class="cursor-pointer inline-flex justify-end items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg
                hover:bg-green-300 hover:text-green-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
-                      Next
+                      Tiếp
                       <svg
                         aria-hidden="true"
                         class="w-5 h-5 ml-2"
@@ -471,7 +499,9 @@ function CardDoc({ category, layout }) {
                                     />
                                     <button
                                       onClick={(e) => {
-                                        handlerLike(item?._id);
+                                        user
+                                          ? handlerLike(item?._id)
+                                          : NotLogin();
                                       }}
                                       class="absolute top-3 right-3 flex items-center justify-center rounded-full bg-white p-2 text-brand-500 hover:cursor-pointer"
                                     >
@@ -508,14 +538,30 @@ function CardDoc({ category, layout }) {
                                   <div class="mb-3 flex items-center justify-between px-1 md:items-start">
                                     <div class="mb-2">
                                       <p class="text-lg font-bold text-navy-700 hover:text-blue-400">
-                                        <Link to={`/tailieu/view/${item?._id}`}>
-                                          {item?.title.substring(0, 35) + "..."}
-                                        </Link>
+                                        {user ? (
+                                          <Link
+                                            to={`/tailieu/view/${item?._id}`}
+                                          >
+                                            {item?.title.substring(0, 35) +
+                                              "..."}
+                                          </Link>
+                                        ) : (
+                                          <span onClick={(e) => NotLogin()}>
+                                            {item?.title.substring(0, 35) +
+                                              "..."}
+                                          </span>
+                                        )}
                                       </p>
                                       <p class="mt-1 text-sm font-medium text-gray-600 md:mt-2 hover:text-blue-400">
-                                        <Link to={`/u/${item?.creatorsId}`}>
-                                          By {item?.creatorsName}
-                                        </Link>
+                                        {user ? (
+                                          <Link to={`/u/${item?.creatorsId}`}>
+                                            By {item?.creatorsName}
+                                          </Link>
+                                        ) : (
+                                          <span onClick={(e) => NotLogin()}>
+                                            By {item?.creatorsName}
+                                          </span>
+                                        )}
                                       </p>
                                     </div>
                                   </div>

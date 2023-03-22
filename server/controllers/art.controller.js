@@ -157,7 +157,13 @@ exports.PaginationArt = async (req, res) => {
       page = parseInt(page);
       if (page < 1) page = 1;
       var skip = (page - 1) * PAGE_SIZE;
-      Article.find({})
+      Article.find({
+        $and: [
+          {
+            isPrivate: false,
+          },
+        ],
+      })
         .skip(skip)
         .limit(PAGE_SIZE)
         .then((data) => {

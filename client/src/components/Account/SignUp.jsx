@@ -207,7 +207,7 @@ function SignUp() {
       const result = await register(form2);
       if (result.status == 200) {
         if (result.data.status === 200) {
-          toast("Register Successfully");
+          toast("Đăng Ký Tài Khoản Thành Công");
 
           setTimeout(() => {
             navigation("/login");

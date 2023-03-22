@@ -154,8 +154,8 @@ function Login() {
       const result = await login(form);
       if (result.status == 200) {
         if (result.data.status === 200) {
-          toast(result.data.message);
-          toast("Vui Lòng Chờ");
+          toast("Đăng nhập thành công");
+          // toast("Vui Lòng Chờ");
           // console.log(result);
           localStorage.setItem("user", JSON.stringify(result.data.data));
 

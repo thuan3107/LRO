@@ -6,7 +6,8 @@ import {
   FUNC_INTERACT_ART,
   FUNC_PAGE_ART,
 } from "../../service/FuncArt/index.js";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { NotLogin } from "../../func/NotiteNotLogin.js";
 function CardPost() {
   const { user } = useContext(ProductContext);
   const [page, setPage] = useState(Number(1));
@@ -47,8 +48,6 @@ function CardPost() {
     }
   };
 
-
-
   const nextPage = () => {
     const maxPage = Math.ceil(ArtsData.length / 15);
     setPage(page > maxPage ? 1 : page + 1);
@@ -63,8 +62,6 @@ function CardPost() {
   useEffect(() => {
     getPagination();
   }, [page]);
-
-  const handlerView = async (id) => {};
 
   return (
     <>
@@ -84,17 +81,34 @@ function CardPost() {
                             className="w-8 h-8 rounded-full mr-2 "
                           />
                           <span className="lg:text-lg font-mono text-blue-500 hover:text-blue-300 cursor-pointer">
-                            {item?.creatorsName}
+                            <NavLink to={`/u/${item?.creatorsId}`}>
+                              {item?.creatorsName}
+                            </NavLink>
                           </span>
                         </div>
                         <span className="mx-1 p-1 "> {item?.date}</span>
                       </div>
                       <div className="block">
-                        <Link to={`/baiviet/view/${item?._id}`}>
-                          <h1 className="lg:text-lg md:text-md font-bold text-blue-800 hover:text-blue-400 cursor-pointer">
-                            {item?.title}
-                          </h1>
-                        </Link>
+                        {user && user ? (
+                          <>
+                            <Link to={`/baiviet/view/${item?._id}`}>
+                              <h1 className="lg:text-lg md:text-md font-bold text-blue-800 hover:text-blue-400 cursor-pointer">
+                                {item?.title}
+                              </h1>
+                            </Link>
+                          </>
+                        ) : (
+                          <>
+                            <>
+                              <h1
+                                onClick={(e) => NotLogin()}
+                                className="lg:text-lg md:text-md font-bold text-blue-800 hover:text-blue-400 cursor-pointer"
+                              >
+                                {item?.title}
+                              </h1>
+                            </>
+                          </>
+                        )}
                         <p>
                           {item?.tag.map((i) => {
                             return (
@@ -119,7 +133,7 @@ function CardPost() {
               </span> */}
                           <div
                             onClick={(e) => {
-                              handlerLike(item?._id);
+                              user ? handlerLike(item?._id) : NotLogin();
                             }}
                             class="flex  text-gray-700 text-sm  z-2  cursor-pointer"
                           >
@@ -305,6 +319,7 @@ function CardPost() {
                               )}
                             </span>
                           </div>
+
                           <span>
                             <FaRegCommentDots className="text-xl mx-1" />
                           </span>
@@ -318,7 +333,7 @@ function CardPost() {
           })}
       </>
       <div className="my-3 w-full   flex justify-center items-center ">
-        {/* <!-- Previous Button --> */}
+        {/* <!-- Trước Button --> */}
         <div className="w-[95%] flex justify-between items-center">
           <a
             onClick={(e) => prevPage()}
@@ -338,7 +353,7 @@ function CardPost() {
                 clip-rule="evenodd"
               ></path>
             </svg>
-            Previous
+            Sau
           </a>
           <a
             onClick={(e) => {
@@ -347,7 +362,7 @@ function CardPost() {
             class="cursor-pointer inline-flex justify-end items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg
                hover:bg-green-300 hover:text-green-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
           >
-            Next
+            Tiếp
             <svg
               aria-hidden="true"
               class="w-5 h-5 ml-2"
