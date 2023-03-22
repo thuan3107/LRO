@@ -57,7 +57,7 @@ function CardTL() {
                       onClick={(e) => setCategory(i.value)}
                       class={`${
                         category == i.value
-                          ? "bg-white text-green-500  border-2 border-green-500 bg-transparent "
+                          ? " bg-blue-500 text-white rounded transition-all border-blue-500 bg-transparent    border-2  "
                           : ""
                       } border-2 hover:border-transparent hover:bg-blue-500 ml-3 py-2 px-4 font-bold uppercase hover:text-white rounded transition-all border-blue-500 bg-transparent text-blue-500`}
                     >
