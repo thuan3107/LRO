@@ -7,8 +7,19 @@ const { DateNow } = require("../Func/Date.js");
 
 exports.DeleteUser = async (req, res) => {
   try {
+    const user = await User.findById(req.body._id);
+    const DocsArr = user?.docs;
+    // result?.docs?.map((i) => {
+    //   DocsArr.push(String(i));
+    // });
+
+    await Docs.deleteMany({
+      _id: { $in: user?.docs },
+    });
+
     await User?.findByIdAndRemove({ _id: req.body._id });
-    return res.json(jsonGenerate(StatusCode.SUCCESS, "deleted", null));
+    // return res.json(result);
+    return res.json(jsonGenerate(StatusCode.SUCCESS, "deleted", { DocsArr }));
   } catch (error) {
     return res.json(
       jsonGenerate(StatusCode.UNPROCESSABLE_ENTITY, "Could not delete", null)
@@ -107,8 +118,6 @@ exports.StatisticsDocs = async (req, res) => {
       (today.getMonth() + 1) +
       "/" +
       today.getFullYear();
-    var time =
-      today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     const TDocs = await Docs.find();
     const NDocs = await Docs.find({
       $and: [
@@ -152,6 +161,57 @@ exports.StatisticsDocs = async (req, res) => {
 
 exports.StatisticsArts = async (req, res) => {
   try {
+    var today = new Date();
+    var day =
+      today.getDate() +
+      "/" +
+      (today.getMonth() + 1) +
+      "/" +
+      today.getFullYear();
+    var oldday =
+      today.getDate() +
+      "/" +
+      (today.getMonth() + 1) +
+      "/" +
+      today.getFullYear();
+    const TArts = await Arts.find();
+    const NArts = await Arts.find({
+      $and: [
+        {
+          date: day,
+        },
+      ],
+    });
+    const OArts = await Arts.find({
+      $and: [
+        {
+          date:
+            today.getDate() -
+            1 +
+            "/" +
+            (today.getMonth() + 1) +
+            "/" +
+            today.getFullYear(),
+        },
+      ],
+    });
+    const TotalArt = TArts.length;
+    const NewArt = NArts.length;
+    const OldArt = OArts.length;
+    const TotalViewArt = TArts.reduce((total, doc) => total + doc.view, 0);
+    const TotalLikeArt = TArts.reduce(
+      (total, doc) => total + doc.like.length,
+      0
+    );
+    res.json(
+      jsonGenerate(StatusCode.SUCCESS, `User Data Succssfully`, {
+        TotalArt,
+        NewArt,
+        OldArt,
+        TotalViewArt,
+        TotalLikeArt,
+      })
+    );
   } catch (error) {}
 };
 

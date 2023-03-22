@@ -1,0 +1,98 @@
+[
+    {
+     "form": "LRO",
+     "uid": "uid1",
+     "username": "vanthinh",
+     "email": "vanthinh@gmail.com",
+     "avatar": "https:\/\/faces-img.xcdn.link\/image-lorem-face-750.jpg",
+     "first_name": "Van Thinh",
+     "last_name": "Trần",
+     "password": "lro123",
+     "phone": "0967527325",
+     "isSex": 3
+    },
+    {
+     "form": "LRO",
+     "uid": "uid2",
+     "username": "thuyduong",
+     "email": "thuyduong@gmail.com",
+     "avatar": "https:\/\/faces-img.xcdn.link\/image-lorem-face-1190.jpg",
+     "first_name": "Thuỳ Dương",
+     "last_name": "Nguyễn",
+     "password": "lro124",
+     "phone": "0967527326",
+     "isSex": 3
+    },
+    {
+     "form": "LRO",
+     "uid": "uid3",
+     "username": "ngocnhi",
+     "email": "ngocnhi@gmail.com",
+     "avatar": "https:\/\/faces-img.xcdn.link\/image-lorem-face-5360.jpg",
+     "first_name": "Ngọc Nhi",
+     "last_name": "Nguyễn",
+     "password": "lro125",
+     "phone": "0967527327",
+     "isSex": 3
+    },
+    {
+     "form": "LRO",
+     "uid": "uid4",
+     "username": "huyenthi",
+     "email": "huyenthi@gmail.com",
+     "avatar": "https:\/\/faces-img.xcdn.link\/image-lorem-face-3747.jpg",
+     "first_name": "Huyền Thi",
+     "last_name": "Nguyễn Lê",
+     "password": "lro126",
+     "phone": "0967527328",
+     "isSex": 3
+    },
+    {
+     "form": "LRO",
+     "uid": "uid5",
+     "username": "chauthai",
+     "email": "chauthai@gmail.com",
+     "avatar": "https:\/\/faces-img.xcdn.link\/image-lorem-face-1438.jpg",
+     "first_name": "Châu Thái",
+     "last_name": "Châu",
+     "password": "lro127",
+     "phone": "0967527329",
+     "isSex": 3
+    },
+    {
+     "form": "LRO",
+     "uid": "uid6",
+     "username": "yenthu",
+     "email": "yenthu@gmail.com",
+     "avatar": "https:\/\/faces-img.xcdn.link\/image-lorem-face-5783.jpg",
+     "first_name": "Yến Thư",
+     "last_name": "Nguyễn",
+     "password": "lro128",
+     "phone": "0967527330",
+     "isSex": 3
+    },
+    {
+     "form": "LRO",
+     "uid": "uid7",
+     "username": "ngocvi",
+     "email": "ngocvi@gmail.com",
+     "avatar": "https:\/\/faces-img.xcdn.link\/image-lorem-face-6746.jpg",
+     "first_name": "Ngọc Vi",
+     "last_name": "Lê",
+     "password": "lro129",
+     "phone": "0967527331",
+     "isSex": 3
+    },
+    {
+     "form": "LRO",
+     "uid": "uid8",
+     "username": "huuthuan",
+     "email": "huuthuan@gmail.com",
+     "avatar": "https:\/\/faces-img.xcdn.link\/image-lorem-face-3974.jpg",
+     "first_name": "Hữu Thuận",
+     "last_name": "Nguyễn",
+     "password": "lro130",
+     "phone": "0967527332",
+     "isSex": 3
+    }
+   ]
