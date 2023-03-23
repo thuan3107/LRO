@@ -34,6 +34,8 @@ exports.Login = async (req, res) => {
         )
       );
     }
+    const verified = bcrypt.compareSync(password, user.password);
+
     const token = Jwt.sign({ userId: user._id }, JWT_TOKEN_SECRET);
     if (user.access == "admin") {
       return res.json(
