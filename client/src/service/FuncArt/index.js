@@ -7,6 +7,7 @@ import {
   REMOVE_ART,
   SETISPRIVATE_ART,
   UPDATE_ART,
+  VIEW_ART,
 } from "../art.api.js";
 
 export const FUNC_PAGE_ART = async (page) => {
@@ -16,7 +17,17 @@ export const FUNC_PAGE_ART = async (page) => {
     params: { page: page },
   });
 };
-
+export const FUNC_COUNT_VIEW_ART = async (auth, _id) => {
+  return axios({
+    method: "post",
+    headers: { auth: auth },
+    url: VIEW_ART,
+    // id,
+    data: {
+      _id: _id,
+    },
+  });
+};
 export const FUNC_INTERACT_ART = async (auth, data) => {
   return axios({
     method: "post",

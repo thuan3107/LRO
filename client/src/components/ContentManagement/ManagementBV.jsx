@@ -1,7 +1,7 @@
 import { FaLockOpen, FaLock, FaRegEye } from "react-icons/fa";
 import { AiFillLike } from "react-icons/ai";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -135,8 +135,10 @@ function ManaBV() {
                           </>
                         )}
                       </p>
-                      <p className="text-md md:text-lg text-blue-400  font-extrabold">
-                        {item.title}
+                      <p className="text-md md:text-lg text-blue-400  font-extrabold hover:text-blue-700">
+                        <NavLink to={`/baiviet/view/${item?._id}`}>
+                          {item.title}
+                        </NavLink>
                       </p>
                     </div>
                     <div className="flex justify-end items-center ">

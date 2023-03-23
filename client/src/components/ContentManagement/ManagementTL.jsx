@@ -1,7 +1,7 @@
 import { FaLockOpen, FaLock, FaRegEye } from "react-icons/fa";
 import { AiFillLike } from "react-icons/ai";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
@@ -11,7 +11,6 @@ import { ProductContext } from "../../contexts/ProductContextProvider";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from "../../firebase.js";
 import firebase from "firebase/app";
-
 
 import {
   FUNC_DELETE_DOC,
@@ -139,8 +138,10 @@ function ManagementTL() {
                           </span>
                         )}
                       </p>
-                      <p className="text-md md:text-lg text-blue-400  font-extrabold">
-                        {item.title}
+                      <p className="text-md md:text-lg text-blue-400 hover:text-blue-700 font-extrabold">
+                        <NavLink to={`/tailieu/view/${item?._id}`}>
+                          {item.title}
+                        </NavLink>
                       </p>
                     </div>
                     <div className="flex justify-end items-center ">

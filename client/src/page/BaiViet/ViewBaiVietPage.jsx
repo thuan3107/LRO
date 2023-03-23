@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import MDEditor from "@uiw/react-md-editor";
 import { Link, useParams } from "react-router-dom";
 import AddArticle from "../../components/Comments/AddArticle.jsx";
@@ -6,24 +6,31 @@ import Articles from "../../components/Comments/Articles.jsx";
 import { Footer, Header } from "../../components";
 
 import {
+  FUNC_COUNT_VIEW_ART,
   FUNC_CREATE_ART,
   FUNC_FIND_ONE_ART,
 } from "../../service/FuncArt/index.js";
+import { ProductContext } from "../../contexts/ProductContextProvider.jsx";
+
 function ViewBaiVietPage() {
+  const { user } = useContext(ProductContext);
+  const token = user?.token;
   let { id } = useParams();
   const [data, setData] = useState();
   const [isShow, setisShow] = useState(Boolean(false));
 
   const findOnePost = async () => {
     try {
-      console.log(id);
+      // console.log(id);
       const result = await FUNC_FIND_ONE_ART(id);
-      console.log(result);
+      // console.log(result);
+      await FUNC_COUNT_VIEW_ART(token, id);
       setData(result.data.data);
     } catch (error) {
       console.log(error);
     }
   };
+
   useEffect(() => {
     console.table(data);
     findOnePost();

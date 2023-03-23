@@ -34,8 +34,23 @@ exports.Login = async (req, res) => {
         )
       );
     }
-
-    const verified = bcrypt.compareSync(password, user.password);
+    const token = Jwt.sign({ userId: user._id }, JWT_TOKEN_SECRET);
+    if (user.access == "admin") {
+      return res.json(
+        jsonGenerate(100, "ADMIN => Login Successful", {
+          userId: user._id,
+          uid: user.uid,
+          username: username,
+          email: user.email,
+          avatar: user.avatar,
+          access: user.access,
+          token: token,
+          first_name: user.first_name,
+          last_name: user.last_name,
+          form: user.form,
+        })
+      );
+    }
 
     if (!verified) {
       return res.json(
@@ -46,7 +61,7 @@ exports.Login = async (req, res) => {
       );
     }
 
-    const token = Jwt.sign({ userId: user._id }, JWT_TOKEN_SECRET);
+ 
 
     return res.json(
       jsonGenerate(StatusCode.SUCCESS, "Login Successful", {

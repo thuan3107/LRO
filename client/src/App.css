@@ -18,6 +18,12 @@
 body{
     background-color: #1a202c;
 }
+iframe > -webkit-scrollbar {
+    width: 1px;
+    height: 1px;
+    background-color: #F5F5F5;
+    border: 10px solid #4ba6f6;
+    }
 /* width */
 ::-webkit-scrollbar {
     width: 1px;
