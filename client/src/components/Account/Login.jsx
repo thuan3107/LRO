@@ -152,8 +152,9 @@ function Login() {
     try {
       form.email = form.username;
       const result = await login(form);
+      console.log(result);
       if (result.status == 200) {
-        if (result.data.status === 200) {
+        if (result.data.status == 200 || result.data.status == 100) {
           toast("Đăng nhập thành công");
           // toast("Vui Lòng Chờ");
           // console.log(result);

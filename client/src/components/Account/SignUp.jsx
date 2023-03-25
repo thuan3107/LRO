@@ -347,6 +347,7 @@ function SignUp() {
                             type="text"
                             name="first_name"
                             onChange={handleChange}
+                            value={form2.first_name}
                             id="first_name"
                           />
                           <p class="text-red text-xs hidden">
@@ -365,6 +366,7 @@ function SignUp() {
                             name="last_name"
                             id="last_name"
                             onChange={handleChange}
+                            value={form2.last_name}
                           />
                           <p class="text-red text-xs hidden">
                             Please fill out this field.
@@ -385,6 +387,7 @@ function SignUp() {
                             type="number"
                             name="phone"
                             onChange={handleChange}
+                            value={form2.phone}
                           />
                         </div>
                         <div class="w-full flex flex-col mb-3">
@@ -395,6 +398,7 @@ function SignUp() {
                             class="block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4 md:w-full "
                             required="required"
                             name="isSex"
+                            value={form2.isSex}
                             onChange={handleChange}
                             id="integration_city_id"
                           >
@@ -479,6 +483,7 @@ function SignUp() {
                     type="text"
                     name="username"
                     id="username"
+                    value={form2.username}
                     onChange={handleChange}
                   />
                 </div>
@@ -508,6 +513,7 @@ function SignUp() {
                     type="email"
                     name="email"
                     onChange={handleChange}
+                    value={form2.email}
                     class="flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border border-l-0 h-10 border-grey-light rounded-lg rounded-l-none px-3 relative focus:border-blue focus:shadow"
                     placeholder=""
                   />
@@ -522,6 +528,7 @@ function SignUp() {
                     placeholder=""
                     class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
                     type="password"
+                    value={form2.password}
                     name="password"
                     onChange={handleChange}
                   />
@@ -535,6 +542,7 @@ function SignUp() {
                     class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
                     type="password"
                     name="passwordConfirmation"
+                    value={form2.passwordConfirmation}
                     onChange={handleChange}
                   />
                 </div>
