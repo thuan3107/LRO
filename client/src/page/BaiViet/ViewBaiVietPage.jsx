@@ -16,6 +16,7 @@ function ViewBaiVietPage() {
   const { user } = useContext(ProductContext);
   const token = user?.token;
   let { id } = useParams();
+  let colDB = `CMT/baiviet/${id}`;
   const [data, setData] = useState();
   const [isShow, setisShow] = useState(Boolean(false));
 
@@ -194,9 +195,9 @@ function ViewBaiVietPage() {
                   Bạn Đang Ở Mục Bình Luận Cho Bài Viết{" "}
                   <span className="text-blue-300">{data?.title}</span>
                 </span>
-                <AddArticle colDB={id} />
+                <AddArticle colDB={colDB} />
                 <div className="h-full">
-                  <Articles colDB={id} />
+                  <Articles colDB={colDB} />
                 </div>
               </div>
             ) : (

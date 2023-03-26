@@ -337,7 +337,7 @@ function CardDoc({ category, layout }) {
                                           " ..."}
                                       </p>
 
-                                      <div className="text-xs text-blue-800 w-auto h-auto whitespace-nowrap flex">
+                                      <div className="text-xs text-blue-800 w-auto overflow-clip h-auto whitespace-nowrap flex">
                                         {item?.tag.slice(0, 3).map((i) => {
                                           return (
                                             <>

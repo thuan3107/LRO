@@ -73,11 +73,11 @@ export default function AddArticle({ colDB }) {
             comments: [],
           })
             .then(() => {
-              toast("Article added successfully", { type: "success" });
+              // toast("Article added successfully", { type: "success" });
               setProgress(0);
             })
             .catch((err) => {
-              toast("Error adding article", { type: "error" });
+              // toast("Error adding article", { type: "error" });
             });
         });
       }

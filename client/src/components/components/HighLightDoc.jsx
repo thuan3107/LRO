@@ -335,13 +335,13 @@ function HighLightDoc() {
                                           " ..."}
                                       </p>
 
-                                      <div className="text-xs text-blue-800 w-auto h-auto whitespace-nowrap flex">
+                                      <p className="text-xs break-words text-blue-800 w-auto h-auto overflow-clip whitespace-nowrap flex">
                                         {item?.tag.slice(0, 3).map((i) => {
                                           return (
                                             <>
                                               <div>
-                                                <div class="inline-block relative py-1 text-xs mx-1">
-                                                  <div class="absolute inset-0 text-blue-200 flex">
+                                                <p class="inline-block relative py-1 text-xs mx-1">
+                                                  <span class="absolute inset-0 text-blue-200 flex">
                                                     <svg
                                                       height="100%"
                                                       viewBox="0 0 50 100"
@@ -351,8 +351,8 @@ function HighLightDoc() {
                                                         fill="currentColor"
                                                       />
                                                     </svg>
-                                                    <div class="flex-grow h-full -ml-px bg-blue-200 rounded-md rounded-l-none"></div>
-                                                  </div>
+                                                    <p class="flex-grow h-full -ml-px bg-blue-200 rounded-md rounded-l-none"></p>
+                                                  </span>
                                                   <span class="relative text-blue-500 uppercase font-semibold pr-px">
                                                     <span>
                                                       &nbsp;&nbsp;&nbsp;&nbsp;
@@ -360,12 +360,12 @@ function HighLightDoc() {
                                                     {i}
                                                     <span>&nbsp;</span>
                                                   </span>
-                                                </div>
+                                                </p>
                                               </div>
                                             </>
                                           );
                                         })}
-                                      </div>
+                                      </p>
                                       {/* <div className="flex justify-start items-end my-1 z-20 ">
                                         <img
                                           src={item?.creatorsPhoto}

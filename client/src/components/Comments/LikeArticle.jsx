@@ -43,7 +43,7 @@ export default function LikeArticle({ id, likes, colDB }) {
         cursor: "pointer",
         color: likes?.includes(user.avatar) ? "red" : null,
       }}
-      className="text-2xl text-white flex items-center justify-center "
+      className="text-2xl text-black flex items-center justify-center "
     >
       {!likes?.includes(user.avatar) ? (
         <>
@@ -55,7 +55,25 @@ export default function LikeArticle({ id, likes, colDB }) {
         </>
       )}
       {/* <AiOutlineLike /> */}
-      <span className="mx-2 flex ml-2">
+      <div class="flex flex-row-reverse md:mt-2 lg:mt-0">
+        <span class="z-0 ml-px inline-flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-[#E0E5F2] text-xs text-navy-700 ">
+          +{newArr.length - arrLikes?.length}
+        </span>
+        {arrLikes &&
+          arrLikes.map((item, index) => {
+            return (
+              <span class="z-10 -mr-3 h-8 w-8 rounded-full border-2 border-white">
+                <img
+                  class="h-full w-full rounded-full object-cover"
+                  // src="https://horizon-tailwind-react-git-tailwind-components-horizon-ui.vercel.app/static/media/avatar1.eeef2af6dfcd3ff23cb8.png"
+                  alt=""
+                  src={item}
+                />
+              </span>
+            );
+          })}
+      </div>
+      {/* <span className="mx-2 flex ml-2">
         {arrLikes &&
           arrLikes.map((item, index) => (
             <>
@@ -66,7 +84,7 @@ export default function LikeArticle({ id, likes, colDB }) {
               />
             </>
           ))}
-      </span>
+      </span> */}
     </div>
   );
 }

@@ -14,6 +14,7 @@ import { v4 as uuidv4 } from "uuid";
 import Articles from "./Articles";
 import { useContext } from "react";
 import { ProductContext } from "../../contexts/ProductContextProvider";
+import { NavLink } from "react-router-dom";
 
 export default function Comment({ id, colDB }) {
   // const [{ user, OCIT_HOCPHAN, OCIT, OCIT_ORDER }, dispatch] = useStateValue();
@@ -44,7 +45,7 @@ export default function Comment({ id, colDB }) {
       updateDoc(commentRef, {
         comments: arrayUnion({
           uid: user.userId,
-          userName: user.username,
+          userName: user.first_name + " " + user.last_name,
           comment: comment,
           createdAt: new Date(),
           userPhotoURL: user.avatar,
@@ -84,59 +85,53 @@ export default function Comment({ id, colDB }) {
             }) => (
               <div key={commentId}>
                 <div
-                  class={`text-left  flex rounded-md space-x-2 mb-1  border-l py-2 border-[#]
-                          `}
+                  class={`w-[830px] relative grid grid-cols-1 gap-4 p-4 mb-8 border rounded-lg bg-white shadow-lg ${
+                    uid === user.userId ? "bg-black/10" : "bg-blue-800/10"
+                  }`}
                 >
-                  <div class="block">
-                    <div class=" w-full  px-2 pb-2">
-                      <div class="font-medium flex">
-                        <div class="flex justify-center items-center">
-                          <img
-                            class="h-4 w-4 md:h-6 md:w-6 shadow-lg rounded-full mr-1"
-                            src={userPhotoURL}
-                          />
-                          <span
-                            className={`md:text-xl text-md text-blue-400 ${
-                              uid === user.userId ? "" : ""
-                            }`}
-                          >
-                            {userName}
-                          </span>
-                          {/* <span className="text-sm">{createdAt}</span> */}
-                          <span className={`ml-4`}>
-                            {uid === user.userId && (
-                              <span
-                                className="md:text-2xl bg-white text-lg text-pink-400"
-                                style={{ cursor: "pointer" }}
-                                onClick={() =>
-                                  handleDeleteComment({
-                                    commentId,
-                                    uid,
-                                    comment,
-                                    userName,
-                                    createdAt,
-                                    userPhotoURL,
-                                  })
-                                }
-                              >
-                                <MdOutlineDeleteForever />
-                              </span>
-                            )}
-                          </span>
-                        </div>
+                  <div class="relative flex gap-4">
+                    <img
+                      src={userPhotoURL}
+                      class="relative rounded-lg -top-8 -mb-4 bg-white border h-20 w-20"
+                      alt=""
+                      loading="lazy"
+                    />
+                    <div class="flex flex-col w-full">
+                      <div class="flex flex-row justify-between">
+                        <p class="relative text-xl whitespace-nowrap truncate overflow-hidden hover:text-blue-600">
+                          <NavLink to={`/u/${uid}`}>{userName}</NavLink>
+                        </p>
+                        <p class="text-gray-500 border-2 rounded-full border-black text-xl justify-end">
+                          {uid === user.userId && (
+                            <span
+                              className="md:text-2xl bg-white  text-lg text-pink-400"
+                              style={{ cursor: "pointer" }}
+                              onClick={() =>
+                                handleDeleteComment({
+                                  commentId,
+                                  uid,
+                                  comment,
+                                  userName,
+                                  createdAt,
+                                  userPhotoURL,
+                                })
+                              }
+                            >
+                              <MdOutlineDeleteForever />
+                            </span>
+                          )}
+                        </p>
                       </div>
-                      <div
-                        class={` p-2 shadow-lg rounded-lg  ${
-                          uid === user.userId ? "bg-[#fbe3e3]" : "bg-[#c9d4f5]"
-                        }`}
-                      >
-                        <span className="text-green-700 text-sm md:text-md">
-                          {" "}
-                          {comment.substring(0, 5000)}
-                        </span>
-                      </div>
+                      <p class="text-gray-400 text-sm">
+                        {" "}
+                        {createdAt.toDate().toDateString()}
+                      </p>
                     </div>
                   </div>
+                  <p class="-mt-4 text-gray-500">
+                    {" "}
+                    {comment.substring(0, 5000)}
+                  </p>
                 </div>
 
                 {/* <div className="border p-2 mt-2 row">

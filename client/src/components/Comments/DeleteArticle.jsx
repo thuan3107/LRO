@@ -13,7 +13,7 @@ export default function DeleteArticle({ id, imageUrl, colDB }) {
       Swal.fire({
         position: "center",
         icon: "success",
-        title: "Your work has been saved",
+        title: "Xoá Bình Luận Thành Công",
         showConfirmButton: false,
         timer: 1500,
       })
@@ -33,7 +33,7 @@ export default function DeleteArticle({ id, imageUrl, colDB }) {
   function sw() {
     Swal.fire({
       title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      text: "Bạn Chắc Chắn Muốn Xoá",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -41,16 +41,14 @@ export default function DeleteArticle({ id, imageUrl, colDB }) {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
+        handleDelete();
       } else {
       }
     });
   }
   return (
-    <div
-      onClick={handleDelete}
-      className="cursor-pointer flex p-1 border rounded-md"
-    >
-      <TiDelete className="text-white text-2xl" />
+    <div onClick={sw} className="cursor-pointer flex p-1 border rounded-md">
+      <TiDelete className="text-black text-2xl" />
       Xoá
     </div>
   );

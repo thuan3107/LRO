@@ -5,6 +5,21 @@ const { StatusCode } = require("../utils/constants.js");
 const { jsonGenerate } = require("../utils/helpers.js");
 const { DateNow } = require("../Func/Date.js");
 
+exports.ChangeAccessUser = async (req, res) => {
+  try {
+    const { _id } = req.body;
+
+    const user = await User.findById(_id);
+    if (user?.access == "admin") {
+      await User.findByIdAndUpdate(_id, { access: "user" });
+      return res.json(jsonGenerate(StatusCode.SUCCESS, "user", null));
+    } else {
+      await User.findByIdAndUpdate(_id, { access: "admin" });
+      return res.json(jsonGenerate(StatusCode.SUCCESS, "admin", null));
+    }
+  } catch (error) {}
+};
+
 exports.DeleteUser = async (req, res) => {
   try {
     const user = await User.findById(req.body._id);

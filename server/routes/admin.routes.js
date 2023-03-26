@@ -8,6 +8,7 @@ const admin = express.Router();
 // apiDocs.post("/createdoc", Doc.CreateDoc);
 
 //Create Blogs
+admin.post("/changeaccess", A.ChangeAccessUser);
 admin.get("/chart", A.ChartLine);
 admin.get("/statisticsusers", A.StatisticsUsers);
 admin.get("/statisticsdocs", A.StatisticsDocs);
