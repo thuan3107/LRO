@@ -12,6 +12,7 @@ const artRoutes = require("./routes/apiArt.routes.js");
 const authRoutes = require("./routes/apiAuth.routes.js");
 
 const admin = require("./routes/admin.routes.js");
+const user = require("./routes/user.routes.js");
 
 // Database Connection
 connection();
@@ -22,6 +23,7 @@ app.use(cors());
 app.use(express.json());
 // Routes
 app.use("/admin/", admin);
+app.use("/user/", AuthMiddleware, user);
 //Router login and register
 app.use("/api/", apiRoute);
 //router handler for user model
