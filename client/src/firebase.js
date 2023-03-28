@@ -1,8 +1,11 @@
 import { getApp, getApps, initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
+import { getStorage, ref, deleteObject } from "firebase/storage";
+// import { getStorage } from "firebase/storage";
 import { getAuth } from "firebase/auth";
 
+// import { firebase } from "firebase/app";
+// import "firebase/storage";
 // const firebaseConfig = {
 //   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
 //   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -23,7 +26,7 @@ const firebaseConfig = {
   storageBucket: "fooddeliveryapp154.appspot.com",
   messagingSenderId: "463417095744",
   appId: "1:463417095744:web:38a377531cb6574aef51a5",
-  measurementId: "G-BBJ4M9MBH7"
+  measurementId: "G-BBJ4M9MBH7",
 };
 // const app = initializeApp(firebaseConfig);
 // export const authentication = getAuth(app);
@@ -39,3 +42,27 @@ export const db = getFirestore(app);
 export const auth = getAuth(app);
 export const authentication = getAuth(app);
 export { app, firestore, storage };
+
+export const DeleteFileDoc = (FolderUser, FileName) => {
+  console.log(FolderUser);
+  console.log(FileName);
+  // Create a reference to the file to delete
+  const desertRef = ref(storage, `/docs/${FolderUser}/${FileName}`);
+
+  // Delete the file
+  deleteObject(desertRef)
+    .then(() => {
+      // File deleted successfully
+      console.log("File deleted successfully");
+    })
+    .catch((error) => {
+      // Uh-oh, an error occurred!
+    });
+};
+
+
+
+
+
+
+

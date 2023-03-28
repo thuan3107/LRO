@@ -16,10 +16,11 @@ export function extractString(url) {
   const lastPart = urlParts[urlParts.length - 1];
   // tách chuỗi lastPart thành một mảng các phần tử dựa trên ký tự '%'
   const parts = lastPart.split("avt%2F");
-  console.log(parts);
 
   // lấy phần tử đầu tiên của mảng parts
   const result = parts[1];
   const x = result.split("?alt");
+  console.log(x[0]);
+
   return x[0];
 }

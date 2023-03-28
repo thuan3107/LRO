@@ -24,6 +24,10 @@ const DOCSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  id_URL: {
+    type: String,
+    required: true,
+  },
   category: {
     type: String,
     required: true,

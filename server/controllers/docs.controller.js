@@ -18,6 +18,7 @@ exports.CreateDoc = async (req, res) => {
       category: req.body.category,
       content: req.body.content,
       docs_URL: req.body.docs_URL,
+      id_URL: req.body.id_URL,
       creatorsName: req.body.creatorsName,
       creatorsId: req.body.creatorsId,
       creatorsPhoto: req.body.creatorsPhoto,

@@ -49,6 +49,7 @@ const FileInput = ({ name, label, value, type, handleInputState, ...rest }) => {
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((url) => {
             handleInputState(name, url);
+            handleInputState("id_URL", fileName);
           });
         }
       );

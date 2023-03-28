@@ -30,6 +30,8 @@ import {
 import ChangePassPage from "./page/ChangePassPage.jsx";
 import { privateRoutes, publicRoutes } from "./routes/routes.js";
 import { extractString } from "./func/remove.class.js";
+import { DeleteFileDoc } from "./firebase.js";
+// import { DeleteFileDoc } from "./fun.firebase.js";
 
 function App() {
   const { user } = useContext(ProductContext);

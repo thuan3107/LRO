@@ -26,6 +26,7 @@ function DocForm() {
     category: "",
     content: "",
     docs_URL: "",
+    id_URL: "",
     creatorsName: user.first_name + " " + user.last_name,
     creatorsId: user.userId,
     creatorsPhoto: user.avatar,
@@ -108,7 +109,7 @@ function DocForm() {
   useEffect(() => {
     data.isPrivate = isP;
     data.tag = selected;
-    // console.table(data);
+    console.table(data);
     // console.log(upload);
 
     // console.log(checkForm());
@@ -118,89 +119,102 @@ function DocForm() {
       setUpload(!upload);
     }
   }, [data.docs_URL]);
-  function back() {
-    data.docs_URL = "";
-    setUpload(!upload);
-    setData({
-      title: "",
-      tag: "",
-      category: "",
-      content: "",
-      docs_URL: "",
-      creatorsName: user.first_name + user.last_name,
-      creatorsId: user.userId,
-      creatorsPhoto: user.avatar,
-      isPrivate: "",
-    });
+  // function back() {
+  //   data.docs_URL = "";
+  //   setUpload(!upload);
+  //   setData({
+  //     title: "",
+  //     tag: "",
+  //     category: "",
+  //     content: "",
+  //     docs_URL: "",
+  //     id_URL: "",
+  //     creatorsName: user.first_name + user.last_name,
+  //     creatorsId: user.userId,
+  //     creatorsPhoto: user.avatar,
+  //     isPrivate: "",
+  //   });
+  // }
+
+  function UploadFile() {
+    return (
+      <>
+        <div className={`h-full `}>
+          <div class="flex w-full h-full  items-center justify-center bg-grey-lighter t">
+            <div class="max-w-2xl mx-auto">
+              <div class="flex items-center justify-center w-full">
+                <label
+                  for="dropzone-file"
+                  class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                >
+                  <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                    <svg
+                      class="w-10 h-10 mb-3 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                      ></path>
+                    </svg>
+                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                      <span class="font-semibold">Nhấn Để Tải Lên</span> Hoặc
+                      Kéo và Thả vào đây
+                    </p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">
+                      PDF (MAX. 800x400px)
+                    </p>
+                  </div>
+                  {/* <input id="dropzone-file" type="file" class="hidden" />
+                   */}
+                  <div className="">
+                    <FileInput
+                      className={`w-full `}
+                      name="docs_URL"
+                      label="Choose PDF"
+                      handleInputState={handleInputState}
+                      type="docs"
+                      value={data.docs_URL}
+                    />
+                  </div>
+                </label>
+              </div>
+
+              <p class="mt-5">
+                Các loại tệp được hỗ trợ : PDF
+                <a
+                  class="text-blue-600 hover:underlin block"
+                  href="#"
+                  target="_blank"
+                >
+                  Bằng cách tải lên, bạn đồng ý với Thỏa thuận Trình tải lên LRO
+                  của chúng tôi
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  function InfoDocForm() {
+    return <></>;
   }
   return (
     <div>
       <ToastContainer />
 
-      <div className={` w-full  h-[90vh]  bg-white`}>
+      <div
+        className={`flex justify-center items-center w-full  h-[90vh]  bg-white`}
+      >
         {upload ? (
-          <>
-            <div className={`h-full `}>
-              <div class="flex w-full h-full  items-center justify-center bg-grey-lighter t">
-                <div class="max-w-2xl mx-auto">
-                  <div class="flex items-center justify-center w-full">
-                    <label
-                      for="dropzone-file"
-                      class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-                    >
-                      <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                        <svg
-                          class="w-10 h-10 mb-3 text-gray-400"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                          ></path>
-                        </svg>
-                        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                          <span class="font-semibold">Nhấn Để Tải Lên</span>{" "}
-                          Hoặc Kéo và Thả vào đây
-                        </p>
-                        <p class="text-xs text-gray-500 dark:text-gray-400">
-                          PDF (MAX. 800x400px)
-                        </p>
-                      </div>
-                      {/* <input id="dropzone-file" type="file" class="hidden" />
-                       */}
-                      <div className="">
-                        <FileInput
-                          className={`w-full `}
-                          name="docs_URL"
-                          label="Choose PDF"
-                          handleInputState={handleInputState}
-                          type="docs"
-                          value={data.docs_URL}
-                        />
-                      </div>
-                    </label>
-                  </div>
-
-                  <p class="mt-5">
-                    Các loại tệp được hỗ trợ : PDF
-                    <a
-                      class="text-blue-600 hover:underlin block"
-                      href="#"
-                      target="_blank"
-                    >
-                      Bằng cách tải lên, bạn đồng ý với Thỏa thuận Trình tải lên
-                      LRO của chúng tôi
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </>
+          <UploadFile />
         ) : (
           <>
             <div className={` w-full  h-full bg-white`}>
@@ -311,7 +325,10 @@ function DocForm() {
                     </div>
                     <div className="w-full flex justify-between gap-4">
                       <div className="flex gap-4">
-                        <div onClick={(e) => back} class="flex">
+                        <div
+                          // onClick={(e) => back}
+                          class="flex"
+                        >
                           <label
                             for="choose-me"
                             class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"

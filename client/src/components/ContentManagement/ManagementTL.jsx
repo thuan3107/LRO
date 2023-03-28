@@ -9,7 +9,7 @@ import { useContext } from "react";
 import { ProductContext } from "../../contexts/ProductContextProvider";
 
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { storage } from "../../firebase.js";
+import { DeleteFileDoc, storage } from "../../firebase.js";
 import firebase from "firebase/app";
 
 import {
@@ -18,6 +18,9 @@ import {
   FUNC_SET_IS_PRIVATE_DOC,
 } from "../../service/FuncDoc/index.js";
 import { deleteCollection } from "../../func/delete.Cmt.js";
+import removeVietnameseAndWhitespace, {
+  extractString,
+} from "../../func/remove.class.js";
 function ManagementTL() {
   const { user } = useContext(ProductContext);
   const auth = user.token;
@@ -52,7 +55,7 @@ function ManagementTL() {
     getAllDocs();
   }, [page]);
 
-  function handleDelete(id, title) {
+  function handleDelete(id, title, url, id_URL) {
     Swal.fire({
       title: "Bạn muốn xoá tài liệu",
       text: `${title}`,
@@ -66,17 +69,23 @@ function ManagementTL() {
       if (result.isConfirmed) {
         // deleteCollection("CMT/tailieu/", id);
 
-        DeleteDocs(id);
+        DeleteDocs(id, url, id_URL);
         Swal.fire("Deleted!", "Xoá Thành Công", "success");
       }
     });
   }
 
-  const DeleteDocs = async (id) => {
+  const DeleteDocs = async (id, url, id_URL) => {
     try {
+      console.log(id_URL);
       const result = await FUNC_DELETE_DOC(auth, id);
       console.log(result);
       if (result.data.status == 200) {
+        const uid = `[${user?.userId}]_${removeVietnameseAndWhitespace(
+          user?.username
+        )}`;
+        // const FileName = extractString(url);
+        DeleteFileDoc(uid, id_URL);
         getAllDocs();
         toast("1 tài liệu đã được xoá");
       }
@@ -156,7 +165,14 @@ function ManagementTL() {
                         </p>
                       </button>
                       <button
-                        onClick={(e) => handleDelete(item._id, item?.title)}
+                        onClick={(e) =>
+                          handleDelete(
+                            item._id,
+                            item?.title,
+                            item?.docs_URL,
+                            item?.id_URL
+                          )
+                        }
                         class="group shadow-lg shadow-cyan-300/50 relative overflow-hidden rounded bg-sky-400 bg-red-300 hover:bg-pink-400 hover:shadow-green-300/80 px-2 py-1 mx-1 font-sans uppercase  ring-sky-500 transition-all after:bg-sky-500 active:shadow-md active:ring-2"
                       >
                         <p class="text-primary  shadow-lg shadow-blue-400/10 transition-all group-active:scale-90">

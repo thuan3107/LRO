@@ -33,7 +33,9 @@ exports.DeleteUser = async (req, res) => {
     await Docs.deleteMany({
       _id: { $in: user?.docs },
     });
-
+    await Arts.deleteMany({
+      _id: { $in: user?.docs },
+    });
     await User?.findByIdAndRemove({ _id: req.body._id });
     // return res.json(result);
     return res.json(jsonGenerate(StatusCode.SUCCESS, "deleted", { DocsArr }));

@@ -6,6 +6,6 @@ export function randomString(length) {
   for (let i = 0; i < length; i++) {
     result += chars.charAt(Math.floor(Math.random() * charsLength));
   }
-
-  return result;
+  const x = `O${result}O`;
+  return x;
 }
