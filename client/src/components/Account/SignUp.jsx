@@ -19,6 +19,7 @@ import { splitName } from "../../func/sliceName.js";
 
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from "../../firebase.js";
+import { randomString } from "../../func/RamdomString.js";
 
 function SignUp() {
   const navigation = useNavigate();
@@ -245,7 +246,8 @@ function SignUp() {
     try {
       const imageFile = e.target.files[0];
       // console.log(imageFile);
-      const fileName = new Date().getTime() + imageFile.name;
+      // const fileName = new Date().getTime() + imageFile.name;
+      const fileName = randomString(15);
 
       const storageRef = ref(
         storage,

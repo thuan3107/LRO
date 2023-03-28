@@ -52,7 +52,7 @@ function DocForm() {
       console.log(resultLogin);
       if (resultLogin.status == 200) {
         if (resultLogin.data.status === 200) {
-          toast(resultLogin.data.message);
+          toast("Đăng Tải Tài Liệu Thành Công");
           setData({
             title: "",
             tag: "",
@@ -164,8 +164,8 @@ function DocForm() {
                           ></path>
                         </svg>
                         <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                          <span class="font-semibold">Click to upload</span> or
-                          drag and drop
+                          <span class="font-semibold">Nhấn Để Tải Lên</span>{" "}
+                          Hoặc Kéo và Thả vào đây
                         </p>
                         <p class="text-xs text-gray-500 dark:text-gray-400">
                           PDF (MAX. 800x400px)

@@ -14,6 +14,7 @@ import Swal from "sweetalert2";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from "../firebase.js";
 import ChangeAvtUser from "../components/ViewProFile/ChangeAvtUser.jsx";
+import { extractString } from "../func/remove.class.js";
 
 function EditProfilePage() {
   const { id } = useParams();
@@ -119,7 +120,8 @@ function EditProfilePage() {
     try {
       const imageFile = e.target.files[0];
       // console.log(imageFile);
-      const fileName = new Date().getTime() + imageFile.name;
+      // const fileName = new Date().getTime() + imageFile.name;
+      const fileName = extractString(user?.avatar);
 
       const storageRef = ref(
         storage,

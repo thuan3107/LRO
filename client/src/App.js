@@ -1,7 +1,10 @@
 import "./App.css";
 import { useEffect, useState, StrictMode, useContext } from "react";
+import { Fragment } from "react";
+
 import React, { Component } from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+// import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import axios from "axios";
 import LazyLoad from "react-lazyload";
@@ -25,20 +28,22 @@ import {
   SearchPage,
 } from "./page/";
 import ChangePassPage from "./page/ChangePassPage.jsx";
+import { privateRoutes, publicRoutes } from "./routes/routes.js";
+import { extractString } from "./func/remove.class.js";
 
 function App() {
   const { user } = useContext(ProductContext);
   // let location = useLocation();
-  console.log(process.env.REACT_APP_API_KEY);
+  // console.log(extractString(user?.avatar));
 
   return (
     <>
-      <StrictMode>
+      {/* <StrictMode>
         <BrowserRouter>
           <Routes>
             <Route path="/*" element={<Home />} />
             <Route path="/login" element={<LoginPage />} />
-            {/* <Route path="/register" element={<SignUp />} /> */}
+
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/search/:q" element={<SearchPage />} />
             <Route path="/baiviet" element={<BaiVietPage />} />
@@ -59,23 +64,72 @@ function App() {
                 <Route path="/u/:id" element={<ProFile />} />
                 <Route path="/u/edit/:id" element={<EditProfile />} />
                 <Route path="/u/edit/pass/:id" element={<ChangePassPage />} />
-                //* BaiVietPage
+
                 <Route path="/baiviet/create" element={<CreateBaiVietPage />} />
                 <Route
                   path="/baiviet/update/:id"
                   element={<UpdateBaiVietPage />}
                 />
                 <Route path="/baiviet/view/:id" element={<ViewBaiVietPage />} />
-                //* TaiLieu
+
                 <Route path="/tailieu/create" element={<CreateTaiLieuPage />} />
                 <Route path="/tailieu/view/:id" element={<ViewTaiLieuPage />} />
               </>
             ) : (
-              <>{/* <Route path="/register" element={<Register />} /> */}</>
+              <></>
             )}
           </Routes>
         </BrowserRouter>
-      </StrictMode>
+      </StrictMode> */}
+      {user && user?.userId ? (
+        <>
+          <Router>
+            <div className="App">
+              <Routes>
+                {privateRoutes.map((route, index) => {
+                  const Page = route.component;
+
+                  return (
+                    <Route
+                      key={index}
+                      path={route.path}
+                      element={
+                        <>
+                          <Page />
+                        </>
+                      }
+                    />
+                  );
+                })}
+              </Routes>
+            </div>
+          </Router>
+        </>
+      ) : (
+        <>
+          <Router>
+            <div className="App">
+              <Routes>
+                {publicRoutes.map((route, index) => {
+                  const Page = route.component;
+
+                  return (
+                    <Route
+                      key={index}
+                      path={route.path}
+                      element={
+                        <>
+                          <Page />
+                        </>
+                      }
+                    />
+                  );
+                })}
+              </Routes>
+            </div>
+          </Router>
+        </>
+      )}
     </>
   );
 }

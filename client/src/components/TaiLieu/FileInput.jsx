@@ -9,10 +9,13 @@ import check from "../../images/check.png";
 import { ProductContext } from "../../contexts/ProductContextProvider.jsx";
 import { DocForm } from "../index.js";
 import removeVietnameseAndWhitespace from "../../func/remove.class.js";
+import { randomString } from "../../func/RamdomString.js";
 
 const FileInput = ({ name, label, value, type, handleInputState, ...rest }) => {
   const { user } = useContext(ProductContext);
-  const uid = user?.userId + removeVietnameseAndWhitespace(user?.username);
+  const uid = `[${user?.userId}]_${removeVietnameseAndWhitespace(
+    user?.username
+  )}`;
   // console.log(uid);
   const inputRef = useRef();
   const [progress, setProgress] = useState(0);
@@ -21,8 +24,9 @@ const FileInput = ({ name, label, value, type, handleInputState, ...rest }) => {
   const handleUpload = () => {
     console.log(value);
     setProgressShow(false);
-    const fileName =
-      new Date().getTime() + removeVietnameseAndWhitespace(value?.name);
+    // const fileName =
+    //   new Date().getTime() + removeVietnameseAndWhitespace(value?.name);
+    const fileName = randomString(20);
     const storageRef = ref(
       storage,
       type === "docs" ? `/docs/${uid}/${fileName}` : `/images/${fileName}`
@@ -53,7 +57,7 @@ const FileInput = ({ name, label, value, type, handleInputState, ...rest }) => {
       Swal.fire({
         icon: "error",
         title: "Vui Lòng Chọn File PDF",
-        text: "Something went wrong!",
+        text: "Hãy Chọn Tài Liệu Định Dạng PDF",
       });
       setProgressShow(true);
       value = "";

@@ -16,7 +16,8 @@ function SearchPage() {
   useEffect(() => {
     Call_Data_Search();
   }, [q, value]);
-  console.log(q);
+  // console.log(q);
+
   return (
     <>
       <div>

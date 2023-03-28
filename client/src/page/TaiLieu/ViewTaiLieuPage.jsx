@@ -219,7 +219,7 @@ function ViewTaiLieuPage() {
           </div>
           <div className="w-full h-screen flex justify-center items-center ">
             <iframe
-              className=" w-[99%] h-full rounded-xl
+              className=" w-[99%] h-screen rounded-xl
           "
               allowfullscreen=""
               frameborder="0"
