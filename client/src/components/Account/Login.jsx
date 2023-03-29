@@ -58,9 +58,9 @@ function Login() {
 
     form2.form = "google";
     form2.uid = user?.uid;
-    form2.username = username;
+    form2.username = user?.uid;
     form2.email = user?.email;
-    form2.password = username;
+    form2.password = user?.uid;
     form2.avatar = user?.photoURL;
     form2.first_name = firstName;
     form2.last_name = lastName;

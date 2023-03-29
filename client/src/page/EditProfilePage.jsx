@@ -19,6 +19,8 @@ import { extractString } from "../func/remove.class.js";
 function EditProfilePage() {
   const { id } = useParams();
   const { user } = useContext(ProductContext);
+  const form = user?.form == "LRO" ? true : false;
+
   const auth = user?.token;
   const [dataUser, setDataUser] = useState([]);
   const [first_name, setFirstName] = useState(dataUser?.first_name);
@@ -121,7 +123,8 @@ function EditProfilePage() {
       const imageFile = e.target.files[0];
       // console.log(imageFile);
       // const fileName = new Date().getTime() + imageFile.name;
-      const fileName = extractString(user?.avatar);
+
+      const fileName = form ? extractString(user?.avatar) : user?.userId;
 
       const storageRef = ref(
         storage,
@@ -279,16 +282,22 @@ function EditProfilePage() {
                     <div class="max-w-3xl gap-2 py-5 px-8 sm:grid-cols-2 bg-white  border-b-4 border-blue-400">
                       <div class="block my-2">
                         <div class="bg-white flex min-h-[60px] flex-col-reverse justify-center rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:shadow-inner">
-                          <input
-                            type="text"
-                            name="email"
-                            // onChange={handleChange}
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            id="email"
-                            class="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
-                            placeholder="Email"
-                          />
+                          {form ? (
+                            <input
+                              type="text"
+                              name="email"
+                              // onChange={handleChange}
+                              value={email}
+                              onChange={(e) => setEmail(e.target.value)}
+                              id="email"
+                              class="peer block w-full border-0 p-0 text-base text-gray-900 placeholder-gray-400 focus:ring-0"
+                              placeholder="Email"
+                            />
+                          ) : (
+                            <>
+                              <span>{email}</span>
+                            </>
+                          )}
                           <label
                             html="email"
                             class="block transform text-xs font-bold uppercase text-gray-400 transition-opacity, duration-200 peer-placeholder-shown:h-0 peer-placeholder-shown:-translate-y-full peer-placeholder-shown:opacity-0"

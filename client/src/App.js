@@ -5,33 +5,14 @@ import { Fragment } from "react";
 import React, { Component } from "react";
 // import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
 import axios from "axios";
 import LazyLoad from "react-lazyload";
 import { ProductContext } from "./contexts/ProductContextProvider.jsx";
-
 import {
-  Home,
-  BaiVietPage,
-  TaiLieuPage,
-  ThaoLuanPage,
-  LoginPage,
-  RegisterPage,
-  ViewTaiLieuPage,
-  CreateTaiLieuPage,
-  CreateBaiVietPage,
-  UpdateBaiVietPage,
-  ViewBaiVietPage,
-  ContentManagement,
-  ProFile,
-  EditProfile,
-  SearchPage,
-} from "./page/";
-import ChangePassPage from "./page/ChangePassPage.jsx";
-import { privateRoutes, publicRoutes } from "./routes/routes.js";
-import { extractString } from "./func/remove.class.js";
-import { DeleteFileDoc } from "./firebase.js";
-// import { DeleteFileDoc } from "./fun.firebase.js";
+  privateRoutes,
+  privateRoutes2,
+  publicRoutes,
+} from "./routes/routes.js";
 
 function App() {
   const { user } = useContext(ProductContext);
@@ -85,27 +66,55 @@ function App() {
       </StrictMode> */}
       {user && user?.userId ? (
         <>
-          <Router>
-            <div className="App">
-              <Routes>
-                {privateRoutes.map((route, index) => {
-                  const Page = route.component;
+          {user?.form == "LRO" ? (
+            <>
+              <Router>
+                <div className="App">
+                  <Routes>
+                    {privateRoutes2.map((route, index) => {
+                      const Page = route.component;
 
-                  return (
-                    <Route
-                      key={index}
-                      path={route.path}
-                      element={
-                        <>
-                          <Page />
-                        </>
-                      }
-                    />
-                  );
-                })}
-              </Routes>
-            </div>
-          </Router>
+                      return (
+                        <Route
+                          key={index}
+                          path={route.path}
+                          element={
+                            <>
+                              <Page />
+                            </>
+                          }
+                        />
+                      );
+                    })}
+                  </Routes>
+                </div>
+              </Router>
+            </>
+          ) : (
+            <>
+              <Router>
+                <div className="App">
+                  <Routes>
+                    {privateRoutes.map((route, index) => {
+                      const Page = route.component;
+
+                      return (
+                        <Route
+                          key={index}
+                          path={route.path}
+                          element={
+                            <>
+                              <Page />
+                            </>
+                          }
+                        />
+                      );
+                    })}
+                  </Routes>
+                </div>
+              </Router>
+            </>
+          )}
         </>
       ) : (
         <>

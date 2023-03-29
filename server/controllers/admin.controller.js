@@ -26,6 +26,7 @@ exports.DeleteUser = async (req, res) => {
   try {
     const user = await User.findById(req.body._id);
     const DocsArr = user?.docs;
+    const ArtsArr = user?.articles;
     // result?.docs?.map((i) => {
     //   DocsArr.push(String(i));
     // });
@@ -34,11 +35,13 @@ exports.DeleteUser = async (req, res) => {
       _id: { $in: user?.docs },
     });
     await Arts.deleteMany({
-      _id: { $in: user?.docs },
+      _id: { $in: user?.articles },
     });
     await User?.findByIdAndRemove({ _id: req.body._id });
     // return res.json(result);
-    return res.json(jsonGenerate(StatusCode.SUCCESS, "deleted", { DocsArr }));
+    return res.json(
+      jsonGenerate(StatusCode.SUCCESS, "deleted", { DocsArr, ArtsArr })
+    );
   } catch (error) {
     return res.json(
       jsonGenerate(StatusCode.UNPROCESSABLE_ENTITY, "Could not delete", null)

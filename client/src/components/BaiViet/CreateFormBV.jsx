@@ -43,7 +43,7 @@ function FormBV() {
       console.log(result);
       if (result.status == 200) {
         if (result.data.status === 200) {
-          toast(result.data.message);
+          toast("Đăng tải bài viết thành công");
           setTimeout(() => {
             setSelected([]);
             setValue("");

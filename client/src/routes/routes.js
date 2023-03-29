@@ -33,6 +33,7 @@ const publicRoutes = [
   //   { path: config.routes.login, component: Home },
 ];
 
+//Login with Create Acc register
 const privateRoutes = [
   { path: config.routes.home, component: Home },
   { path: config.routes.tailieu, component: TaiLieuPage },
@@ -49,4 +50,20 @@ const privateRoutes = [
   { path: config.routes.ViewDOC, component: ViewTaiLieuPage },
 ];
 
-export { publicRoutes, privateRoutes };
+// Login with gg or fb
+const privateRoutes2 = [
+  { path: config.routes.home, component: Home },
+  { path: config.routes.EditProfile, component: EditProfile },
+  { path: config.routes.tailieu, component: TaiLieuPage },
+  { path: config.routes.baiviet, component: BaiVietPage },
+  { path: config.routes.search, component: SearchPage },
+  { path: config.routes.ContentManagement, component: ContentManagement },
+  { path: config.routes.ProFile, component: ProFile },
+  { path: config.routes.CreateART, component: CreateBaiVietPage },
+  { path: config.routes.UpdateART, component: UpdateBaiVietPage },
+  { path: config.routes.ViewART, component: ViewBaiVietPage },
+  { path: config.routes.CreateDOC, component: CreateTaiLieuPage },
+  { path: config.routes.ViewDOC, component: ViewTaiLieuPage },
+]
+
+export { publicRoutes, privateRoutes,privateRoutes2  };
