@@ -66,7 +66,7 @@ function App() {
       </StrictMode> */}
       {user && user?.userId ? (
         <>
-          {user?.form == "LRO" ? (
+          {user?.form != "LRO" ? (
             <>
               <Router>
                 <div className="App">
