@@ -45,6 +45,9 @@ function SignUp() {
   const loginWithGoogle = async (e) => {
     const provider = new GoogleAuthProvider();
     const { user } = await signInWithPopup(firebaseAuth, provider);
+    const { refreshToken, providerData } = user;
+    console.log(refreshToken);
+    console.log(providerData);
     const username = removeVietnameseAndWhitespace(
       user?.displayName.toLocaleLowerCase()
     );
@@ -73,6 +76,8 @@ function SignUp() {
     const { firstName, lastName } = splitName(user?.displayName);
 
     // const { refreshToken, providerData } = user;
+    // console.log(refreshToken);
+    // console.log(providerData);
     // setForm2
     console.log(user);
     form2.form = "facebook";
