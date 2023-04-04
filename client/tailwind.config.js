@@ -58,6 +58,9 @@ module.exports = withMT({
         xl: "1280px",
         "2xl": "1536px",
       },
+      animation: {
+        "spin-slow": "spin 5s linear infinite",
+      },
     },
   },
 

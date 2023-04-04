@@ -125,7 +125,7 @@ function Register() {
     console.log(result);
     if (result.status == 200) {
       if (result.data.status === 200) {
-        console.log(result.data);
+        // console.log(result.data);
         // localStorage.setItem("user", JSON.stringify(result.data.data));
         // toast("Register Successfully");
         let timerInterval;
@@ -157,8 +157,8 @@ function Register() {
       }
       if (result.data.status === 201) {
         // setErorrs(result.data.data);
-        console.log("201", result.data.data);
-        toast(result.data.data);
+        // console.log("201", result.data.data);
+        toast("Hãy Kiểm Tra lại các thông tin");
         return;
       }
       if (result.data.status === 202) {

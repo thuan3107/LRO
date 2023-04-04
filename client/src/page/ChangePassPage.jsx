@@ -6,7 +6,7 @@ function ChangePassPage() {
   return (
     <div className="">
       <Header />
-      <div className="z-0 h-full">
+      <div className="z-0 h-full bg-white">
         <ChangePass />
       </div>
     </div>

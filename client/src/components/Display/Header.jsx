@@ -5,7 +5,8 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Logo from "../../images/LRO_logo2.png";
 import AVT from "../../images/LRO_logo.png";
-
+// ES6 Modules or TypeScript
+import Swal from 'sweetalert2'
 import { useContext } from "react";
 import { ProductContext } from "../../contexts/ProductContextProvider";
 import InputSearch from "../Search/InputSearch.jsx";
@@ -38,8 +39,23 @@ function Header() {
     // console.log(href);
   }, [href]);
   const handlerLogout = () => {
-    localStorage.clear();
-    window.location = "/";
+    Swal.fire({
+      title: "Bạn muốn đăng xuất",
+      // text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Đăng xuất ngay",
+      cancelButtonText: "Huỷ",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Đã Đăng Xuất", "Đăng Xuất Thành Công", "success");
+        localStorage.clear();
+        window.location = "/";
+      }
+    });
+   
   };
 
   return (

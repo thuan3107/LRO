@@ -113,12 +113,14 @@ function Login() {
       }
       if (resultLogin.data.status === 201) {
         // setErorrs(resultLogin.data.data);
-        toast(resultLogin.data.data);
+        toast("Tên đăng nhập hoặc mật khẩu không chính xác");
         return;
       }
 
       if (resultLogin.data.status === 202) {
-        toast(resultLogin.data.message);
+        // toast(resultLogin.data.message);
+        toast("Tên đăng nhập hoặc mật khẩu không chính xác");
+
         return;
       }
     }
@@ -168,12 +170,16 @@ function Login() {
         }
         if (result.data.status === 201) {
           setErorrs(result.data.data);
-          toast(result.data.data);
+          // toast(result.data.data);
+          toast("Tên đăng nhập hoặc mật khẩu không chính xác");
+
           return;
         }
 
         if (result.data.status === 202) {
-          toast(result.data.message);
+          // toast(result.data.message);
+          toast("Tên đăng nhập hoặc mật khẩu không chính xác");
+
           return;
         }
       }
