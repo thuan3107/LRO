@@ -15,9 +15,10 @@ import Articles from "./Articles";
 import { useContext } from "react";
 import { ProductContext } from "../../contexts/ProductContextProvider";
 import { NavLink } from "react-router-dom";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Swal from "sweetalert2";
 export default function Comment({ id, colDB }) {
-  // const [{ user, OCIT_HOCPHAN, OCIT, OCIT_ORDER }, dispatch] = useStateValue();
   const { user } = useContext(ProductContext);
 
   const [comment, setComment] = useState("");
@@ -41,37 +42,67 @@ export default function Comment({ id, colDB }) {
   }, []);
 
   const handleChangeComment = (e) => {
-    if (e.key === "Enter") {
-      updateDoc(commentRef, {
-        comments: arrayUnion({
-          uid: user.userId,
-          userName: user.first_name + " " + user.last_name,
-          comment: comment,
-          createdAt: new Date(),
-          userPhotoURL: user.avatar,
-          commentId: uuidv4(),
-        }),
-      }).then(() => {
-        setComment("");
-      });
-    }
+    try {
+      if (comment != "") {
+        if (e.key === "Enter") {
+          if (comment.length < 2000) {
+            updateDoc(commentRef, {
+              comments: arrayUnion({
+                uid: user.userId,
+                userName: user.first_name + " " + user.last_name,
+                comment: comment,
+                createdAt: new Date(),
+                userPhotoURL: user.avatar,
+                commentId: uuidv4(),
+              }),
+            }).then(() => {
+              setComment("");
+            });
+          } else {
+            toast("Bình luận của bạn quá dài");
+          }
+        }
+      } else {
+        //  alert("cmt rong");
+      }
+    } catch (error) {}
   };
 
   // delete comment function
   const handleDeleteComment = (comment) => {
-    console.log(comment);
-    updateDoc(commentRef, {
-      comments: arrayRemove(comment),
-    })
-      .then((e) => {
-        console.log(e);
-      })
-      .catch((error) => {
-        console.log(error);
+    // console.log(comment);
+    try {
+      Swal.fire({
+        title: "Bạn muốn xoá bình luận này",
+        text: comment.comment.substring(0, 50) + "...",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Huỷ",
+        confirmButtonText: "Chấp nhận xoá",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // DeletePosts(id);
+          // Swal.fire("Deleted!", "Xoá Bình Luân Thành Công", "success");
+          toast("Bình luận đã được xoá");
+          updateDoc(commentRef, {
+            comments: arrayRemove(comment),
+          })
+            .then((e) => {
+              console.log(e);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
       });
+    } catch (error) {}
   };
   return (
     <div className="m-auto w-[100%] -mt-2">
+      <ToastContainer />
+
       <div>
         {comments !== null &&
           comments.map(
@@ -128,9 +159,9 @@ export default function Comment({ id, colDB }) {
                       </p>
                     </div>
                   </div>
-                  <p class="-mt-4 text-gray-500">
+                  <p class="-mt-4 text-gray-500 rounded-md break-words border-none">
                     {" "}
-                    {comment.substring(0, 5000)}
+                    {comment.substring(0, 2100)}
                   </p>
                 </div>
 

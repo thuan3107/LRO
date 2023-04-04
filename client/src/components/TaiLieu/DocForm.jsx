@@ -2,21 +2,19 @@ import React, { useState, useRef, useEffect } from "react";
 import { useContext } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ProductContext } from "../../contexts/ProductContextProvider.jsx";
-
-import { FileInput } from "../../components";
-
 import { TagsInput } from "react-tag-input-component";
-import { FUNC_CREATE_DOC } from "../../service/FuncDoc/index.js";
 import Swal from "sweetalert2";
+import { ProductContext } from "../../contexts/ProductContextProvider.jsx";
+import { FileInput } from "../../components";
+import { FUNC_CREATE_DOC } from "../../service/FuncDoc/index.js";
 import { CategoryArr } from "../../data/CategoryDoc.js";
 
 function DocForm() {
   const { user } = useContext(ProductContext);
   const token = user?.token;
   const [isP, setisP] = useState(false);
-  const [isHP, setisHP] = useState(false);
-  const [tagName, setTagName] = useState([]);
+  // const [isHP, setisHP] = useState(false);
+  // const [tagName, setTagName] = useState([]);
   const [selected, setSelected] = useState([]);
   const [upload, setUpload] = useState(Boolean(false));
 
@@ -32,13 +30,27 @@ function DocForm() {
     creatorsPhoto: user.avatar,
     isPrivate: "",
   });
+  const [data2, setData2] = useState({
+    title: "",
+    tag: "",
+    category: "",
+    content: "",
+    docs_URL: "",
+    id_URL: "",
+    creatorsName: user.first_name + " " + user.last_name,
+    creatorsId: user.userId,
+    creatorsPhoto: user.avatar,
+    isPrivate: "",
+  });
 
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
+    setData2({ ...data2, [input.name]: input.value });
   };
 
   const handleInputState = (name, value) => {
     setData((prev) => ({ ...prev, [name]: value }));
+    setData2((prev) => ({ ...prev, [name]: value }));
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -106,12 +118,27 @@ function DocForm() {
     } else return false;
   }
 
+  function handleClear() {
+    setData({
+      title: "",
+      tag: "",
+      category: "",
+      content: "",
+      docs_URL: data2.docs_URL,
+      id_URL: data2.docs_URL,
+      creatorsName: user.first_name + " " + user.last_name,
+      creatorsId: user.userId,
+      creatorsPhoto: user.avatar,
+      isPrivate: data2.isPrivate,
+    });
+
+    setSelected([]);
+  }
   useEffect(() => {
     data.isPrivate = isP;
     data.tag = selected;
-    console.table(data);
+    // console.table(data);
     // console.log(upload);
-
     // console.log(checkForm());
   }, [data, isP, selected]);
   useEffect(() => {
@@ -234,6 +261,7 @@ function DocForm() {
                           type="text"
                           id="title"
                           onChange={handleChange}
+                          value={data.title}
                           name="title"
                           className="block w-full px-4 py-2 mt-2 text-blue-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         />
@@ -247,6 +275,7 @@ function DocForm() {
                         </label>
                         <select
                           onChange={handleChange}
+                          value={data.category}
                           id="small"
                           name="category"
                           required
@@ -291,6 +320,7 @@ function DocForm() {
                           required
                           name="content"
                           onChange={handleChange}
+                          value={data.content}
                           className="mb-2 w-full h-40"
                         ></textarea>
                       </div>
@@ -326,8 +356,8 @@ function DocForm() {
                     <div className="w-full flex justify-between gap-4">
                       <div className="flex gap-4">
                         <div
-                          // onClick={(e) => back}
-                          class="flex"
+                          onClick={(e) => setUpload(!upload)}
+                          class="flex cursor-pointer"
                         >
                           <label
                             for="choose-me"
@@ -338,12 +368,7 @@ function DocForm() {
                         </div>
                       </div>
                       <div className="flex gap-4">
-                        <div class="flex">
-                          <input
-                            type="button"
-                            id="choose-me"
-                            class="peer hidden"
-                          />
+                        <div onClick={handleClear} class="flex">
                           <label
                             for="choose-me"
                             class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"

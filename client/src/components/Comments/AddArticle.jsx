@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Timestamp, collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage, db, auth } from "../../firebase.js";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import avatars from "../../images/LRO_logo2.png";
 import { useContext } from "react";
 import { ProductContext } from "../../contexts/ProductContextProvider";
@@ -33,7 +34,13 @@ export default function AddArticle({ colDB }) {
 
   const handlePublish = () => {
     if (!formData.description) {
-      alert("Please fill all the fields");
+      // alert("Please fill all the fields");
+      toast("Hãy viết gì đó để bình luận");
+
+      return;
+    }
+    if (formData.description.length > 2000) {
+      toast("Bạn đã comments nhiều chữ quá");
       return;
     }
     const storageRef = ref(
@@ -86,6 +93,8 @@ export default function AddArticle({ colDB }) {
 
   return (
     <div className=" m-auto items-center justify-center w-full ">
+      <ToastContainer />
+
       {!user ? (
         <>
           <div className="m-auto items-center justify-center  md:w-[90%] w-full ">
@@ -110,7 +119,7 @@ export default function AddArticle({ colDB }) {
                                  focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700
                                   dark:focus:ring-blue-800"
                 >
-                  Post
+                  Đăng
                 </button>
               </div>
             </div>
@@ -144,7 +153,7 @@ export default function AddArticle({ colDB }) {
                                  focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700
                                   dark:focus:ring-blue-800"
                 >
-                  Post
+                  Đăng
                 </button>
               </div>
             </div>

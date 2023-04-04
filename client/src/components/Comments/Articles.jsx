@@ -116,10 +116,13 @@ export default function Articles({ colDB }) {
                         </p>
                       </div>
                     </div>
-                    <p class="-mt-4 text-gray-500 mx-4">
+                    <p
+                      readOnly
+                      class={`-mt-4  mx-4 rounded-md break-words border-none `}
+                    >
                       {description.substring(0, 3000)}
                     </p>
-                    <div className="w-full flex justify-between">
+                    <div className="w-full flex justify-between -mt-2">
                       <div className="w-full flex justify-end">
                         <div className="block  md:flex  w-fit px-3 md:mr-2">
                           <span className="flex  px-1 py-[2px] rounded-lg md:mr-2 justify-center items-center">
