@@ -1,3 +1,4 @@
+@echo off
 echo "LEARNING RESOURCE ONLINE"
 cd admin
 echo "---------------------"
