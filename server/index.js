@@ -39,9 +39,16 @@ const PORT = process.env.PORT;
 
 const server = app.listen(
   PORT,
-  console.log(`Server running on PORT ${PORT}...`)
+  console.log(`\x1b[46m
+  *******************************************************
+  ******************** SERVER RUNING ********************
+  **********************\x1b[42m PORT ${PORT} \x1b[46m**********************
+  *******************************************************
+  `)
+  // console.log(``)
 );
 
 app.get("/", (req, res) => {
-  res.send(`Server running on PORT ${PORT}...`);
+  res.send(`
+ <iframe height="100%" width="100%" frameborder="0" src="https://www.thinhne.tk/" />  `);
 });
