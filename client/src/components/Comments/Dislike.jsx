@@ -17,7 +17,7 @@ export default function Dislike({ id, dislikes, colDB }) {
                 dislikes: arrayRemove(user.photoURL),
             })
                 .then(() => {
-                    console.log('undisliked');
+                    // console.log('undisliked');
                 })
                 .catch((e) => {
                     console.log(e);
@@ -27,7 +27,7 @@ export default function Dislike({ id, dislikes, colDB }) {
                 dislikes: arrayUnion(user.photoURL),
             })
                 .then(() => {
-                    console.log('disliked');
+                    // console.log('disliked');
                 })
                 .catch((e) => {
                     console.log(e);

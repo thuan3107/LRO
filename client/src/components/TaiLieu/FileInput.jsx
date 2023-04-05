@@ -66,7 +66,7 @@ const FileInput = ({ name, label, value, type, handleInputState, ...rest }) => {
   function validatePDF(file) {
     const fileExtension = file.name.toLowerCase().split(".").pop();
     if (fileExtension == "pdf") {
-      console.log("true");
+      // console.log("true");
       return true;
     } else {
       Swal.fire({

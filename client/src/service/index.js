@@ -8,7 +8,7 @@ import { LOGIN } from "./apiConstant.js";
 export const API_URL = process.env.REACT_APP_API_KEY;
 export const API_DOC_URL = "apidocs";
 export const API_ART_URL = "apiart";
-console.log(API_URL);
+// console.log(API_URL);
 export const FUNC_LOGIN = async (data) => {
   return axios({
     method: "post",

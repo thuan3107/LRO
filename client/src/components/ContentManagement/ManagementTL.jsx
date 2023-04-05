@@ -35,7 +35,7 @@ function ManagementTL() {
       setCount(data.data.count);
       setInfoCreators(data.data.infoCreators);
       setResult(data.data.result);
-      console.log(result);
+      // console.log(result);
     } catch (error) {
       console.log(error);
     }
@@ -77,9 +77,9 @@ function ManagementTL() {
 
   const DeleteDocs = async (id, url, id_URL) => {
     try {
-      console.log(id_URL);
+      // console.log(id_URL);
       const result = await FUNC_DELETE_DOC(auth, id);
-      console.log(result);
+      // console.log(result);
       if (result.data.status == 200) {
         const uid = `[${user?.userId}]_${removeVietnameseAndWhitespace(
           user?.username
@@ -99,7 +99,7 @@ function ManagementTL() {
   const handleIsPrivate = async (id) => {
     try {
       const result = await FUNC_SET_IS_PRIVATE_DOC(auth, id);
-      console.log(result);
+      // console.log(result);
       if (result.data.status == 200) {
         // getAllPost();
         getAllDocs();

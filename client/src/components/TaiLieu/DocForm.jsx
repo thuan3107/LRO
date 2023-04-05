@@ -62,7 +62,7 @@ function DocForm() {
       checkForm()
     ) {
       const resultLogin = await FUNC_CREATE_DOC(token, data);
-      console.log(resultLogin);
+      // console.log(resultLogin);
       if (resultLogin.status == 200) {
         if (resultLogin.data.status === 200) {
           toast("Đăng Tải Tài Liệu Thành Công");

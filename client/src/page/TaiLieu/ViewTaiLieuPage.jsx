@@ -27,7 +27,7 @@ function ViewTaiLieuPage() {
     try {
       // console.log(id);
       const result = await FUNC_FIND_ONE_DOC(id);
-      console.log(result);
+      // console.log(result);
       if (result.status == 200)
         if (result.data.status == 200) {
           setData(result.data.data);
@@ -42,7 +42,7 @@ function ViewTaiLieuPage() {
   const view = async () => {
     try {
       const result = await FUNC_COUNT_VIEW_DOC(token, id);
-      console.log(result);
+      // console.log(result);
     } catch (error) {}
   };
   useEffect(() => {

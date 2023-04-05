@@ -25,11 +25,11 @@ function HighLightDoc() {
   const handlerLike = async (id) => {
     like._id = id;
     like.photoURL = photoURL;
-    console.log(id);
-    console.log(like);
+    // console.log(id);
+    // console.log(like);
     try {
       const result = await FUNC_INTERACT_DOC(auth, like);
-      console.log(result);
+      // console.log(result);
       if (result.data.status === 200) {
         getPagination();
         return;

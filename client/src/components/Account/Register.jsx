@@ -76,7 +76,7 @@ function Register() {
 
     // const { refreshToken, providerData } = user;
     // setForm2
-    console.log(user);
+    // console.log(user);
     form2.form = "facebook";
     form2.uid = user?.uid;
     form2.username = username;
@@ -122,7 +122,7 @@ function Register() {
   };
   const Func_Register = async () => {
     const result = await register(form2);
-    console.log(result);
+    // console.log(result);
     if (result.status == 200) {
       if (result.data.status === 200) {
         // console.log(result.data);
@@ -235,7 +235,7 @@ function Register() {
             setAvatar(downloadURL);
             toast("Thêm ảnh đại diện thành công");
 
-            console.log(downloadURL);
+            // console.log(downloadURL);
           });
         }
       );

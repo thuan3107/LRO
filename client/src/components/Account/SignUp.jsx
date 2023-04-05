@@ -46,8 +46,8 @@ function SignUp() {
     const provider = new GoogleAuthProvider();
     const { user } = await signInWithPopup(firebaseAuth, provider);
     const { refreshToken, providerData } = user;
-    console.log(refreshToken);
-    console.log(providerData);
+    // console.log(refreshToken);
+    // console.log(providerData);
     const username = removeVietnameseAndWhitespace(
       user?.displayName.toLocaleLowerCase()
     );
@@ -79,7 +79,7 @@ function SignUp() {
     // console.log(refreshToken);
     // console.log(providerData);
     // setForm2
-    console.log(user);
+    // console.log(user);
     form2.form = "facebook";
     form2.uid = user?.uid;
     form2.username = username;
@@ -125,10 +125,10 @@ function SignUp() {
   };
   const Func_Register = async () => {
     const result = await register(form2);
-    console.log(result);
+    // console.log(result);
     if (result.status == 200) {
       if (result.data.status === 200) {
-        console.log(result.data);
+        // console.log(result.data);
         // localStorage.setItem("user", JSON.stringify(result.data.data));
         // toast("Register Successfully");
         let timerInterval;
@@ -160,7 +160,7 @@ function SignUp() {
       }
       if (result.data.status === 201) {
         // setErorrs(result.data.data);
-        console.log("201", result.data.data);
+        // console.log("201", result.data.data);
         toast(result.data.data);
         return;
       }
@@ -272,7 +272,7 @@ function SignUp() {
             setAvatar(downloadURL);
             toast("Thêm ảnh đại diện thành công");
 
-            console.log(downloadURL);
+            // console.log(downloadURL);
           });
         }
       );

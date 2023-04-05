@@ -1,28 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { register } from "../../service/Account/Register.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
-
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 // import Register from "../Register";
-import { FaFacebookF, FaGoogle, FaRegEnvelope } from "react-icons/fa";
-import { MdLockOutline } from "react-icons/md";
+// import { FaFacebookF, FaGoogle, FaRegEnvelope } from "react-icons/fa";
+// import { MdLockOutline } from "react-icons/md";
 import {
   getAuth,
   signInWithPopup,
   FacebookAuthProvider,
   GoogleAuthProvider,
-  GithubAuthProvider,
+  // GithubAuthProvider,
 } from "firebase/auth";
 import { app } from "../../firebase.js";
 import removeVietnameseAndWhitespace from "../../func/remove.class.js";
 import { splitName } from "../../func/sliceName.js";
-import { authentication } from "../../firebase.js";
+// import { authentication } from "../../firebase.js";
 import { login } from "../../service/Account/Login.js";
 import "flowbite";
-import { async } from "@firebase/util";
+// import { async } from "@firebase/util";
 function Login() {
   const navigation = useNavigate();
   const firebaseAuth = getAuth(app);
@@ -80,7 +79,7 @@ function Login() {
 
     // const { refreshToken, providerData } = user;
     // setForm2
-    console.log(user);
+    // console.log(user);
     form2.form = "facebook";
     form2.uid = user?.uid;
     form2.username = username;
@@ -98,7 +97,7 @@ function Login() {
   const Func_Login = async () => {
     // console.log("Login run");
     const resultLogin = await login(form2);
-    console.log(resultLogin);
+    // console.log(resultLogin);
     if (resultLogin.status == 200) {
       if (resultLogin.data.status === 200) {
         toast(resultLogin.data.message);
@@ -154,7 +153,7 @@ function Login() {
     try {
       form.email = form.username;
       const result = await login(form);
-      console.log(result);
+      // console.log(result);
       if (result.status == 200) {
         if (result.data.status == 200 || result.data.status == 100) {
           toast("Đăng nhập thành công");

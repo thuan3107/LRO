@@ -21,8 +21,8 @@ export const deleteCollection2 = async ({ collectionPath }) => {
       const docRef = db.collection(collectionPath);
       const result = await docRef.delete();
 
-      console.log("Document successfully deleted!");
-      console.log(result);
+      // console.log("Document successfully deleted!");
+      // console.log(result);
     } catch (error) {
       toast("Error deleting article", { type: "error" });
       console.log(error);
@@ -45,7 +45,7 @@ const deleteDocuments = async (collectionPath) => {
 
   await batch.commit();
 
-  console.log(`Documents in ${collectionPath} successfully deleted!`);
+  // console.log(`Documents in ${collectionPath} successfully deleted!`);
 };
 
 export const deleteCollection = async (collectionPath, id) => {

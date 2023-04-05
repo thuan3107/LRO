@@ -21,11 +21,11 @@ function ChangePass() {
     password: "",
   });
   const handleChange = async (e) => {
-    console.log("change");
+    // console.log("change");
 
     if (isConfirmPass == isPass) {
       const result = await FUNC_CHANGE_PASS_USER(auth, Form);
-      console.log(result);
+      // console.log(result);
       if (result.data.status == 200) {
         let timerInterval;
         Swal.fire({
@@ -75,7 +75,7 @@ function ChangePass() {
       oldPassword: isOldPass,
       password: isConfirmPass,
     });
-    console.log(Form);
+    // console.log(Form);
   }, [isPass, isConfirmPass, isOldPass]);
   return (
     <>

@@ -19,7 +19,7 @@ export default function LikeArticle({ id, likes, colDB }) {
         likes: arrayRemove(user.avatar),
       })
         .then(() => {
-          console.log("unliked");
+          // console.log("unliked");
         })
         .catch((e) => {
           console.log(e);
@@ -29,7 +29,7 @@ export default function LikeArticle({ id, likes, colDB }) {
         likes: arrayUnion(user.avatar),
       })
         .then(() => {
-          console.log("liked");
+          // console.log("liked");
         })
         .catch((e) => {
           console.log(e);

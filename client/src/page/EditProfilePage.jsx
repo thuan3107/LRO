@@ -5,7 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { useParams } from "react-router-dom";
 import { FileInput, Header, Login } from "../components/index.js";
 import {
-  FUNC_LOGIN,
   FUNC_UPDATE_PROFILE_USER,
   FUNC_VIEW_PROFILE_USER,
 } from "../service/index.js";
@@ -51,7 +50,7 @@ function EditProfilePage() {
   const CallAPI = async () => {
     try {
       const result = await FUNC_VIEW_PROFILE_USER(id);
-      console.log(result);
+      // console.log(result);
       setDataUser(result.data.data);
       var re = result.data.data;
       setFirstName(re.first_name);
@@ -75,9 +74,9 @@ function EditProfilePage() {
     try {
       if (Form.phone.length == 10) {
         if (!isFormEmpty()) {
-          console.log(Form);
+          // console.log(Form);
           const result = await FUNC_UPDATE_PROFILE_USER(auth, Form);
-          console.log(result);
+          // console.log(result);
           if (result.status == 200) {
             if (result.data.status == 200) {
               Swal.fire({
@@ -142,7 +141,7 @@ function EditProfilePage() {
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setAvatar(downloadURL);
-            console.log(downloadURL);
+            // console.log(downloadURL);
           });
         }
       );

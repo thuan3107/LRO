@@ -23,18 +23,18 @@ function CardPost() {
     try {
       const { data } = await FUNC_PAGE_ART(page);
       setArtsData(data);
-      console.log(data);
+      // console.log(data);
     } catch (error) {}
   };
 
   const handlerLike = async (id) => {
     like._id = id;
     like.photoURL = photoURL;
-    console.log(id);
-    console.log(like);
+    // console.log(id);
+    // console.log(like);
     try {
       const result = await FUNC_INTERACT_ART(auth, like);
-      console.log(result);
+      // console.log(result);
       if (result.data.status === 200) {
         getPagination();
         return;
@@ -51,7 +51,7 @@ function CardPost() {
   const nextPage = () => {
     const maxPage = Math.ceil(ArtsData.length / 15);
     setPage(page > maxPage ? 1 : page + 1);
-    console.log(page);
+    // console.log(page);
     // getPagination();
   };
   const prevPage = () => {

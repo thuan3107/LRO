@@ -44,7 +44,7 @@ function FormBV() {
       setoTitle(re.title);
       setSelected(re.tag);
       setValue(re.content);
-      console.log(value);
+      // console.log(value);
       setisP(Boolean(re.isPrivate));
       setForm({
         title: otitle,
@@ -82,7 +82,7 @@ function FormBV() {
   const handleSubmit = async () => {
     if (form.title != "" && form.content != "" && checkForm()) {
       const result = await FUNC_UPDATE_ART(auth, form);
-      console.log(result);
+      // console.log(result);
       if (result.status == 200) {
         if (result.data.status === 200) {
           toast(result.data.message);

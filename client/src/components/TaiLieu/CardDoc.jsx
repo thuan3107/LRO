@@ -26,11 +26,11 @@ function CardDoc({ category, layout }) {
   const handlerLike = async (id) => {
     like._id = id;
     like.photoURL = photoURL;
-    console.log(id);
-    console.log(like);
+    // console.log(id);
+    // console.log(like);
     try {
       const result = await FUNC_INTERACT_DOC(auth, like);
-      console.log(result);
+      // console.log(result);
       if (result.data.status === 200) {
         getPagination();
         return;
@@ -55,7 +55,7 @@ function CardDoc({ category, layout }) {
   const nextPage = () => {
     const maxPage = Math.ceil(DocsData.length / 15);
     setPage(page > maxPage ? 1 : page + 1);
-    console.log(page);
+    // console.log(page);
     // getPagination();
   };
   const prevPage = () => {

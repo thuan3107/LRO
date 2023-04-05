@@ -32,7 +32,7 @@ function ManaBV() {
       setCount(data.data?.count);
       setInfoCreators(data.data.infoCreators);
       setResult(data.data.result);
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -77,7 +77,7 @@ function ManaBV() {
   const DeletePosts = async (id) => {
     try {
       const result = await FUNC_DELETE_ART(auth, id);
-      console.log(result);
+      // console.log(result);
       if (result.data.status == 200) {
         getAllPost();
         toast("1 Bài Viết đã được xoá");
@@ -90,7 +90,7 @@ function ManaBV() {
   const handleIsPrivate = async (id) => {
     try {
       const result = await FUNC_SET_IS_PRIVATE_ART(auth, id);
-      console.log(result);
+      // console.log(result);
       if (result.data.status == 200) {
         getAllPost();
         // toast("Delete Successfully");

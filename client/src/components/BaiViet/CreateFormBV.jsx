@@ -41,7 +41,7 @@ function FormBV() {
   const handleSubmit = async () => {
     if (form.title != "" && form.content != "" && checkForm()) {
       const result = await FUNC_CREATE_ART(auth, form);
-      console.log(result);
+      // console.log(result);
       if (result.status == 200) {
         if (result.data.status === 200) {
           toast("Đăng tải bài viết thành công");

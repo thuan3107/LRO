@@ -1,37 +1,16 @@
-import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
 
 // import { Swiper, SwiperSlide } from "swiper/react";
-import { Slide } from 'react-slideshow-image';
-import 'react-slideshow-image/dist/styles.css'
+// import { Slide } from 'react-slideshow-image';
+import "react-slideshow-image/dist/styles.css";
 
 import { Link } from "react-router-dom";
-import {
-  CardAuthor,
-  CardRight,
-  CardTL,
-  CardDoc,
-  Header,
-  Footer,
-} from "../../components/index.js";
-import { ProductContext } from "../../contexts/ProductContextProvider.jsx";
+import { CardTL, Header, Footer } from "../../components/index.js";
+// import { ProductContext } from "../../contexts/ProductContextProvider.jsx";
 
 import Banner from "../../components/components/Banner.jsx";
 
 function TaiLieuPage() {
-  const { user } = useContext(ProductContext);
-  const token = user?.token;
-  const photoURL = user?.photoURL;
-  const [docs, setdocs] = useState([]);
-  const [data, setData] = useState([]);
-  const [dataUser, setDataUser] = useState([]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      console.log("1");
-    }, 500);
-  });
-
   return (
     <>
       <div>

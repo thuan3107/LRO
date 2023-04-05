@@ -27,7 +27,7 @@ function CardViewUser({ data }) {
   const handleChange = async (e) => {
     if (isConfirmPass === isPass) {
       const result = await FUNC_CHANGE_PASS_USER(auth, isConfirmPass);
-      console.log(result);
+      // console.log(result);
       if (result.data.status == 200) {
         let timerInterval;
         Swal.fire({

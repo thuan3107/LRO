@@ -33,7 +33,7 @@ function ViewBaiVietPage() {
   };
 
   useEffect(() => {
-    console.table(data);
+    // console.table(data);
     findOnePost();
   }, []);
 

@@ -1,14 +1,8 @@
-import {
-  DOCS_HIGHT,
-  FIND_ONE_DOC,
-  GET_DOC_LIST,
-  PAGE_DOCS,
-} from "../apiConstant.js";
+import { DOCS_HIGHT, FIND_ONE_DOC, PAGE_DOCS } from "../apiConstant.js";
 import axios from "axios";
 import {
   CREATE_DOC,
   DOCS_LIST,
-  HIGHT_LIGHT_DOC,
   INTERACT_DOC,
   REMOVE_DOC,
   SETISPRIVATE_DOC,

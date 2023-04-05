@@ -27,9 +27,9 @@ import { useContext } from "react";
 import { ProductContext } from "../../contexts/ProductContextProvider";
 export default function Articles({ colDB }) {
   const { user } = useContext(ProductContext);
-  console.table(user);
+  // console.table(user);
   const [articles, setArticles] = useState([]);
-  console.log(articles);
+  // console.log(articles);
   const [open, setOpen] = useState(0);
 
   const handleOpen = (value) => {

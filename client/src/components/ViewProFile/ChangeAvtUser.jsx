@@ -17,7 +17,7 @@ const ChangeAvtUser = ({ name, label, value, type, avatar, ...rest }) => {
   const [progressShow, setProgressShow] = useState(false);
   const [checkFile, setCheckFile] = useState(false);
   const handleUpload = () => {
-    console.log(value);
+    // console.log(value);
     setProgressShow(true);
     const fileName = new Date().getTime() + value.name;
     const storageRef = ref(
@@ -57,7 +57,7 @@ const ChangeAvtUser = ({ name, label, value, type, avatar, ...rest }) => {
   function validatePDF(file) {
     const fileExtension = file.name.toLowerCase().split(".").pop();
     if (fileExtension == "pdf") {
-      console.log("true");
+      // console.log("true");
       return true;
     } else {
       Swal.fire({

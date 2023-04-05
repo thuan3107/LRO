@@ -9,7 +9,7 @@ const DocForm = () => {
     dataURL: "",
     creater: "",
   });
-  console.log(data);
+  // console.log(data);
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
   };
@@ -23,7 +23,7 @@ const DocForm = () => {
     try {
       const url = "http://localhost:8080/api/docs" + "/adddoc";
       const { data: res } = await axios.post(url, data);
-      console.log(res);
+      // console.log(res);
     } catch (error) {
       console.log(error);
     }
