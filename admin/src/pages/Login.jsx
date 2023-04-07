@@ -43,7 +43,8 @@ export default function Login() {
           timer: 1500,
         });
         setTimeout(() => {
-          navigation("/");
+          // navigation("/");
+          window.location.href("/");
         }, 2000);
       } else {
         Swal.fire({

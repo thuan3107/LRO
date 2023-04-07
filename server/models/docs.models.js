@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const { randomABC } = require("../ran.js");
-
+var today = new Date();
+var day =
+  today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear();
 const DOCSchema = new mongoose.Schema(
   {
     userId: {
@@ -51,6 +53,10 @@ const DOCSchema = new mongoose.Schema(
     creatorsPhoto: {
       type: String,
       required: true,
+    },
+    date: {
+      type: String,
+      default: day,
     },
   },
   { timestamps: true }
