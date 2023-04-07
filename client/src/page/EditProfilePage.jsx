@@ -88,8 +88,8 @@ function EditProfilePage() {
                 timer: 1500,
               });
               localStorage.clear();
-              // window.location = "/login";
-              navigation("/login");
+              window.location = "/login";
+              // navigation("/login");
             }
           } else {
             Swal.fire({

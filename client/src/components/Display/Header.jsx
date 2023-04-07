@@ -53,7 +53,8 @@ function Header() {
         Swal.fire("Đã Đăng Xuất", "Đăng Xuất Thành Công", "success");
         localStorage.clear();
         // navigation("/");
-        window.location.href = "/";
+        // window.location.href = "/";
+        window.location = "/";
       }
     });
    

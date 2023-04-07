@@ -102,7 +102,8 @@ function Register() {
         // console.log(result);
         localStorage.setItem("user", JSON.stringify(resultLogin.data.data));
         setTimeout(() => {
-          window.location.href = "/";
+          // window.location.href = "/";
+          window.location = "/";
         }, 2000);
         return;
       }

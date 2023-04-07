@@ -6,39 +6,42 @@ import { deleteObject, ref } from "firebase/storage";
 import { TiDelete } from "react-icons/ti";
 import Swal from "sweetalert2";
 
-export default function DeleteArticle({ id, imageUrl, colDB }) {
+export default function DeleteArticle({ id, imageUrl, colDB, description }) {
   // const [temp, setTemp] = useState(false);
   const handleDelete = async () => {
-    if (
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "Xoá Bình Luận Thành Công",
-        showConfirmButton: false,
-        timer: 1500,
-      })
-    ) {
-      try {
-        // Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
-        await deleteDoc(doc(db, colDB, id));
-        const storageRef = ref(storage, imageUrl);
-        await deleteObject(storageRef);
-      } catch (error) {
-        toast("Error deleting article", { type: "error" });
-        console.log(error);
-      }
+    // if (
+    //   Swal.fire({
+    //     position: "center",
+    //     icon: "success",
+    //     title: "Xoá Bình Luận Thành Công",
+    //     showConfirmButton: false,
+    //     timer: 1500,
+    //   })
+    // ) {
+
+    // }
+    try {
+      // Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+      await deleteDoc(doc(db, colDB, id));
+      // const storageRef = ref(storage, id);
+      // await deleteObject(storageRef);
+      toast("1 Bình luận đã được xoá", { type: "success" });
+    } catch (error) {
+      // toast("Error deleting article", { type: "error" });
+      console.log(error);
     }
   };
 
   function sw() {
     Swal.fire({
-      title: "Are you sure?",
-      text: "Bạn Chắc Chắn Muốn Xoá",
+      title: "Bạn muốn xoá bình luận này",
+      text: description.substring(0, 50) + "...",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "Huỷ",
+      confirmButtonText: "Chấp nhận xoá",
     }).then((result) => {
       if (result.isConfirmed) {
         handleDelete();

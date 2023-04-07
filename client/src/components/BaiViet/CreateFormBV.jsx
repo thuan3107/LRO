@@ -40,7 +40,7 @@ function FormBV() {
     });
   }, [otitle, value, isP, selected]);
 
-  console.table(form);
+  // console.table(form);
   const handleSubmit = async () => {
     if (form.title != "" && form.content != "" && checkForm()) {
       const result = await FUNC_CREATE_ART(auth, form);

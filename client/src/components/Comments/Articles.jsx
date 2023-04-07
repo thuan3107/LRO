@@ -107,6 +107,7 @@ export default function Articles({ colDB }) {
                                 id={id}
                                 imageUrl={userPhotoURL}
                                 colDB={colDB}
+                                description={description}
                               />
                             )}
                           </p>

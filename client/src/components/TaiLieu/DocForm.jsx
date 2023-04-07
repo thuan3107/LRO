@@ -66,7 +66,7 @@ function DocForm() {
       // console.log(resultLogin);
       if (resultLogin.status == 200) {
         if (resultLogin.data.status === 200) {
-          toast("Đăng Tải Tài Liệu Thành Công");
+          toast.success("Đăng Tải Tài Liệu Thành Công");
           setData({
             title: "",
             tag: "",
@@ -93,11 +93,12 @@ function DocForm() {
           return;
         }
         if (resultLogin.data.status === 201) {
-          toast(resultLogin.data.data);
+          toast.error("Đăng Tải Tài Liệu Thất Bại");
+
           return;
         }
         if (resultLogin.data.status === 202) {
-          toast(resultLogin.data.message);
+          toast.error("Đăng Tải Tài Liệu Thất Bại");
           return;
         }
       }
@@ -204,7 +205,7 @@ function DocForm() {
                     <FileInput
                       className={`w-full `}
                       name="docs_URL"
-                      label="Choose PDF"
+                      label="Chọn Tài Liệu PDF"
                       handleInputState={handleInputState}
                       type="docs"
                       value={data.docs_URL}

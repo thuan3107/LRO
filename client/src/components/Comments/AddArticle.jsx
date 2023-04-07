@@ -10,7 +10,7 @@ import { ProductContext } from "../../contexts/ProductContextProvider";
 export default function AddArticle({ colDB }) {
   // const [user] = useAuthState(auth);
   const { user } = useContext(ProductContext);
-  const photo = user && user.avatar ? user.avatar : "";
+  const photo = user?.avatar;
   // console.log(user);
   const [formData, setFormData] = useState({
     description: "",
