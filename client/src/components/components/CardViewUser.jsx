@@ -6,8 +6,9 @@ import { ProductContext } from "../../contexts/ProductContextProvider";
 import { BoxViewBV, BoxView, Skenleton } from "../index.js";
 import Swal from "sweetalert2";
 import { FUNC_CHANGE_PASS_USER } from "../../service/index.js";
-
+import { useNavigate } from "react-router-dom";
 function CardViewUser({ data }) {
+  const navigation = useNavigate();
   const { user } = useContext(ProductContext);
   let auth = user?.token;
   const [isMenu, setIsMenu] = useState(1);
@@ -60,7 +61,7 @@ function CardViewUser({ data }) {
           timer: 1500,
         });
 
-        window.location.href = `/u/${data._id}`;
+        navigation(`/u/${data._id}`);
       }
     } else {
       // console.log(isConfirmPass);

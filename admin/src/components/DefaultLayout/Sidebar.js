@@ -5,7 +5,9 @@ import Icon from "@material-tailwind/react/Icon";
 import H6 from "@material-tailwind/react/Heading6";
 import { Button } from "@material-tailwind/react";
 import { ProductContext } from "contexts/ProductContextProvider.js";
+import { useNavigate } from "react-router-dom";
 export default function Sidebar() {
+  const navigation = useNavigate();
   const { user } = useContext(ProductContext);
 
   const [showSidebar, setShowSidebar] = useState("-left-64");
@@ -40,7 +42,7 @@ export default function Sidebar() {
   ];
   const handlerLogout = () => {
     localStorage.clear();
-    window.location = "/login";
+    navigation("/login");
   };
   return (
     <>

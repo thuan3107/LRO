@@ -8,8 +8,9 @@ import { ProductContext } from "../../contexts/ProductContextProvider.jsx";
 import { FileInput } from "../../components";
 import { FUNC_CREATE_DOC } from "../../service/FuncDoc/index.js";
 import { CategoryArr } from "../../data/CategoryDoc.js";
-
+import { useNavigate } from "react-router-dom";
 function DocForm() {
+  const navigation = useNavigate();
   const { user } = useContext(ProductContext);
   const token = user?.token;
   const [isP, setisP] = useState(false);
@@ -87,7 +88,7 @@ function DocForm() {
             timer: 1500,
           });
           setTimeout(() => {
-            window.location = "/tailieu";
+            navigation("/tailieu");
           }, 1000);
           return;
         }

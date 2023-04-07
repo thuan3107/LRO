@@ -14,6 +14,7 @@ import {
   FUNC_COUNT_VIEW_DOC,
   FUNC_FIND_ONE_DOC,
 } from "../../service/FuncDoc/index.js";
+import moment from "moment";
 
 function ViewTaiLieuPage() {
   const { user } = useContext(ProductContext);
@@ -171,7 +172,9 @@ function ViewTaiLieuPage() {
                     </a>
                   );
                 })}
-                <p class="text-sm text-gray-400">Update {data?.date}</p>
+                <p class="text-sm text-gray-400">
+                  Đăng tải: {moment(data?.createdAt).fromNow()}
+                </p>
               </div>
             </div>
 

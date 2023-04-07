@@ -8,7 +8,10 @@ import Swal from "sweetalert2";
 import { useContext } from "react";
 import { ProductContext } from "../../contexts/ProductContextProvider";
 import { FUNC_CREATE_ART } from "../../service/FuncArt/index.js";
+import { useNavigate } from "react-router-dom";
 function FormBV() {
+  const navigation = useNavigate();
+
   const { user } = useContext(ProductContext);
   const auth = user?.token;
   const [value, setValue] = React.useState("");
@@ -44,21 +47,22 @@ function FormBV() {
       // console.log(result);
       if (result.status == 200) {
         if (result.data.status === 200) {
-          toast("Đăng tải bài viết thành công");
+          toast.success("Đăng tải bài viết thành công");
           setTimeout(() => {
             setSelected([]);
             setValue("");
             setoTitle("");
-            window.location = "/baiviet";
-          }, 1000);
+
+            navigation("/baiviet");
+          }, 2000);
           return;
         }
         if (result.data.status === 201) {
-          toast(result.data.data);
+          toast.error(result.data.data);
           return;
         }
         if (result.data.status === 202) {
-          toast(result.data.message);
+          toast.error(result.data.message);
           return;
         }
       }

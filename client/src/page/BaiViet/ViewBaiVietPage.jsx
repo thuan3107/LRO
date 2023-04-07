@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import AddArticle from "../../components/Comments/AddArticle.jsx";
 import Articles from "../../components/Comments/Articles.jsx";
 import { Footer, Header } from "../../components";
+import moment from "moment";
 
 import {
   FUNC_COUNT_VIEW_ART,
@@ -159,7 +160,9 @@ function ViewBaiVietPage() {
                     </a>
                   );
                 })}
-                <p class="text-sm text-gray-400">Update {data?.date}</p>
+                <p class="text-sm text-gray-400">
+                  Update {moment(data?.createdAt).fromNow()}
+                </p>
               </div>
             </div>
             {/* Button hiện thị bình luận */}

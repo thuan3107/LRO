@@ -10,9 +10,12 @@ import {
 } from "@material-tailwind/react";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { api } from "services/api.js";
 const myApi = new api();
 export default function ChangePass({ user }) {
+  const navigation = useNavigate();
+
   // const { user } = useContext(ProductContext);
   let auth = user?.token;
   const [isMenu, setIsMenu] = useState(1);
@@ -47,7 +50,8 @@ export default function ChangePass({ user }) {
           },
           willClose: () => {
             clearInterval(timerInterval);
-            window.location.href = `/u/${user?.userId}`;
+
+            navigation(`/u/${user?.userId}`);
             setIsPass("");
             setIsConfirmPass("");
           },

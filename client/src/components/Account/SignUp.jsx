@@ -100,24 +100,24 @@ function SignUp() {
     // console.log(resultLogin);
     if (resultLogin.status == 200) {
       if (resultLogin.data.status === 200) {
-        toast(resultLogin.data.message);
+        toast.success(resultLogin.data.message);
         // toast("Vui Lòng Chờ");
         // console.log(result);
         localStorage.setItem("user", JSON.stringify(resultLogin.data.data));
         setTimeout(() => {
-          window.location.href = "/";
+          navigation("/");
         }, 2000);
         return;
       }
       if (resultLogin.data.status === 201) {
         // setErorrs(resultLogin.data.data);
-        toast(resultLogin.data.data);
+        toast.error(resultLogin.data.data);
         // console.log()
         return;
       }
 
       if (resultLogin.data.status === 202) {
-        toast(resultLogin.data.message);
+        toast.error(resultLogin.data.message);
         return;
       }
     }
@@ -161,7 +161,7 @@ function SignUp() {
       if (result.data.status === 201) {
         // setErorrs(result.data.data);
         // console.log("201", result.data.data);
-        toast(result.data.data);
+        toast.error(result.data.data);
         return;
       }
       if (result.data.status === 202) {

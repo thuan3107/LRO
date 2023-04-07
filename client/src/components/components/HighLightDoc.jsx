@@ -12,6 +12,7 @@ import Skenleton from "./Skenleton.jsx";
 import { Link } from "react-router-dom";
 import { CategoryArr } from "../../data/CategoryDoc.js";
 import { NotLogin } from "../../func/NotiteNotLogin.js";
+import moment from "moment";
 function HighLightDoc() {
   const { user } = useContext(ProductContext);
   const [page, setPage] = useState(Number(1));
@@ -378,6 +379,10 @@ function HighLightDoc() {
                                           </h1>
                                         </Link>
                                       </div> */}
+                                      <span className="md:text-xs font-thin text-gray-800 text-base">
+                                        Đăng tải:{" "}
+                                        {moment(item?.createdAt).fromNow()}
+                                      </span>
                                       <p className="bg-blue-100 flex text-md absolute -z-1 px-2 py-2  rounded-tl-3xl rounded-br-lg bottom-0 right-0 items-end">
                                         <img
                                           src={item?.creatorsPhoto}

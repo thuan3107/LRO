@@ -1,10 +1,12 @@
 const mongoose = require("mongoose");
 
-var today = new Date();
-var day =
-  today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear();
-var time =
-  today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+// var today = new Date();
+// var day =
+//   today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear();
+// var time =
+//   today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+const timeElapsed = Date.now();
+const today = new Date(timeElapsed);
 const articleschema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -43,15 +45,9 @@ const articleschema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  date: {
-    type: String,
-    default: day,
-  },
-  time: {
-    type: String,
-    default: time,
-  },
-});
+
+
+},{timestamps:true});
 
 const Articles = mongoose.model("articles", articleschema);
 module.exports = Articles;

@@ -8,7 +8,9 @@ import Swal from "sweetalert2";
 import { FUNC_CHANGE_PASS_USER } from "../../service/index.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 function ChangePass() {
+  const navigation = useNavigate();
   const { user } = useContext(ProductContext);
   let auth = user?.token;
   const [isMenu, setIsMenu] = useState(1);
@@ -44,7 +46,8 @@ function ChangePass() {
 
           willClose: () => {
             clearInterval(timerInterval);
-            window.location.href = `/u/${user?.userId}`;
+            // window.location.href = ;
+            navigation(`/u/${user?.userId}`);
             setIsPass("");
             setIsConfirmPass("");
           },

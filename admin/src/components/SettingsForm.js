@@ -7,8 +7,10 @@ import Textarea from '@material-tailwind/react/Textarea';
 import Swal from "sweetalert2";
 import { api } from "services/api.js";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 const myApi = new api();
 export default function SettingsForm({ user }) {
+  const navigation = useNavigate();
   const id = user?.userId;
   const auth = user?.token;
   const [dataUser, setDataUser] = useState([]);
@@ -68,7 +70,8 @@ export default function SettingsForm({ user }) {
                 timer: 1500,
               });
               localStorage.clear();
-              window.location = "/login";
+
+              navigation("/login");
             }
           } else {
             Swal.fire({

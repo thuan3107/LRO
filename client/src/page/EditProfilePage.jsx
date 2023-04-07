@@ -14,8 +14,9 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from "../firebase.js";
 import ChangeAvtUser from "../components/ViewProFile/ChangeAvtUser.jsx";
 import { extractString } from "../func/remove.class.js";
-
+import { useNavigate } from "react-router-dom";
 function EditProfilePage() {
+  const navigation = useNavigate();
   const { id } = useParams();
   const { user } = useContext(ProductContext);
   const form = user?.form == "LRO" ? true : false;
@@ -87,7 +88,8 @@ function EditProfilePage() {
                 timer: 1500,
               });
               localStorage.clear();
-              window.location = "/login";
+              // window.location = "/login";
+              navigation("/login");
             }
           } else {
             Swal.fire({

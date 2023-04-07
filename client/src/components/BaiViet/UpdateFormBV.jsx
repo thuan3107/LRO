@@ -13,8 +13,9 @@ import {
   FUNC_FIND_ONE_ART,
   FUNC_UPDATE_ART,
 } from "../../service/FuncArt/index.js";
-
+import { useNavigate } from "react-router-dom";
 function FormBV() {
+  const navigation = useNavigate();
   const { user } = useContext(ProductContext);
   const auth = user?.token;
 
@@ -100,7 +101,8 @@ function FormBV() {
               creatorsId: user.userId,
               creatorsPhoto: user.avatar,
             });
-            // window.location = "/baiviet";
+
+            navigation("/");
           }, 1000);
           return;
         }

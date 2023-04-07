@@ -100,25 +100,24 @@ function Login() {
     // console.log(resultLogin);
     if (resultLogin.status == 200) {
       if (resultLogin.data.status === 200) {
-        toast(resultLogin.data.message);
+        toast.success("Đăng nhập thành công");
         // console.log(result);
         // toast("Vui Lòng Chờ");
         localStorage.setItem("user", JSON.stringify(resultLogin.data.data));
         setTimeout(() => {
-          window.location.href = "/";
-          // navigation("/");
+          navigation("/");
         }, 2000);
         return;
       }
       if (resultLogin.data.status === 201) {
         // setErorrs(resultLogin.data.data);
-        toast("Tên đăng nhập hoặc mật khẩu không chính xác");
+        toast.error("Tên đăng nhập hoặc mật khẩu không chính xác");
         return;
       }
 
       if (resultLogin.data.status === 202) {
         // toast(resultLogin.data.message);
-        toast("Tên đăng nhập hoặc mật khẩu không chính xác");
+        toast.error("Tên đăng nhập hoặc mật khẩu không chính xác");
 
         return;
       }
@@ -156,28 +155,27 @@ function Login() {
       // console.log(result);
       if (result.status == 200) {
         if (result.data.status == 200 || result.data.status == 100) {
-          toast("Đăng nhập thành công");
+          toast.success("Đăng nhập thành công");
           // toast("Vui Lòng Chờ");
           // console.log(result);
           localStorage.setItem("user", JSON.stringify(result.data.data));
 
           setTimeout(() => {
-            // navigation("/");
-            window.location.href = "/";
+            navigation("/");
           }, 2000);
           return;
         }
         if (result.data.status === 201) {
           setErorrs(result.data.data);
           // toast(result.data.data);
-          toast("Tên đăng nhập hoặc mật khẩu không chính xác");
+          toast.error("Tên đăng nhập hoặc mật khẩu không chính xác");
 
           return;
         }
 
         if (result.data.status === 202) {
           // toast(result.data.message);
-          toast("Tên đăng nhập hoặc mật khẩu không chính xác");
+          toast.error("Tên đăng nhập hoặc mật khẩu không chính xác");
 
           return;
         }

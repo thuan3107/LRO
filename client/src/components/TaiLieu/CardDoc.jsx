@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import Moment from "react-moment";
 import { ProductContext } from "../../contexts/ProductContextProvider.jsx";
 import { FiEye } from "react-icons/fi";
 import { AiFillHeart } from "react-icons/ai";
@@ -11,6 +12,7 @@ import Skenleton from "../components/Skenleton.jsx";
 import { Link } from "react-router-dom";
 import { CategoryArr } from "../../data/CategoryDoc.js";
 import { NotLogin } from "../../func/NotiteNotLogin.js";
+import moment from "moment";
 function CardDoc({ category, layout }) {
   const { user } = useContext(ProductContext);
   const [page, setPage] = useState(Number(1));
@@ -97,7 +99,11 @@ function CardDoc({ category, layout }) {
                                         {renderCategory(item?.category)}
                                       </span>
                                     </p>
-
+                                    {/* <p className=" w-auto h flex text-md absolute -z-1   bottom-0 left-0">
+                                      <span className=" text-blue-400 font-mono">
+                                        {moment(item?.createdAt).fromNow()}
+                                      </span>
+                                    </p> */}
                                     <div class="w-full h-full md:w-1/3  bg-white md:grid md:place-items-center top-4 ">
                                       <iframe
                                         class="w-full h-[70%] overflow-hidden overflow-y-hidden overflow-x-hidden rounded cursor-grabbing  shadow-lg box-decoration-clone"
@@ -107,6 +113,7 @@ function CardDoc({ category, layout }) {
                                         scrolling="0"
                                       />
                                     </div>
+
                                     <div class="w-full md:w-2/3  bg-white md:flex md:flex-col md:space-y-2 md:p-3">
                                       <div class="flex justify-between item-center">
                                         <p class="text-gray-500 font-medium hidden md:block">
@@ -310,6 +317,7 @@ function CardDoc({ category, layout }) {
                                           </div>
                                         </div>
                                       </div>
+
                                       <h3 class=" text-gray-800 md:text-lg text-[16px] font-light">
                                         {user ? (
                                           <Link
@@ -368,6 +376,10 @@ function CardDoc({ category, layout }) {
                                           );
                                         })}
                                       </div>
+                                      <span className="md:text-xs font-thin text-gray-800 text-base">
+                                        Đăng tải:{" "}
+                                        {moment(item?.createdAt).fromNow()}
+                                      </span>
                                       {/* <div className="flex justify-start items-end my-1 z-20 ">
                                         <img
                                           src={item?.creatorsPhoto}
@@ -555,14 +567,18 @@ function CardDoc({ category, layout }) {
                                       <p class="mt-1 text-sm font-medium text-gray-600 md:mt-2 hover:text-blue-400">
                                         {user ? (
                                           <Link to={`/u/${item?.creatorsId}`}>
-                                            By {item?.creatorsName}
+                                            Tác giả: {item?.creatorsName}
                                           </Link>
                                         ) : (
                                           <span onClick={(e) => NotLogin()}>
-                                            By {item?.creatorsName}
+                                            Tác giả: {item?.creatorsName}
                                           </span>
                                         )}
                                       </p>
+                                      <span className="md:text-xs font-thin text-gray-800 text-base">
+                                        Đăng tải:{" "}
+                                        {moment(item?.createdAt).fromNow()}
+                                      </span>
                                     </div>
                                   </div>
                                   <div class="flex items-center justify-between md:items-center lg:justify-between ">
@@ -571,8 +587,16 @@ function CardDoc({ category, layout }) {
                                         Current Bid: 0.91 <span>ETH</span>
                                       </p> */}
                                       <div class="flex flex-row-reverse md:mt-2 lg:mt-0">
-                                        <span class="z-0 ml-px inline-flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-[#E0E5F2] text-xs text-navy-700 ">
-                                          +{item?.like?.length}
+                                        <span
+                                          class={`${
+                                            item?.like?.length < 5
+                                              ? "hidden"
+                                              : ""
+                                          } z-0 ml-px inline-flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-[#E0E5F2] text-xs text-navy-700`}
+                                        >
+                                          +
+                                          {item?.like?.length -
+                                            item?.like?.slice(0, 5)}
                                         </span>
                                         {item?.like?.slice(0, 5)?.map((i) => {
                                           return (

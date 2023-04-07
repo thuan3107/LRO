@@ -67,7 +67,7 @@ exports.RemoveArt = async (req, res) => {
     if (result) {
       const user = await User.findOneAndUpdate(
         { _id: req.userId },
-        { $pull: { docs: req.body._id } }
+        { $pull: { articles: req.body._id } }
       );
 
       return res.json(

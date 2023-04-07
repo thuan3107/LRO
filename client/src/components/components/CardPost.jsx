@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
+// import Moment from "react-moment";
+import moment from 'moment';
 import { ProductContext } from "../../contexts/ProductContextProvider.jsx";
 import { BsFillHeartFill } from "react-icons/bs";
 import { FaDownload, FaRegCommentDots } from "react-icons/fa";
@@ -86,7 +88,11 @@ function CardPost() {
                             </NavLink>
                           </span>
                         </div>
-                        <span className="mx-1 p-1 "> {item?.date}</span>
+                        <span className="mx-1 p-1 ">
+                        
+                           {moment(item?.createdAt).fromNow()}
+
+                        </span>
                       </div>
                       <div className="block">
                         {user && user ? (
