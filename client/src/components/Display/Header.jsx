@@ -52,7 +52,8 @@ function Header() {
       if (result.isConfirmed) {
         Swal.fire("Đã Đăng Xuất", "Đăng Xuất Thành Công", "success");
         localStorage.clear();
-        navigation("/");
+        // navigation("/");
+        window.location.href = "/";
       }
     });
    

@@ -7,6 +7,7 @@ const Doc = require("../models/docs.models.js");
 
 const { StatusCode } = require("../utils/constants.js");
 const { jsonGenerate } = require("../utils/helpers.js");
+const Docs = require("../models/docs.models.js");
 
 exports.Login = async (req, res) => {
   const JWT_TOKEN_SECRET = process.env.JWT_TOKEN_SECRET;
@@ -180,45 +181,45 @@ exports.FindOneUser = async (req, res) => {
 };
 
 exports.UpdatePersonalInformation = async (req, res) => {
- try {
-   const _id = req.userId;
-   const { first_name, last_name, email, phone, avatar, isSex } = req.body;
-   const data = { first_name, last_name, email, phone, avatar, isSex };
-   const UserInfo = await User.findById(_id);
-   let userExist = false;
-   if (UserInfo.email != email) {
-     userExist = await User.findOne({
-       $or: [
-         {
-           email: email,
-         },
-       ],
-     });
-   }
+  try {
+    const _id = req.userId;
+    const { first_name, last_name, email, phone, avatar, isSex } = req.body;
+    const data = { first_name, last_name, email, phone, avatar, isSex };
+    const UserInfo = await User.findById(_id);
+    let userExist = false;
+    if (UserInfo.email != email) {
+      userExist = await User.findOne({
+        $or: [
+          {
+            email: email,
+          },
+        ],
+      });
+    }
 
-   //!User or Email already exists
-   if (userExist) {
-     return res.json(
-       jsonGenerate(
-         StatusCode.UNPROCESSABLE_ENTITY,
-         " Email  already exists",
-         UserInfo.email
-       )
-     );
-   }
-   try {
-     const result = await User.findByIdAndUpdate(_id, data);
-     return res.json(
-       jsonGenerate(
-         StatusCode.SUCCESS,
-         "Update Personal Information Successfully",
-         result
-       )
-     );
-   } catch (error) {
-     return res.status(500).json("Internal server error ");
-   }
- } catch (error) {}
+    //!User or Email already exists
+    if (userExist) {
+      return res.json(
+        jsonGenerate(
+          StatusCode.UNPROCESSABLE_ENTITY,
+          " Email  already exists",
+          UserInfo.email
+        )
+      );
+    }
+    try {
+      const result = await User.findByIdAndUpdate(_id, data);
+      return res.json(
+        jsonGenerate(
+          StatusCode.SUCCESS,
+          "Update Personal Information Successfully",
+          result
+        )
+      );
+    } catch (error) {
+      return res.status(500).json("Internal server error ");
+    }
+  } catch (error) {}
 };
 
 // exports.ChangeThePassword = async (req, res) => {
@@ -247,7 +248,6 @@ exports.UpdatePersonalInformation = async (req, res) => {
 //     return res.status(500).json("Internal server error ");
 //   }
 // };
-
 
 exports.ChangeThePassword = async (req, res) => {
   const { oldPassword, password } = req.body;
@@ -286,26 +286,66 @@ exports.ChangeThePassword = async (req, res) => {
   }
 };
 
-exports.SearchData = async (req, res) => {
-    const PAGE_SIZE = 10;
-    const skip = 1;
-    var needle = req.params.q;
-    try {
-      const reDoc = await Doc.find({
-        sku: { $regex: new RegExp(`${needle}$`) },
-      });
-      const reArt = await Art.find({
-        sku: { $regex: new RegExp(`${needle}$`) },
-      });
-      // var result = { ...reDoc, ...reArt };
-      const result = reDoc.concat(reArt);
+// exports.SearchData = async (req, res) => {
+//     const PAGE_SIZE = 10;
+//     const skip = 1;
+//     var needle = req.params.q;
+//     try {
+//       const reDoc = await Doc.find({
+//         sku: { $regex: new RegExp(`${needle}$`) },
+//       });
+//       const reArt = await Art.find({
+//         sku: { $regex: new RegExp(`${needle}$`) },
+//       });
+//       // var result = { ...reDoc, ...reArt };
+//       const result = reDoc.concat(reArt);
 
-      return res.json(
-        jsonGenerate(StatusCode.SUCCESS, "Data Succssfully", result)
-      );
-    } catch (error) {
-      return res.json(
-        jsonGenerate(StatusCode.UNPROCESSABLE_ENTITY, "Error", error)
-      );
-    }
+//       return res.json(
+//         jsonGenerate(StatusCode.SUCCESS, "Data Succssfully", result)
+//       );
+//     } catch (error) {
+//       return res.json(
+//         jsonGenerate(StatusCode.UNPROCESSABLE_ENTITY, "Error", error)
+//       );
+//     }
+// };
+
+exports.SearchData = async (req, res) => {
+  const PAGE_SIZE = 12;
+  const skip = 1;
+  var needle = req.params.q;
+  try {
+    const title = new RegExp(needle, "i");
+    const reDoc = await Docs.find({
+      $or: [{ title }, { tag: title }],
+      $and: [
+        {
+          isPrivate: false,
+        },
+      ],
+    })
+      .sort({ view: -1 })
+      .limit(PAGE_SIZE);
+
+    const reArt = await Art.find({
+      $or: [{ title }, { tag: title }],
+      $and: [
+        {
+          isPrivate: false,
+        },
+      ],
+    })
+      .sort({ view: -1 })
+      .limit(PAGE_SIZE);
+
+    const result = reDoc.concat(reArt);
+
+    return res.json(
+      jsonGenerate(StatusCode.SUCCESS, "Data Succssfully", result)
+    );
+  } catch (error) {
+    return res.json(
+      jsonGenerate(StatusCode.UNPROCESSABLE_ENTITY, "Error", error)
+    );
+  }
 };

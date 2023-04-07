@@ -91,24 +91,29 @@ exports.SetIsPrivateDoc = async (req, res) => {
 //* Like Doc
 exports.InteractDoc = async (req, res) => {
   try {
-    const { _id, photoURL } = req.body;
+    const { _id, photoURL, userId } = req.body;
     try {
       const post = await Docs.findById(_id);
-      if (!post.like.includes(photoURL)) {
+      let hasValue = post.like.some((obj) =>
+        Object.values(obj).includes(userId)
+      );
+      // console.log(hasValue); // true
+      if (!hasValue) {
         // if (post.dislike.includes(photoURL)) {
         //   await post.updateOne({ $pull: { dislike: photoURL } });
         // }
-        await post.updateOne({ $push: { like: photoURL } });
+        await post.updateOne({ $push: { like: { photoURL, userId } } });
 
         return res.json(jsonGenerate(StatusCode.SUCCESS, "Like Succssfully"));
       } else {
-        await post.updateOne({ $pull: { like: photoURL } });
+        await post.updateOne({ $pull: { like: { photoURL, userId } } });
         return res.json(jsonGenerate(StatusCode.SUCCESS, "UnLike Succssfully"));
       }
     } catch (error) {
       return res.status(500).json("Internal server error ");
     }
 
+   
     // if (arr) {
     //   const user = await Docs.findOneAndUpdate(
     //     { _id: docs_id },

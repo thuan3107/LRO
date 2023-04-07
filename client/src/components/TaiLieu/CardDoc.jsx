@@ -22,12 +22,14 @@ function CardDoc({ category, layout }) {
   const [like, setLike] = useState({
     _id: "",
     photoURL: "",
+    userId: "",
   });
   const auth = user?.token;
   const photoURL = user?.avatar;
   const handlerLike = async (id) => {
     like._id = id;
     like.photoURL = photoURL;
+    like.userId = user?.userId;
     // console.log(id);
     // console.log(like);
     try {
@@ -131,8 +133,10 @@ function CardDoc({ category, layout }) {
                                           >
                                             <span>{item?.like.length}</span>
                                             <span className="mx-1">
-                                              {!item?.like?.includes(
-                                                photoURL
+                                              {!item.like.some((obj) =>
+                                                Object.values(obj).includes(
+                                                  user?.userId
+                                                )
                                               ) ? (
                                                 <>
                                                   <svg
@@ -515,10 +519,14 @@ function CardDoc({ category, layout }) {
                                           ? handlerLike(item?._id)
                                           : NotLogin();
                                       }}
-                                      class="absolute top-3 right-3 flex items-center justify-center rounded-full bg-white p-2 text-brand-500 hover:cursor-pointer"
+                                      class="absolute top-3 right-3 flex items-center justify-center border-2 border-black rounded-full bg-white p-2 text-brand-500 hover:cursor-pointer"
                                     >
-                                      <div class="flex h-full w-full items-center justify-center rounded-full text-xl hover:bg-gray-50">
-                                        {!item?.like?.includes(photoURL) ? (
+                                      <div class="flex h-full w-full items-center justify-center  rounded-full text-xl hover:bg-gray-50">
+                                        {!item.like.some((obj) =>
+                                          Object.values(obj).includes(
+                                            user?.userId
+                                          )
+                                        ) ? (
                                           <>
                                             <svg
                                               stroke="currentColor"
@@ -605,7 +613,7 @@ function CardDoc({ category, layout }) {
                                                 class="h-full w-full rounded-full object-cover"
                                                 // src="https://horizon-tailwind-react-git-tailwind-components-horizon-ui.vercel.app/static/media/avatar1.eeef2af6dfcd3ff23cb8.png"
                                                 alt=""
-                                                src={i}
+                                                src={i.photoURL}
                                               />
                                             </span>
                                           );

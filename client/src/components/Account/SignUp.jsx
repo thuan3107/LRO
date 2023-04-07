@@ -105,7 +105,8 @@ function SignUp() {
         // console.log(result);
         localStorage.setItem("user", JSON.stringify(resultLogin.data.data));
         setTimeout(() => {
-          navigation("/");
+          // navigation("/");
+          window.location.href = "/";
         }, 2000);
         return;
       }

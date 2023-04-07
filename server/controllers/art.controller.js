@@ -83,15 +83,19 @@ exports.RemoveArt = async (req, res) => {
 //* like post
 exports.InteractArt = async (req, res) => {
   try {
-    const { _id, photoURL } = req.body;
+    const { _id, photoURL, userId } = req.body;
     try {
       const list = await Article.findById(_id);
-      if (!list.like.includes(photoURL)) {
-        await list.updateOne({ $push: { like: photoURL } });
+      let hasValue = list.like.some((obj) =>
+        Object.values(obj).includes(userId)
+      );
+      // console.log(hasValue); // true
+      if (!hasValue) {
+        await list.updateOne({ $push: { like: { photoURL, userId } } });
 
         return res.json(jsonGenerate(StatusCode.SUCCESS, "Like Succssfully"));
       } else {
-        await list.updateOne({ $pull: { like: photoURL } });
+        await list.updateOne({ $pull: { like: { photoURL, userId } } });
         return res.json(jsonGenerate(StatusCode.SUCCESS, "UnLike Succssfully"));
       }
     } catch (error) {

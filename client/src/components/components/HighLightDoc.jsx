@@ -20,12 +20,14 @@ function HighLightDoc() {
   const [like, setLike] = useState({
     _id: "",
     photoURL: "",
+    userId: "",
   });
   const auth = user?.token;
   const photoURL = user?.avatar;
   const handlerLike = async (id) => {
     like._id = id;
     like.photoURL = photoURL;
+    like.userId = user?.userId;
     // console.log(id);
     // console.log(like);
     try {
@@ -123,8 +125,10 @@ function HighLightDoc() {
                                           >
                                             <span>{item?.like.length}</span>
                                             <span className="mx-1">
-                                              {!item?.like?.includes(
-                                                photoURL
+                                              {!item.like.some((obj) =>
+                                                Object.values(obj).includes(
+                                                  user?.userId
+                                                )
                                               ) ? (
                                                 <>
                                                   <svg

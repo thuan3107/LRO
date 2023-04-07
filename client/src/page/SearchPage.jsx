@@ -15,8 +15,8 @@ function SearchPage() {
   };
   useEffect(() => {
     Call_Data_Search();
-  }, [q, value]);
-  // console.log(q);
+  }, [q]);
+  console.log(q);
 
   return (
     <>

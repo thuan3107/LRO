@@ -17,6 +17,7 @@ function CardPost() {
   const [like, setLike] = useState({
     _id: "",
     photoURL: "",
+    userId: "",
   });
   const auth = user?.token;
   const photoURL = user?.avatar;
@@ -32,6 +33,7 @@ function CardPost() {
   const handlerLike = async (id) => {
     like._id = id;
     like.photoURL = photoURL;
+    like.userId = user?.userId;
     // console.log(id);
     // console.log(like);
     try {
@@ -89,9 +91,7 @@ function CardPost() {
                           </span>
                         </div>
                         <span className="mx-1 p-1 ">
-                        
-                           {moment(item?.createdAt).fromNow()}
-
+                          {moment(item?.createdAt).fromNow()}
                         </span>
                       </div>
                       <div className="block">
@@ -145,7 +145,9 @@ function CardPost() {
                           >
                             <span className="text-xl">{item?.like.length}</span>
                             <span className="mx-1">
-                              {!item?.like?.includes(photoURL) ? (
+                              {!item.like.some((obj) =>
+                                Object.values(obj).includes(user?.userId)
+                              ) ? (
                                 <>
                                   <svg
                                     fill="none"
