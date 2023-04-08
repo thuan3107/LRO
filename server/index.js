@@ -21,19 +21,21 @@ connection();
 // Middleware
 app.use(cors());
 app.use(express.json());
-// Routes
+
+// Routes for admin
 app.use("/admin/", admin);
-app.use("/user/", AuthMiddleware, user);
 //Router login and register
 app.use("/api/", apiRoute);
-//router handler for user model
-app.use("/apiauth/", AuthMiddleware, authRoutes);
-//router handler for articles model
+//Router handler for user model
+app.use("/user/", AuthMiddleware, user);
+//Router handler for articles model
 app.use("/apiart/", AuthMiddleware, artRoutes);
-//router handler for docs model
+//Router handler for docs model
 app.use("/apidocs/", AuthMiddleware, docsRoutes);
 
 //Server runing
+//router 
+app.use("/apiauth/", AuthMiddleware, authRoutes);
 
 const PORT = process.env.PORT;
 

@@ -99,7 +99,7 @@ function Login() {
     const resultLogin = await login(form2);
     // console.log(resultLogin);
     if (resultLogin.status == 200) {
-      if (resultLogin.data.status === 200) {
+      if (resultLogin.data.status === 200 || resultLogin.data.status === 100) {
         toast.success("Đăng nhập thành công");
         // console.log(result);
         // toast("Vui Lòng Chờ");
@@ -128,15 +128,16 @@ function Login() {
   };
   const Func_Register = async () => {
     const result = await register(form2);
+    console.log(result);
     if (result.status == 200) {
-      if (result.data.status === 200) {
+      if (result.data.status === 200 || result.data.status === 100) {
         Func_Login();
         return;
       }
       if (result.data.status === 201) {
         return;
       }
-      if (result.data.status === 202) {
+      if (result.data.status === 202 || result.data.status === 100) {
         Func_Login();
         return;
       }

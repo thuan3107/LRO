@@ -95,31 +95,25 @@ function SignUp() {
   };
 
   const Func_Login = async () => {
-    // console.log("Login run");
     const resultLogin = await login(form2);
     // console.log(resultLogin);
     if (resultLogin.status == 200) {
       if (resultLogin.data.status === 200) {
-        toast.success(resultLogin.data.message);
-        // toast("Vui Lòng Chờ");
-        // console.log(result);
+        toast.success("Đăng nhập thành công");
         localStorage.setItem("user", JSON.stringify(resultLogin.data.data));
         setTimeout(() => {
-          // navigation("/");
-          // window.location.href = "/";
           window.location = "/";
         }, 2000);
         return;
       }
       if (resultLogin.data.status === 201) {
-        // setErorrs(resultLogin.data.data);
-        toast.error(resultLogin.data.data);
-        // console.log()
+        toast.error("Đăng nhập thất bại");
         return;
       }
 
       if (resultLogin.data.status === 202) {
-        toast.error(resultLogin.data.message);
+        toast.error("Đăng nhập thất bại");
+
         return;
       }
     }
@@ -127,7 +121,6 @@ function SignUp() {
   };
   const Func_Register = async () => {
     const result = await register(form2);
-    // console.log(result);
     if (result.status == 200) {
       if (result.data.status === 200) {
         // console.log(result.data);
@@ -135,8 +128,8 @@ function SignUp() {
         // toast("Register Successfully");
         let timerInterval;
         Swal.fire({
-          title: "Register Successfully",
-          html: "I will close in <b></b> milliseconds.",
+          title: "Đăng Ký Tài Khoản Thành Công",
+          html: "Cập nhật dữ liệu <b></b> %",
           timer: 2000,
           timerProgressBar: true,
           didOpen: () => {
@@ -163,7 +156,7 @@ function SignUp() {
       if (result.data.status === 201) {
         // setErorrs(result.data.data);
         // console.log("201", result.data.data);
-        toast.error(result.data.data);
+        toast.error("Đăng ký tài khoản thất bại");
         return;
       }
       if (result.data.status === 202) {
@@ -194,17 +187,16 @@ function SignUp() {
           if (form2.phone.length == 10) {
             SignUp();
           } else {
-            toast("Số điện thoại không hợp lệ");
+            toast.error("Số điện thoại không hợp lệ");
           }
         } else {
-          toast("Mật Khẩu Không Khớp");
+          toast.error("Mật Khẩu Không Khớp");
         }
       } else {
         Swal.fire({
           icon: "error",
           title: "Oops...",
           text: "Bạn đã quên điền gì đó!!",
-          footer: '<a href="">Why do I have this issue?</a>',
         });
       }
     } catch (error) {}
@@ -215,7 +207,7 @@ function SignUp() {
       const result = await register(form2);
       if (result.status == 200) {
         if (result.data.status === 200) {
-          toast("Đăng Ký Tài Khoản Thành Công");
+          toast.success("Đăng Ký Tài Khoản Thành Công");
 
           setTimeout(() => {
             navigation("/login");
@@ -224,12 +216,13 @@ function SignUp() {
         }
         if (result.data.status === 201) {
           setErorrs(result.data.data);
-          toast(result.data.data);
+          toast.error("Đăng ký tài khoản thất bại");
           return;
         }
 
         if (result.data.status === 202) {
-          toast(result.data.message);
+          toast.error("Đăng ký tài khoản thất bại");
+
           return;
         }
       }
@@ -245,7 +238,7 @@ function SignUp() {
     return hex;
   };
   useEffect(() => {
-    console.table(form2);
+    // console.table(form2);
   }, [form2]);
 
   const uploadImage = (e) => {
@@ -272,7 +265,7 @@ function SignUp() {
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setAvatar(downloadURL);
-            toast("Thêm ảnh đại diện thành công");
+            toast.success("Thêm ảnh đại diện thành công");
 
             // console.log(downloadURL);
           });
@@ -388,10 +381,11 @@ function SignUp() {
                       <div class="md:flex md:flex-row md:space-x-4 w-full text-xs">
                         <div class="w-full flex flex-col mb-3">
                           <label class="font-semibold text-gray-600 py-2">
-                            Số điện thoại
+                            Số điện thoại <abbr title="required">*</abbr>
                           </label>
                           <input
                             placeholder=""
+                            maxLength={5}
                             class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
                             type="number"
                             name="phone"
@@ -481,10 +475,10 @@ function SignUp() {
                   Quay lại
                 </h2>
               </div>
-              <div class="mb-3 space-y-2 w-full text-xs">
-                <div class="w-full flex flex-col mb-3">
+              <div class="mb-3 space-y-1 w-full text-xs">
+                <div class="w-full flex flex-col mb-2">
                   <label class="font-semibold text-gray-600 py-2">
-                    Tên Tài Khoản
+                    Tên Tài Khoản <abbr title="required">*</abbr>
                   </label>
                   <input
                     placeholder=""
@@ -497,9 +491,11 @@ function SignUp() {
                   />
                 </div>
               </div>
-              <div class="mb-3 space-y-2 w-full text-xs">
-                <label class=" font-semibold text-gray-600 py-2">Email</label>
-                <div class="flex flex-wrap items-stretch w-full mb-4 relative">
+              <div class="mb-3 space-y-1 w-full text-xs">
+                <label class=" font-semibold text-gray-600 py-1">
+                  Email <abbr title="required">*</abbr>
+                </label>
+                <div class="flex flex-wrap items-stretch w-full mb-2 relative">
                   <div class="flex">
                     <span class="flex items-center leading-normal bg-grey-lighter border-1 rounded-r-none border border-r-0 border-blue-300 px-3 whitespace-no-wrap text-grey-dark text-sm w-12 h-10 bg-blue-300 justify-center items-center  text-xl rounded-lg text-white">
                       <svg
@@ -531,7 +527,7 @@ function SignUp() {
               <div class="md:flex md:flex-row md:space-x-4 w-full text-xs">
                 <div class="w-full flex flex-col mb-3">
                   <label class="font-semibold text-gray-600 py-2">
-                    Mật Khẩu
+                    Mật Khẩu <abbr title="required">*</abbr>
                   </label>
                   <input
                     placeholder=""
@@ -544,7 +540,7 @@ function SignUp() {
                 </div>
                 <div class="w-full flex flex-col mb-3">
                   <label class="font-semibold text-gray-600 py-2">
-                    Nhập lại mật khẩu
+                    Nhập lại mật khẩu <abbr title="required">*</abbr>
                   </label>
                   <input
                     placeholder=""

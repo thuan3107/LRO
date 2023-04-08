@@ -602,9 +602,7 @@ function CardDoc({ category, layout }) {
                                               : ""
                                           } z-0 ml-px inline-flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-[#E0E5F2] text-xs text-navy-700`}
                                         >
-                                          +
-                                          {item?.like?.length -
-                                            item?.like?.slice(0, 5)}
+                                          +{item?.like?.length - 5}
                                         </span>
                                         {item?.like?.slice(0, 5)?.map((i) => {
                                           return (
