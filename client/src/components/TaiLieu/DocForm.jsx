@@ -265,7 +265,8 @@ function DocForm() {
                           onChange={handleChange}
                           value={data.title}
                           name="title"
-                          className="block w-full px-4 py-2 mt-2 text-blue-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                          placeholder="Nhập tiêu đề cho tài liệu"
+                          className="placeholder:font-thin placeholder:italic placeholder:text-sm block w-full px-4 py-2 mt-2 text-blue-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         />
                       </div>
                       <div className="mb-2 w-full">
@@ -281,7 +282,7 @@ function DocForm() {
                           id="small"
                           name="category"
                           required
-                          className="block w-full px-4 py-2 mt-2 text-blue-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                          className="placeholder:font-thin placeholder:italic placeholder:text-sm block w-full px-4 py-2 mt-2 text-blue-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         >
                           <option selected>Chọn một danh mục</option>
                           {CategoryArr.map((i) => {
@@ -305,7 +306,7 @@ function DocForm() {
                             name="tag"
                             id="tag"
                             placeHolder="Gắn thẻ bài viết của bạn. Tối đa 5 thẻ. Ít nhất 3 thẻ!"
-                            classNames={` w-full border-0`}
+                            classNames={`placeholder:font-thin placeholder:italic placeholder:text-sm w-full border-0`}
                           />
                         </div>
                       </div>
@@ -323,7 +324,8 @@ function DocForm() {
                           name="content"
                           onChange={handleChange}
                           value={data.content}
-                          className="mb-2 w-full h-40"
+                          placeholder="Hãy viết vài dòng để mô tả tài liệu này"
+                          className="placeholder:font-thin placeholder:italic placeholder:text-sm mb-2 w-full h-40"
                         ></textarea>
                       </div>
                     </div>

@@ -344,7 +344,7 @@ function SignUp() {
                           </label>
                           <input
                             placeholder="VD: Trần"
-                            class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+                            class="placeholder:font-thin placeholder:italic placeholder:text-sm appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
                             required="required"
                             type="text"
                             name="first_name"
@@ -362,7 +362,7 @@ function SignUp() {
                           </label>
                           <input
                             placeholder="Vd: Văn Thịnh"
-                            class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+                            class="placeholder:font-thin placeholder:italic placeholder:text-sm appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
                             required="required"
                             type="text"
                             name="last_name"
@@ -386,7 +386,7 @@ function SignUp() {
                           <input
                             placeholder=""
                             maxLength={5}
-                            class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+                            class="placeholder:font-thin placeholder:italic placeholder:text-sm appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
                             type="number"
                             name="phone"
                             onChange={handleChange}
@@ -475,23 +475,23 @@ function SignUp() {
                   Quay lại
                 </h2>
               </div>
-              <div class="mb-3 space-y-1 w-full text-xs">
-                <div class="w-full flex flex-col mb-2">
+              <div class="mb-1 space-y-1 w-full text-xs">
+                <div class="w-full flex flex-col mb-1">
                   <label class="font-semibold text-gray-600 py-2">
                     Tên Tài Khoản <abbr title="required">*</abbr>
                   </label>
                   <input
-                    placeholder=""
-                    class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+                    class="placeholder:font-thin placeholder:italic placeholder:text-sm appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
                     type="text"
                     name="username"
                     id="username"
                     value={form2.username}
                     onChange={handleChange}
+                    placeholder="Tên tài khoản ít nhất 6 ký tự và phải là duy nhất"
                   />
                 </div>
               </div>
-              <div class="mb-3 space-y-1 w-full text-xs">
+              <div class="mb-1 space-y-1 w-full text-xs">
                 <label class=" font-semibold text-gray-600 py-1">
                   Email <abbr title="required">*</abbr>
                 </label>
@@ -519,8 +519,8 @@ function SignUp() {
                     name="email"
                     onChange={handleChange}
                     value={form2.email}
-                    class="flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border border-l-0 h-10 border-grey-light rounded-lg rounded-l-none px-3 relative focus:border-blue focus:shadow"
-                    placeholder=""
+                    class="placeholder:font-thin placeholder:italic placeholder:text-sm  flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border border-l-0 h-10 border-grey-light rounded-lg rounded-l-none px-3 relative focus:border-blue focus:shadow"
+                    placeholder="Nhập email của bạn"
                   />
                 </div>
               </div>
@@ -530,8 +530,8 @@ function SignUp() {
                     Mật Khẩu <abbr title="required">*</abbr>
                   </label>
                   <input
-                    placeholder=""
-                    class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+                    placeholder="Mật khẩu ít nhất 6 ký tự"
+                    class="placeholder:font-thin placeholder:italic placeholder:text-sm appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
                     type="password"
                     value={form2.password}
                     name="password"
@@ -543,8 +543,8 @@ function SignUp() {
                     Nhập lại mật khẩu <abbr title="required">*</abbr>
                   </label>
                   <input
-                    placeholder=""
-                    class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
+                    placeholder="Nhập lại mật khẩu của bạn"
+                    class="placeholder:font-thin placeholder:italic placeholder:text-sm appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
                     type="password"
                     name="passwordConfirmation"
                     value={form2.passwordConfirmation}

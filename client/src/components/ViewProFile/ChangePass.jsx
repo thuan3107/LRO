@@ -124,10 +124,10 @@ function ChangePass() {
                         type={eye ? "text" : "password"}
                         name="oldpassword"
                         id="oldpassword"
-                        // placeholder="••••••••"
+                        placeholder="Nhập mật khẩu hiện tại của bạn"
                         value={isOldPass}
                         onChange={(e) => setOldIsPass(e.target.value)}
-                        class="bg-gray-50 border border-gray-300 shadow-lg shadow-indigo-500/40 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        class=" placeholder:font-thin placeholder:italic placeholder:text-sm bg-gray-50 border border-gray-300 shadow-lg shadow-indigo-500/40 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         required=""
                       />
                     </div>
@@ -156,10 +156,10 @@ function ChangePass() {
                         type={eye ? "text" : "password"}
                         name="password"
                         id="password"
-                        // placeholder="••••••••"
+                        placeholder="Mật khẩu ít nhất 6 ký tự"
                         value={isPass}
                         onChange={(e) => setIsPass(e.target.value)}
-                        class="bg-gray-50 border  border-gray-300 shadow-lg shadow-indigo-500/40 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        class="placeholder:font-thin placeholder:italic placeholder:text-sm bg-gray-50 border  border-gray-300 shadow-lg shadow-indigo-500/40 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         required=""
                       />
                     </div>
@@ -187,11 +187,11 @@ function ChangePass() {
                       <input
                         type={eye ? "text" : "password"}
                         name="confirm-password"
-                        // placeholder="••••••••"
+                        placeholder="Nhập lại mật khẩu"
                         value={isConfirmPass}
                         onChange={(e) => setIsConfirmPass(e.target.value)}
                         id="confirm-password"
-                        class="bg-gray-50 border border-gray-300 shadow-lg shadow-indigo-500/40 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        class="placeholder:font-thin placeholder:italic placeholder:text-sm bg-gray-50 border border-gray-300 shadow-lg shadow-indigo-500/40 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         required=""
                       />
                     </div>
