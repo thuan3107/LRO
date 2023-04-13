@@ -141,7 +141,7 @@ export default function AddArticle({ colDB }) {
                   // className="form-control"
                   value={formData.description}
                   onChange={(e) => handleChange(e)}
-                  placeholder="Type Your Comment"
+                  placeholder="Nhập bình luận của bạn"
                   maxlength="3000"
                   required
                 ></textarea>

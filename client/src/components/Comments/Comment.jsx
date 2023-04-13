@@ -24,7 +24,8 @@ export default function Comment({ id, colDB }) {
   const [comment, setComment] = useState("");
   // console.log(comment);
   if (comment.length > 3000) {
-    alert("Bạn viết quá nhiều rồi ");
+    // alert("Bạn viết quá nhiều rồi ");
+    toast.error("Bạn viết quá nhiều rồi");
   }
   const [comments, setComments] = useState([]);
   // console.log(comments);
@@ -41,10 +42,10 @@ export default function Comment({ id, colDB }) {
     });
   }, []);
 
-  const handleChangeComment = (e) => {
+  const handleChangeComment = (e, key) => {
     try {
       if (comment != "") {
-        if (e.key === "Enter") {
+        if (e.key === "Enter" || key === "Enter") {
           if (comment.length < 2000) {
             updateDoc(commentRef, {
               comments: arrayUnion({
@@ -59,11 +60,12 @@ export default function Comment({ id, colDB }) {
               setComment("");
             });
           } else {
-            toast("Bình luận của bạn quá dài");
+            toast.error("Bình luận của bạn quá dài");
           }
         }
       } else {
         //  alert("cmt rong");
+        // toast.error("")
       }
     } catch (error) {}
   };
@@ -85,7 +87,7 @@ export default function Comment({ id, colDB }) {
         if (result.isConfirmed) {
           // DeletePosts(id);
           // Swal.fire("Deleted!", "Xoá Bình Luân Thành Công", "success");
-          toast("Bình luận đã được xoá");
+          toast.success("Bình luận đã được xoá");
           updateDoc(commentRef, {
             comments: arrayRemove(comment),
           })
@@ -194,19 +196,33 @@ export default function Comment({ id, colDB }) {
             )
           )}
         {user && user ? (
-          <input
-            type="text"
-            className="form-control mt-4 mb-5 w-full bg-[#dce2f4] text-black"
-            value={comment}
-            onChange={(e) => {
-              setComment(e.target.value);
-            }}
-            placeholder="Add a comment"
-            maxlength="3000"
-            onKeyUp={(e) => {
-              handleChangeComment(e);
-            }}
-          />
+          <div>
+            <div className="flex">
+              <input
+                type="text"
+                className="form-control rounded-md w-full bg-[#dce2f4] text-black"
+                value={comment}
+                onChange={(e) => {
+                  setComment(e.target.value);
+                }}
+                placeholder="Nhập bình luận của bạn"
+                maxlength="3000"
+                onKeyUp={(e) => {
+                  handleChangeComment(e);
+                }}
+              />
+              <button
+                onClick={(e) => handleChangeComment(e, "Enter")}
+                class="md:w-14 h-14 rounded-lg justify-center items-center 
+                                    flex ml-2 py-2 px-3  text-sm font-medium text-white
+                                 bg-blue-700 border border-blue-700 hover:bg-blue-800 focus:ring-4 
+                                 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700
+                                  dark:focus:ring-blue-800"
+              >
+                Đăng
+              </button>
+            </div>
+          </div>
         ) : (
           <>
             <span

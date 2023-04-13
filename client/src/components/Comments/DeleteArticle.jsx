@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { deleteObject, ref } from "firebase/storage";
 import { TiDelete } from "react-icons/ti";
 import Swal from "sweetalert2";
+import { MdOutlineDeleteForever } from "react-icons/md";
 
 export default function DeleteArticle({ id, imageUrl, colDB, description }) {
   // const [temp, setTemp] = useState(false);
@@ -50,9 +51,16 @@ export default function DeleteArticle({ id, imageUrl, colDB, description }) {
     });
   }
   return (
-    <div onClick={sw} className="cursor-pointer flex p-1 border rounded-md">
-      <TiDelete className="text-black text-2xl" />
-      Xoá
+    <div
+      onClick={sw}
+      className="cursor-pointer z-10 mt-1 flex p-1 text-gray-500 border-2 rounded-full border-black text-xl justify-end"
+    >
+      {/* <TiDelete className="text-black text-2xl" />
+      Xoá */}
+
+      <span className="md:text-2xl   text-lg text-pink-400 cursor-pointer">
+        <MdOutlineDeleteForever />
+      </span>
     </div>
   );
 }

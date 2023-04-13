@@ -112,7 +112,11 @@ export default function Articles({ colDB }) {
                             )}
                           </p>
                         </div>
-                        <p class="text-gray-400 text-sm ">
+                        <p
+                          class={`text-gray-400 text-sm ${
+                            user && user.userId === userId ? "-mt-4" : "-mt-1"
+                          }`}
+                        >
                           {createdAt.toDate().toDateString()}
                         </p>
                       </div>
@@ -206,7 +210,7 @@ export default function Articles({ colDB }) {
                       <AccordionItemHeading>
                         <AccordionItemButton className="flex bg-[#c8eef0] mt-1 p-1 rounded-md text-gray-300">
                           <span className="mr-[6px] text-[#4E9F3D]">
-                            Rep Comment
+                            Trả lời bình luận của
                           </span>{" "}
                           <span className="md:block hidden text-blue-900">
                             {createdBy}

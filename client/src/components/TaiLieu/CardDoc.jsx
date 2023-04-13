@@ -670,7 +670,7 @@ function CardDoc({ category, layout }) {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                Previous
+                Sau
               </a>
               <a
                 onClick={(e) => {
@@ -679,7 +679,7 @@ function CardDoc({ category, layout }) {
                 class="cursor-pointer inline-flex justify-end items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg
                hover:bg-green-300 hover:text-green-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
               >
-                Next
+                Tiếp
                 <svg
                   aria-hidden="true"
                   class="w-5 h-5 ml-2"
