@@ -10,6 +10,7 @@ function SearchPage() {
 
   const Call_Data_Search = async () => {
     const result = await FUNC_SEARCH_DATA(q);
+    console.log(q);
     console.log(result);
     setValue(result.data.data);
   };

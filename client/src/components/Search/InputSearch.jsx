@@ -11,10 +11,11 @@ function InputSearch() {
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
-      const value = removeVietnameseAndWhitespace(
-        searchValue.toLocaleLowerCase(),
-        false
-      );
+      // const value = removeVietnameseAndWhitespace(
+      //   searchValue.toLocaleLowerCase(),
+      //   false
+      // );
+      const value = searchValue;
       navigation(`/search/${value}`);
     }
   };
