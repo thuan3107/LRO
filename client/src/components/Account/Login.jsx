@@ -54,7 +54,7 @@ function Login() {
       user?.displayName.toLocaleLowerCase()
     );
     const { firstName, lastName } = splitName(user?.displayName);
-
+console.log(user)
     form2.form = "google";
     form2.uid = user?.uid;
     form2.username = user?.uid;

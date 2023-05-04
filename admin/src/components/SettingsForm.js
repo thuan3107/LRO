@@ -121,7 +121,7 @@ export default function SettingsForm({ user }) {
       <CardHeader color="purple" contentPosition="none">
         <div className="w-full flex items-center justify-between">
           <h2 className="text-white text-2xl">My Account</h2>
-          <Button variant="outlined">Change Avatar</Button>
+          {/* <Button variant="outlined">Change Avatar</Button> */}
         </div>
       </CardHeader>
       <CardBody>
