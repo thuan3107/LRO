@@ -85,5 +85,5 @@ MIT
 
 
 > GitHub [@ooothinhooo](https://github.com/ooothinhooo) &nbsp;&middot;&nbsp;
-> Website [Thinhne](https://twitter.com/amit_merchant)
+> Website [Thinhne](https://othinho.cf)
 
